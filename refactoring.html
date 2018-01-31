@@ -1,0 +1,115 @@
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <html lang="en">
+
+    <head>
+        <title>Automatica11y</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="Shortcut Icon" href="images/favicon.png">
+        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" media="print" href="css/home-print.css">
+        <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
+
+        <script type="text/javascript" src="./build/HTMLCS.js"></script>
+        <script type="text/javascript" src="./home.js"></script>
+        <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-359178-16']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+    <body>
+
+        <div id="back-to-top" class="off">
+        <span><a href="#">top</a></span>
+        </div>
+
+        <div id="header">
+            <div class="max-width">
+                <h1>Automatica11y</h1>
+                <map name="External Links">
+                    <ul id="sprites">
+                        <li><a href="https://github.com/squizlabs/HTML_CodeSniffer" class="header-sprite github-logo"><span class="screen-hide">HTML_CodeSniffer on GitHub</span></a></li>
+                        <!--<li><a href="http://twitter.com/htmlcs" class="header-sprite twitter-logo"><span class="screen-hide">Follow us on Twitter</span></a></li>-->
+                    </ul>
+                </map>
+            </div>
+        </div>
+
+        <div id="sub-header">
+
+        </div>
+
+        <div id="introduction">
+            <div class="max-width">
+                
+                    <h2>Check that your HTML code conforms to your coding standard</h2>
+
+                    <p>HTML_CodeSniffer is a client-side script that checks HTML source code and detects violations of a defined coding standard. HTML_CodeSniffer is written entirely in JavaScript, does not require any server-side processing and can be extended by developers to enforce custom coding standards by creating your own "sniffs".</p>
+
+                    <p>To get you started, HTML_CodeSniffer comes with standards that enforce the three conformance levels of the <a href="http://www.w3.org/TR/WCAG/">Web Content Accessibility Guidelines (WCAG) 2.0</a>
+                    An auditor interface is provided by a bookmarklet to let you try out these accessibility checks on any web page.</p>
+
+                    
+             </div><!-- end max-width -->
+         </div> <!-- end introduction -->
+
+         <div id="test-area">
+
+            <div class="max-width">
+                <h3>Run your code through the Sniffer</h3>
+
+                <p>Run HTML_CodeSniffer over your own code to see how it works. The sniffer below will test your source code against your selected guideline.<br>
+                Test results will be shown underneath the code block.</p>
+
+                <div id="code-input">
+                    <form id="runHTMLCS" action="" onsubmit="javascript:runHTMLCSTest(false); return false;">
+                        <div id="code-overlay" onclick="hideDiv()">
+                            <div id="test-area-graphic"></div>Paste your code here
+                        </div>
+
+                        <textarea id="source" title="Enter the source code to be sniffed" rows="20" cols="100"></textarea>
+
+                        <div id="test-options">
+                            <fieldset>
+                                <legend>Standard:</legend>
+                            <ul>
+                                <li><input type="radio" value="WCAG2A" name="level" id="WCAG2A" class="radio-input"><span class="radio-gen"></span><label for="WCAG2A"> WCAG 2.0 Level A</label></li>
+
+                                <li><input type="radio" value="WCAG2AA" name="level" id="WCAG2AA" class="radio-input"><span class="radio-gen"></span><label for="WCAG2AA"> WCAG 2.0 Level AA</label></li>
+
+                                <li><input type="radio" value="WCAG2AAA" name="level" id="WCAG2AAA" class="radio-input" checked><span class="radio-gen radio-on"></span><label for="WCAG2AAA"> WCAG 2.0 Level AAA</label></li>
+
+                                <li><input type="radio" value="Section508" name="level" id="Section508" class="radio-input"><span class="radio-gen"></span><label for="Section508"> Section 508</label></li>
+                            </ul>
+                            </fieldset>
+
+                            <button type="submit" id="run-button" class="test-options-disabled">Run HTML_CodeSniffer</button>
+
+                        </div>
+                    </form>
+
+
+                </div> <!-- close code-input -->
+
+                    <div id="resultsWrapper">
+
+                </div> <!-- close #test-results -->
+            </div> <!-- close .max-width -->
+
+
+        </div> <!-- close #text-area -->
+
+            <div id="footer">
+        <div class="max-width">
+<p><strong>Automatica11y</strong> 2018.</p>
+        </div>
+    </div>
+    </body>
+    </html>
