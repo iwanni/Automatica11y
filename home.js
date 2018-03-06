@@ -37,11 +37,13 @@ function updateResults(resultsWrapper)
     }
 
     var content = '<table id="test-results-table"><tr>';
-    content    += '<th>#</th><th>Message</th><th>Principle</th><th><acronym title="Success Criterion">SC</acronym></th><th>Techniques</th></tr>';
+    content    += '<th><input type="checkbox" onClick="toggle(this)" /></th><th>No</th><th>Message</th><th>Principle</th><th><acronym title="Success Criterion">SC</acronym></th><th>Techniques</th></tr>';
 
     var errors   = 0;
     var warnings = 0;
     var notices  = 0;
+    var refTechnique = [];
+    var a = 0;
 
     for (var i = 0; i < msgs.length; i++) {
         var msg = msgs[i];
@@ -50,21 +52,21 @@ function updateResults(resultsWrapper)
             case HTMLCS.ERROR:
                 type = 'Error';
                 errors++;
-            break;
+                break;
 
             case HTMLCS.WARNING:
                 type = 'Warning';
                 warnings++;
-            break;
+                break;
 
             case HTMLCS.NOTICE:
                 type = 'Notice';
                 notices++;
-            break;
+                break;
 
             default:
                 type = 'Unknown';
-            break;
+                break;
         }
 
         // Get the success criterion so we can provide a link.
@@ -72,7 +74,8 @@ function updateResults(resultsWrapper)
         var principle  = msgParts[1];
         var sc         = msgParts[3].split('_').slice(0, 3).join('_');
         var techniques = msgParts[4];
-		var source	   = msgParts[6];
+        //own
+        var source	   = msgParts[5]+msgParts[6];
         techniques     = techniques.split(',');
 
         // Build a message code without the standard name.
@@ -80,7 +83,17 @@ function updateResults(resultsWrapper)
         msgParts.unshift('[Standard]');
         var noStdMsgParts = msgParts.join('.');
 
+
         content += '<tr class="' + type.toLowerCase() + '">';
+        if(type != "Notice") {
+            content += '<td><input type="checkbox" name="result" value="';
+            for (var j = 0; j < techniques.length; j++) {
+                content += techniques[j] + "_" + source;
+            }
+            content += '"></td>';
+        } else {
+            content += '<td></td>';
+        }
         content += '<td class="number"><span class="flag"></span></td>';
         content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg + '</td>';
         content += '<td class="messagePrinciple">';
@@ -95,11 +108,15 @@ function updateResults(resultsWrapper)
         }
         content += '</ul></td>';
         content += '</tr>';
-		content += source;
+        content += source;
+
+        refTechnique[a] = techniques;
+        a++;
     }
 
 
     var heading = '<h3>Test results</h3>';
+    heading += '<form action="refactoring.html">';
 
     var noticeActive     = '';
     var testResultsClass = 'hide-notice';
@@ -119,10 +136,42 @@ function updateResults(resultsWrapper)
     content += '</table>';
     content += '<div id="test-results-noMessages"><em>No messages matched the types you selected</em></div>';
     //content += '<span class="footnote"><em>Add the Accessibility Auditor bookmarklet to your browser to run this test on any web page.</em></span></div>';
-	content += '<br><a href="refactoring.html">Automated Refactoring</a>';
+    //content += '<br><a href="refactoring.html?source='+document.getElementById('source').value + auto()+'">Automated Refactoring</a>';
+    //*content += '<br><input type="button" value="Automated Refactoring" onclick="auto('+refTechnique+');">';
+	content += '<textarea type="text" name=source style="display:none;">'+document.getElementById('source').value+'</textarea>';
+    content += '<br><input type="submit" value="Submit">';
+    content += '</form>';
     resultsWrapper.innerHTML = content;
 
     reorderResults();
+}
+
+function toggle(source) {
+    checkboxes = document.getElementsByName("result");
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+    }
+}
+
+function auto(techniques){
+    console.log(techniques);
+    /*var s = document.createElement("script");
+    s.src("SC412_H91_link.script");
+    $("head").append(s);*/
+
+    /*var a=document.getElementById('source').value;
+    var script = document.createElement("script");
+    script.appendChild("");*/
+
+
+
+    //*var script = document.createElement("script"); // Make a script DOM node
+    //script.src = "SC412_H91_link.js";
+    //*script.innerHTML = "if (document.title == false) {document.title = prompt('Please enter title text ');	}"	// Set it's src to the provided URL
+    //*document.getElementById('source').appendChild(script);
+    //window.location.reload(false)
+    //window.location.href = "refactoring.html?source="+document.getElementById('source').value;
+    window.location.href = "refactoring.html?script="+document.getElementsByTagName("textarea")[0].innerHTML+"&source="+document.getElementById('source').value+"&techniques="+techniques[0];
 }
 
 function updateResults508(resultsWrapper)
@@ -150,21 +199,21 @@ function updateResults508(resultsWrapper)
             case HTMLCS.ERROR:
                 type = 'Error';
                 errors++;
-            break;
+                break;
 
             case HTMLCS.WARNING:
                 type = 'Warning';
                 warnings++;
-            break;
+                break;
 
             case HTMLCS.NOTICE:
                 type = 'Notice';
                 notices++;
-            break;
+                break;
 
             default:
                 type = 'Unknown';
-            break;
+                break;
         }
 
         // Get the success criterion so we can provide a link.

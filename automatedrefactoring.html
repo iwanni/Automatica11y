@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+    <title>Automatica11y</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="Shortcut Icon" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" media="print" href="css/home-print.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
+
+    <script type="text/javascript" src="./build/HTMLCS.js"></script>
+    <script type="text/javascript" src="./home.js"></script>
+    <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-359178-16']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+<!--<div id="test-area">
+
+    <div class="max-width">
+        <div id=""></div>
+		Old HTML: <div id="oldHTML"></div>
+			
+		<br><br>
+			
+		New HTML: <div id="newHTML"></div>
+    </div>
+</div>-->
+
+
+
+<script type="text/javascript">
+
+    var paramKey = [];
+    var paramValue = [];
+    var countParam = location.search.split("&").length;
+	
+	var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+	oldSource = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
+	
+	document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));
+	
+	
+    for(var i = 0; i < countParam ; i++){
+		/*number = location.search.split("&")[i].replace("?","").split("=")[0].replace("]", "").split("[")[1];
+		number =decodeURIComponent((number + '').replace(/\+/g, '%20'));
+		
+		paramKey[number] = location.search.split("&")[i].replace("?","").split("=")[0];
+        paramValue[number] = location.search.split("&")[i].replace("?","").split("=")[1];
+		
+		paramKey[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));
+		paramValue[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));*/
+		
+		number = location.search.split("&")[i].replace("?","").split("=")[0];
+		number = decodeURIComponent((number + '').replace(/\+/g, '%20'));
+		number = number.replace("]", "").split("[")[1];
+		
+		paramKey[number] = location.search.split("&")[i].replace("?","").split("=")[0];
+		paramKey[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));
+		
+        paramValue[number] = location.search.split("&")[i].replace("?","").split("=")[1];
+		paramValue[number] = decodeURIComponent((paramValue[number] + '').replace(/\+/g, '%20'));
+		
+		
+		for(let i = 0 ; i < document.getElementsByTagName("a").length ; i++) {
+        if (document.getElementsByTagName("a")[i].getAttribute("href") == false ||
+            document.getElementsByTagName("a")[i].getAttribute("href") == null ||
+			document.getElementsByTagName("a")[i].innerHTML == false) {
+            
+			for(let j = 0 ; j < document.getElementsByTagName("a").length ; j++) {
+				if(paramKey[j] == "href["+i+"]") {
+					document.getElementsByTagName("a")[i].setAttribute("href", paramValue[i]);
+				}
+				if(paramKey[j] == "valueLink["+i+"]") {
+					document.getElementsByTagName("a")[i].innerHTML = paramValue[i];
+				}
+			}
+        }
+    }
+    }
+	
+	
+	
+	//Old HTML
+	/*var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+	oldSource = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
+	
+	document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));*/
+	//var x = document.body.getElementsByTagName("*");
+	var x = document.querySelectorAll('body > *');
+	var x = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+x+'</textarea>';
+	
+	document.body.parentNode.removeChild(document.body);
+	
+	document.body = document.createElement("body");
+	//document.body.innerHTML = document.createElement("div")setAttribute("id", "oldHTML");
+	document.body.innerHTML = "Old HTML: <div id='oldHTML'></div>New HTML: <div id='newHTML'></div>";
+	
+	//var g = document.createElement("div");
+	//g.setAttribute("id", "oldHTML");
+	
+	document.getElementById("oldHTML").innerHTML = oldSource;
+	
+	
+	
+	//newsource = document.getElementById("asd").value;
+	
+	for(let i = 0 ; i < document.getElementsByTagName("a").length ; i++) {
+        if (document.getElementsByTagName("a")[i].getAttribute("href") == false ||
+            document.getElementsByTagName("a")[i].getAttribute("href") == null ||
+			document.getElementsByTagName("a")[i].innerHTML == false) {
+            
+			for(let j = 0 ; j < document.getElementsByTagName("a").length ; j++) {
+				if(paramKey[j] == "href["+i+"]") {
+					document.getElementsByTagName("a")[i].setAttribute("href", paramValue[i]);
+				}
+				if(paramKey[j] == "valueLink["+i+"]") {
+					document.getElementsByTagName("a")[i].innerHTML = paramValue[i];
+				}
+			}
+        }
+    }
+	
+	//newsource = '<textarea type="text" name=source rows="20" cols="100">'+x+'</textarea>';
+	newsource = x;
+	document.getElementById("newHTML").innerHTML = newsource;
+	
+
+    //var content = '<table id="test-results-table" class="table"><thead><tr><th scope="col">No</th><th scope="col">Success Criteria - Technique</th><th scope="col">Refactoring</th><th scope="col">Parameter</th></tr></thead>';
+
+    
+    //document.getElementById("demo").innerHTML = content;
+
+</script>
+
+
+
+</body>
+</html>

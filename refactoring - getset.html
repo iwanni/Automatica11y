@@ -1,0 +1,104 @@
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <html lang="en">
+
+    <head>
+        <title>Automatica11y</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="Shortcut Icon" href="images/favicon.png">
+        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" media="print" href="css/home-print.css">
+        <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
+
+        <script type="text/javascript" src="./build/HTMLCS.js"></script>
+        <script type="text/javascript" src="./home.js"></script>
+        <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-359178-16']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
+    <body>	
+	<div id="test-area">
+
+            <div class="max-width">
+	
+  
+  <div id="demo">
+    <!--<tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>-->
+  </tbody>
+</table>
+</div>
+</div>
+	
+
+	
+		<script type="text/javascript">
+			var h91 = {
+				refactorText:"",
+				parameter:[],
+				totalParamater:3,
+				
+				get solution() {
+					return this.refactorText;
+				},
+				/*get inputText() {
+					return this.parameter;
+				},*/
+				get countParamater() {
+					return this.totalParamater;
+				},
+				processErrorMessage: function(errorMessage) {
+					if(errorMessage == "H91_AEmptyNoId") {
+						this.refactorText =  "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link";
+						this.parameter[0] = processInputText("Nilai href: ","href");
+						this.parameter[1] = processInputText("Text untuk link: ","valueLink");
+						this.totalParamater = 2;
+					} else if (errorMessage == "H91_ANoContent") {
+						this.refactorText = "Refactoring dilakukan dengan memasukkan text untuk link";
+					}
+				}
+			};
+			
+			var processInputText = function(label, name) {
+				return label + "<input type='text' name="+name+"></input>";
+			}
+		
+			 var myParam = [];
+			 var countParam = location.search.split("&").length;
+			 for(var i = 0; i < countParam ; i++){
+				myParam[i] = location.search.split("&")[i].replace("?","").split("=")[1];
+			 }
+			 var content = '<table id="test-results-table" class="table"><thead><tr><th scope="col">No</th><th scope="col">Success Criteria - Technique</th><th scope="col">Refactoring</th><th scope="col">Parameter</th></tr></thead>';
+			 
+			 for(var i = 0 ; i < countParam ; i++){
+				h91.processErrorMessage(myParam[i]);
+				content += '<tr><th scope="row">'+(i+1)+'</th><td>'+myParam[i]+'</td><td>'+h91.solution+'</td><td>';
+				for(var j = 0 ; j < h91.countParamater ; j++) {
+					content += h91.parameter[j];
+					content += '<br>';
+				}
+				content += '</td></tr>';
+				
+			 }
+			 
+			 
+			 document.getElementById("demo").innerHTML = content;
+			 
+        </script>
+		
+
+       
+    </body>
+    </html>

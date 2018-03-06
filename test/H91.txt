@@ -1,0 +1,6 @@
+<a></a>
+<a href="www.itb.ac.id"></a>
+<a>ITB</a>
+<a id="link1"></a>
+<a name="link"></a>
+<a id="www.itb.ac.id">ITB</a>
