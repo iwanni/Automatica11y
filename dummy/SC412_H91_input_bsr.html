@@ -1,0 +1,38 @@
+<!--<input type="reset" value="" />
+<input type="submit" value="Submit" />
+<input type="reset" value="Reset" />-->
+<input type="image" src="save.gif" alt="save" />
+
+<script>
+//<input type="image" src="save.gif" alt="save" />
+//srcnya diperlukan juga?
+
+    for(let i = 0 ; i < document.getElementsByTagName("input").length ; i++) {
+        if(document.getElementsByTagName("input")[i].getAttribute("type") == "image") {
+            if(document.getElementsByTagName("input")[i].getAttribute("alt") == false ||
+                document.getElementsByTagName("input")[i].getAttribute("alt") == null) {
+                let altText = prompt("Please enter input alt "+ (i + 1)  +":", "");
+                document.getElementsByTagName("input")[i].setAttribute("alt", altText);
+            }
+        } else if(document.getElementsByTagName("input")[i].getAttribute("type") == "text") {
+			if(document.getElementByTagName("input")[i].parentNode.nodeName == "label") {
+				if(document.getElementByTagName("input")[i].getAttribute("id") == document.getElementByTagName("input")[i].parentNode.nodeName == "label")
+			}
+        }
+        else {
+            if (document.getElementsByTagName("input")[i].getAttribute("type") == false ||
+                document.getElementsByTagName("input")[i].getAttribute("type") == null ||
+                document.getElementsByTagName("input")[i].getAttribute("type") != "button" &&
+                document.getElementsByTagName("input")[i].getAttribute("type") != "submit" &&
+                document.getElementsByTagName("input")[i].getAttribute("type") != "reset") {
+                let inputText = prompt("Please enter input type " + (i + 1) + ":", "");
+                document.getElementsByTagName("input")[i].setAttribute("type", inputText);
+            }
+            if (document.getElementsByTagName("input")[i].getAttribute("value") == false ||
+                document.getElementsByTagName("input")[i].getAttribute("value") == null) {
+                let valueText = prompt("Please enter input value " + (i + 1) + ":", "");
+                document.getElementsByTagName("input")[i].setAttribute("value", valueText);
+            }
+        }
+    }
+</script>

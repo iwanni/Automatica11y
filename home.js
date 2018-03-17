@@ -1,3 +1,6 @@
+//var _messagesProcess = [];
+var _messagesProcess2 = [];
+
 function runHTMLCS(standard, source, resultsDiv, callback)
 {
     if (/resultsWrapperActive/.test(resultsDiv) === false) {
@@ -30,8 +33,12 @@ function updateResults(resultsWrapper)
         'Principle4': 'Robust'
     };
 
-    var msgs = HTMLCS.getMessages();
-    if (msgs.length === 0) {
+    window._messagesProcess = HTMLCS.getMessages();
+	_messagesProcess2 = window._messagesProcess;
+	//HTMLCSAuditor._options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
+	//var snippet = HTMLCSAuditor.build('WCAG2AAA', msgs, '//squizlabs.github.io/HTML_CodeSniffer/build/');
+	
+    if (window._messagesProcess.length === 0) {
         resultsWrapper.innerHTML = '<span class="no-violations">No violations found</span>';
         return;
     }
@@ -45,8 +52,96 @@ function updateResults(resultsWrapper)
     var refTechnique = [];
     var a = 0;
 
-    for (var i = 0; i < msgs.length; i++) {
-        var msg = msgs[i];
+    for (var i = 0; i < window._messagesProcess.length; i++) {
+		/*
+		
+		tes
+		
+		
+		
+		if (msgs.element.outerHTML) {
+                var preText = "";
+                var postText = "";
+                if (message.element.innerHTML.length > 31) {
+                    var outerHTML = message.element.outerHTML.replace(message.element.innerHTML, message.element.innerHTML.substr(0, 31) + "...");
+                } else {
+                    var outerHTML = message.element.outerHTML;
+                }
+                // Find previous siblings.
+                var preNode = message.element.previousSibling;
+                while (preText.length <= 31) {
+                    if (preNode === null) {
+                        break;
+                    } else {
+                        if (preNode.nodeType === 1) {
+                            // Element node.
+                            preText = preNode.outerHTML;
+                        } else if (preNode.nodeType === 3) {
+                            // Text node.
+                            if (preNode.textContent !== undefined) {
+                                preText = preNode.textContent + preText;
+                            } else {
+                                preText = preNode.nodeValue + preText;
+                            }
+                        }
+                        if (preText.length > 31) {
+                            preText = "..." + preText.substr(preText.length - 31);
+                        }
+                    }
+                    preNode = preNode.previousSibling;
+                }
+                //end while
+                // Find following siblings.
+                var postNode = message.element.nextSibling;
+                while (postText.length <= 31) {
+                    if (postNode === null) {
+                        break;
+                    } else {
+                        if (postNode.nodeType === 1) {
+                            // Element node.
+                            postText += postNode.outerHTML;
+                        } else if (postNode.nodeType === 3) {
+                            // Text node.
+                            if (postNode.textContent !== undefined) {
+                                postText += postNode.textContent;
+                            } else {
+                                postText += postNode.nodeValue;
+                            }
+                        }
+                        if (postText.length > 31) {
+                            postText = postText.substr(0, 31) + "...";
+                        }
+                    }
+                    postNode = postNode.nextSibling;
+                }
+                //end while
+                // Actual source code, highlighting offending element.
+                var msgElementSourceInner = _doc.createElement("div");
+                msgElementSourceInner.className = _prefix + "issue-source-inner";
+                var msgElementSourceMain = _doc.createElement("strong");
+                if (msgElementSourceMain.textContent !== undefined) {
+                    msgElementSourceMain.textContent = outerHTML;
+                } else {
+                    // IE8 uses innerText instead. Oh well.
+                    msgElementSourceMain.innerText = outerHTML;
+                }
+                msgElementSourceInner.appendChild(_doc.createTextNode(preText));
+                msgElementSourceInner.appendChild(msgElementSourceMain);
+                msgElementSourceInner.appendChild(_doc.createTextNode(postText));
+                msgElementSource.appendChild(msgElementSourceInner);
+            } else {
+                // No support for outerHTML.
+                var msgElementSourceInner = _doc.createElement("div");
+                msgElementSourceInner.className = _prefix + "issue-source-not-supported";
+                var nsText = "The code snippet functionality is not supported in this browser.";
+                msgElementSourceInner.appendChild(_doc.createTextNode(nsText));
+                msgElementSource.appendChild(msgElementSourceInner);
+            }*/
+			
+		
+		
+
+        var msg = window._messagesProcess[i];
         var type = '';
         switch (msg.type) {
             case HTMLCS.ERROR:
@@ -90,7 +185,8 @@ function updateResults(resultsWrapper)
             for (var j = 0; j < techniques.length; j++) {
                 content += techniques[j] + "_" + source;
             }
-            content += '"></td>';
+			content += "-" + encodeURIComponent(window._messagesProcess[i].element.outerHTML) + '"></td>';
+            //content += ;
         } else {
             content += '<td></td>';
         }
@@ -109,10 +205,23 @@ function updateResults(resultsWrapper)
         content += '</ul></td>';
         content += '</tr>';
         content += source;
+		//content += msg.element.outerHTML;
 
         refTechnique[a] = techniques;
         a++;
     }
+	
+	//object
+	/*var str = "";
+	for (var key in window._messagesProcess) {
+		if (str != "") {
+			str += "&";
+		}
+		if(window._messagesProcess[key].type != 3) {
+			str += key + "=" + decodeURIComponent(window._messagesProcess[key].element.outerHTML);
+			
+		}
+	}*/
 
 
     var heading = '<h3>Test results</h3>';
@@ -139,6 +248,7 @@ function updateResults(resultsWrapper)
     //content += '<br><a href="refactoring.html?source='+document.getElementById('source').value + auto()+'">Automated Refactoring</a>';
     //*content += '<br><input type="button" value="Automated Refactoring" onclick="auto('+refTechnique+');">';
 	content += '<textarea type="text" name=source style="display:none;">'+document.getElementById('source').value+'</textarea>';
+	//content += '<textarea type="text" name=message style="display:none;">'+str+'</textarea>';
     content += '<br><input type="submit" value="Submit">';
     content += '</form>';
     resultsWrapper.innerHTML = content;
@@ -456,3 +566,6 @@ window.onload = function() {
 
     window.onscroll();
 }
+
+
+

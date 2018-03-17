@@ -1,0 +1,15 @@
+/*data = '{
+    "h91": {
+        "title": "ini teknik h91",
+		"refactorText": {
+			"aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link",
+			"aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link",
+			"aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href"
+        }
+    }
+}';*/
+
+
+
+
+data = '{ "h91": { "title": "ini teknik h91", "refactorText": { "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link", "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link", "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href" } } }';

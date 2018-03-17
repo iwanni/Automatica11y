@@ -51,7 +51,7 @@
 	document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));
 	
 	
-    for(var i = 0; i < countParam ; i++){
+    for(var k = 0; k < countParam ; k++){
 		/*number = location.search.split("&")[i].replace("?","").split("=")[0].replace("]", "").split("[")[1];
 		number =decodeURIComponent((number + '').replace(/\+/g, '%20'));
 		
@@ -61,14 +61,14 @@
 		paramKey[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));
 		paramValue[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));*/
 		
-		number = location.search.split("&")[i].replace("?","").split("=")[0];
+		number = location.search.split("&")[k].replace("?","").split("=")[0];
 		number = decodeURIComponent((number + '').replace(/\+/g, '%20'));
 		number = number.replace("]", "").split("[")[1];
 		
-		paramKey[number] = location.search.split("&")[i].replace("?","").split("=")[0];
+		paramKey[number] = location.search.split("&")[k].replace("?","").split("=")[0];
 		paramKey[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));
 		
-        paramValue[number] = location.search.split("&")[i].replace("?","").split("=")[1];
+        paramValue[number] = location.search.split("&")[k].replace("?","").split("=")[1];
 		paramValue[number] = decodeURIComponent((paramValue[number] + '').replace(/\+/g, '%20'));
 		
 		
@@ -97,14 +97,16 @@
 	
 	document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));*/
 	//var x = document.body.getElementsByTagName("*");
-	var x = document.querySelectorAll('body > *');
-	var x = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+x+'</textarea>';
+	//var x = document.querySelectorAll('body > *');
+	var x = document.querySelectorAll('*');
+	//var x = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+x+'</textarea>';
 	
 	document.body.parentNode.removeChild(document.body);
 	
 	document.body = document.createElement("body");
 	//document.body.innerHTML = document.createElement("div")setAttribute("id", "oldHTML");
-	document.body.innerHTML = "Old HTML: <div id='oldHTML'></div>New HTML: <div id='newHTML'></div>";
+	document.body.innerHTML = "Old HTML: <div id='oldHTML'></div>New HTML: <br><textarea type='text' id='newHTML' rows='20' cols='100'></textarea>";
+	//<div id='newHTML'></div> <textarea type='text' id='newHTML' rows='20' cols='100'></textarea>
 	
 	//var g = document.createElement("div");
 	//g.setAttribute("id", "oldHTML");
@@ -115,7 +117,7 @@
 	
 	//newsource = document.getElementById("asd").value;
 	
-	for(let i = 0 ; i < document.getElementsByTagName("a").length ; i++) {
+	/*for(let i = 0 ; i < document.getElementsByTagName("a").length ; i++) {
         if (document.getElementsByTagName("a")[i].getAttribute("href") == false ||
             document.getElementsByTagName("a")[i].getAttribute("href") == null ||
 			document.getElementsByTagName("a")[i].innerHTML == false) {
@@ -129,11 +131,24 @@
 				}
 			}
         }
-    }
+    }*/
 	
+	var result = "";
 	//newsource = '<textarea type="text" name=source rows="20" cols="100">'+x+'</textarea>';
-	newsource = x;
-	document.getElementById("newHTML").innerHTML = newsource;
+	/*x.forEach (query => {
+        result += query;
+	});*/
+	
+	for (var index = 0; index < x.length; index++) {
+		result += x[index].outerHTML;
+		result += "\n";
+	}
+	/*result = [];
+    for (var i = 0; i < x.length; i++) {
+        result.push(x[i].outerHTML);
+    }*/
+	document.getElementById("newHTML").innerHTML = result;
+	//document.getElementById("newHTML").innerHTML = newsource;
 	
 
     //var content = '<table id="test-results-table" class="table"><thead><tr><th scope="col">No</th><th scope="col">Success Criteria - Technique</th><th scope="col">Refactoring</th><th scope="col">Parameter</th></tr></thead>';
