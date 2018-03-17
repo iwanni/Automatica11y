@@ -1,0 +1,29 @@
+<a></a>
+<a></a>
+
+<script>
+//<a>Kalau begini error atau tidak</a>
+
+if(message == 'H91') {
+	//pesan bagaimana refactoring dilakukan
+	//parameter jika diperlukan
+	var refMessage = "Refactoring dengan memasukkan 2 parameter yaitu nilai untuk atribut href dan text pada link";
+
+    for(let i = 0 ; i < document.getElementsByTagName("a").length ; i++) {
+        if (document.getElementsByTagName("a")[i].getAttribute("href") == false ||
+            document.getElementsByTagName("a")[i].getAttribute("href") == null) {
+            //tambahkan input text yang bsa diisi
+			inputText(name);
+			
+			let hrefText = prompt("Please enter href link "+ (i + 1) +":", "");
+            document.getElementsByTagName("a")[i].setAttribute("href", hrefText);
+        }
+        if (document.getElementsByTagName("a")[i].innerHTML == false) {
+			//tambahkan input text yang bsa diisi
+		
+            let aText = prompt("Please enter a link text:"+ (i + 1) +":", "");
+            document.getElementsByTagName("a")[i].innerHTML = aText;
+        }
+    }
+}
+</script>

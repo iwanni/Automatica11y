@@ -1,0 +1,1 @@
+window.addEventListener('load', function () { new Accessibility({ textPixelMode: true }); }, false);

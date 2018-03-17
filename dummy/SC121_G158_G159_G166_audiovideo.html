@@ -1,0 +1,23 @@
+<object>ini object audio</object>
+<!--<embed></embed>
+<applet></applet>
+<bgsound></bgsound>
+<audio></audio>
+<video></video>-->
+
+<script>
+	//Cari speech to text
+	//speech to text ada yg bisa di pakai servicenya?
+	//embed di bawa audio speec to text
+	for(let i = 0 ; i < document.getElementsByTagName("object").length ; i++) {
+        if (document.getElementsByTagName("object")[i]) {
+			var createBr = document.createElement("BR");
+			var createA = document.createElement("A");
+			var createAText = document.createTextNode("This is website for speech to text:.");
+			createA.setAttribute('href', "http://google.com");
+			createA.appendChild(createAText);
+			document.getElementsByTagName("object")[i].appendChild(createBr);
+			document.getElementsByTagName("object")[i].appendChild(createA);
+		}
+	}
+</script>

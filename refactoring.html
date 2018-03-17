@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+    <title>Automatica11y</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="Shortcut Icon" href="images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" media="print" href="css/home-print.css">
+    <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
+
+    <script type="text/javascript" src="./build/HTMLCS.js"></script>
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-359178-16']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+</head>
+<body>
+<div id="test-area">
+    <div class="max-width">
+
+        <form action="automatedrefactoring.html">
+            <div id="demo"></div>
+			<div id="mySource"></div>
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="./home.js"></script>
+<script type="text/javascript" src="file.json"></script>
+<script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+    //JSON FILE
+	
+	
+	//function loadJSON(callback) {
+
+    /*var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'file.json', true);
+    xobj.onreadystatechange = function() {
+        if (xobj.readyState == 4 && xobj.status == 200) {
+
+            // .open will NOT return a value but simply returns undefined in async mode so use a callback
+            console.log(xobj.responseText);
+			window.jsonresponse = JSON.parse(xobj.responseText);
+
+			// Assuming json data is wrapped in square brackets as Drew suggests
+			console.log(jsonresponse.h91.title);
+			init(jsonresponse);
+        }
+    }
+    xobj.send(null);
+	
+	function init(res){
+		window.all = res;
+	}*/
+
+	//}
+	
+	// Call to function with anonymous callback
+	//loadJSON(function(response) {
+		// Do Something with the response e.g.
+		//window.jsonresponse = JSON.parse(response);
+
+		// Assuming json data is wrapped in square brackets as Drew suggests
+		//console.log(jsonresponse.h91.title);
+
+	//});
+	
+	
+	var mydata = JSON.parse(data);
+		
+	
+	var techniques = {
+        h91 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+
+            processErrorMessage: function(errorMessage) {
+                if(errorMessage == "H91_AEmpty" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
+                    //this.refactorText =  "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link";
+					this.refactorText =  mydata.h91.refactorText.aNoContentHref;
+                    this.parameter[0] = processInputText("Nilai href: ","href["+this.counter+"]");
+                    this.parameter[1] = processInputText("Text untuk link: ","valueLink["+this.counter+"]");this.totalParamater = 2;
+                } else if (errorMessage == "H91_ANoContent") {
+                    this.refactorText = "Refactoring dilakukan dengan memasukkan text untuk link";
+                    this.parameter[0] = processInputText("Text untuk link: ","valueLink["+this.counter+"]");
+                } else if (errorMessage == "H91_APlaceholder" || errorMessage == "H91_ANoHref") {
+                    this.refactorText = "Refactoring dilakukan dengan memasukkan nilai dari atribut href";
+                    this.parameter[0] = processInputText("Nilai href: ","href["+this.counter+"]");
+                }
+                this.counter++;
+            }
+        }
+    };
+	
+	
+
+    var processInputText = function(label, name) {
+        return label + "<input type='text' name="+name+"></input>";
+    }
+	
+	//own
+	//options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
+	//HTMLCS.build(standard, messages, options);
+	
+
+	var asd = _messagesProcess2;
+
+    var myParam = [];
+    var countParam = location.search.split("&").length;
+	
+	var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+	source = '<textarea type="text" name=source >'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
+	document.getElementById("mySource").innerHTML = source;
+	
+	//test
+	var message = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+	
+    for(var i = 0; i < countParam -1 ; i++){
+        myParam[i] = location.search.split("&")[i].replace("?","").split("=")[1];
+    }
+    var content = '<table id="test-results-table" class="table"><thead><tr><th scope="col">No</th><th scope="col">Success Criteria - Technique</th><th scope="col">Refactoring</th><th scope="col">Parameter</th></tr></thead>';
+
+    for(var i = 0 ; i < countParam -1 ; i++) {
+        //processTechniques(myParam[i]);
+		//var snippet = myParam[i].split("-")[1];
+		indexsnippet = myParam[i].indexOf("-");
+		snippet = myParam[i].slice(indexsnippet + 1);
+		snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
+		snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
+		//snippet = decodeURIComponent(snippet);
+		var techniqueError = myParam[i].split("-")[0];
+		
+        var technique = techniqueError.split("_")[0].toLowerCase();
+		if(techniques[technique] != null) {
+        techniques[technique].processErrorMessage(techniqueError);
+
+        //content += '<tr><th scope="row">'+(i+1)+'</th><td>'+myParam[i]+'</td><td>'+techniques[technique].refactorText+'<br>'+window._messagesProcess[i].element.outerHTML+'</td><td>';
+		content += '<tr><th scope="row">'+(i+1)+'</th><td>'+techniqueError+'</td><td>'+techniques[technique].refactorText+'<br><xmp>'+snippet+'</xmp></td><td>';
+        for(var j = 0 ; j < techniques[technique].parameter.length ; j++) {
+            content += techniques[technique].parameter[j];
+            content += '<br>';
+        }
+        content += '</td></tr>';
+
+        techniques[technique].parameter = [];
+		}
+    }
+
+    content += '</table>';
+
+
+    /*function processTechniques(techniqueSubcode) {
+       var technique = techniqueSubcode.split("_")[0];
+
+       if(technique == "H91") {
+           h91.processErrorMessage(myParam[i]);
+       }
+
+    }*/
+
+    document.getElementById("demo").innerHTML = content;
+
+
+</script>
+
+
+
+</body>
+</html>
