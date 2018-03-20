@@ -35,9 +35,9 @@ function updateResults(resultsWrapper)
 
     window._messagesProcess = HTMLCS.getMessages();
     _messagesProcess2 = window._messagesProcess;
-	//HTMLCSAuditor._options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
-	//var snippet = HTMLCSAuditor.build('WCAG2AAA', msgs, '//squizlabs.github.io/HTML_CodeSniffer/build/');
-	
+    //HTMLCSAuditor._options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
+    //var snippet = HTMLCSAuditor.build('WCAG2AAA', msgs, '//squizlabs.github.io/HTML_CodeSniffer/build/');
+    
     if (window._messagesProcess.length === 0) {
         resultsWrapper.innerHTML = '<span class="no-violations">No violations found</span>';
         return;
@@ -82,7 +82,7 @@ function updateResults(resultsWrapper)
         var sc         = msgParts[3].split('_').slice(0, 3).join('_');
         var techniques = msgParts[4];
         //own
-        var source	   = msgParts[5]+msgParts[6];
+        var source     = msgParts[5]+msgParts[6];
         techniques     = techniques.split(',');
 
         // Build a message code without the standard name.
@@ -117,23 +117,23 @@ function updateResults(resultsWrapper)
         content += '</ul></td>';
         content += '</tr>';
         content += source;
-		//content += msg.element.outerHTML;
+        //content += msg.element.outerHTML;
 
         refTechnique[a] = techniques;
         a++;
     }
     
-	//object
-	/*var str = "";
-	for (var key in window._messagesProcess) {
-		if (str != "") {
-			str += "&";
-		}
-		if(window._messagesProcess[key].type != 3) {
-			str += key + "=" + decodeURIComponent(window._messagesProcess[key].element.outerHTML);
-			
-		}
-	}*/
+    //object
+    /*var str = "";
+    for (var key in window._messagesProcess) {
+        if (str != "") {
+            str += "&";
+        }
+        if(window._messagesProcess[key].type != 3) {
+            str += key + "=" + decodeURIComponent(window._messagesProcess[key].element.outerHTML);
+            
+        }
+    }*/
 
 
     var heading = '<h3>Test results</h3>';
@@ -160,7 +160,7 @@ function updateResults(resultsWrapper)
     //content += '<br><a href="refactoring.html?source='+document.getElementById('source').value + auto()+'">Automated Refactoring</a>';
     //*content += '<br><input type="button" value="Automated Refactoring" onclick="auto('+refTechnique+');">';
     content += '<textarea type="text" name=source style="display:none;">'+document.getElementById('source').value+'</textarea>';
-	//content += '<textarea type="text" name=message style="display:none;">'+str+'</textarea>';
+    //content += '<textarea type="text" name=message style="display:none;">'+str+'</textarea>';
     content += '<br><input type="submit" value="Submit">';
     content += '</form>';
     resultsWrapper.innerHTML = content;
@@ -189,7 +189,7 @@ function auto(techniques){
 
     //*var script = document.createElement("script"); // Make a script DOM node
     //script.src = "SC412_H91_link.js";
-    //*script.innerHTML = "if (document.title == false) {document.title = prompt('Please enter title text ');	}"	// Set it's src to the provided URL
+    //*script.innerHTML = "if (document.title == false) {document.title = prompt('Please enter title text ');   }"  // Set it's src to the provided URL
     //*document.getElementById('source').appendChild(script);
     //window.location.reload(false)
     //window.location.href = "refactoring.html?source="+document.getElementById('source').value;

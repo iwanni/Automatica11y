@@ -44,7 +44,7 @@
     //JSON FILE
     
     
-	//function loadJSON(callback) {
+    //function loadJSON(callback) {
 
     /*var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
@@ -54,36 +54,36 @@
 
             // .open will NOT return a value but simply returns undefined in async mode so use a callback
             console.log(xobj.responseText);
-			window.jsonresponse = JSON.parse(xobj.responseText);
+            window.jsonresponse = JSON.parse(xobj.responseText);
 
-			// Assuming json data is wrapped in square brackets as Drew suggests
-			console.log(jsonresponse.h91.title);
-			init(jsonresponse);
+            // Assuming json data is wrapped in square brackets as Drew suggests
+            console.log(jsonresponse.h91.title);
+            init(jsonresponse);
         }
     }
     xobj.send(null);
-	
-	function init(res){
-		window.all = res;
-	}*/
+    
+    function init(res){
+        window.all = res;
+    }*/
 
-	//}
-	
-	// Call to function with anonymous callback
-	//loadJSON(function(response) {
-		// Do Something with the response e.g.
-		//window.jsonresponse = JSON.parse(response);
+    //}
+    
+    // Call to function with anonymous callback
+    //loadJSON(function(response) {
+        // Do Something with the response e.g.
+        //window.jsonresponse = JSON.parse(response);
 
-		// Assuming json data is wrapped in square brackets as Drew suggests
-		//console.log(jsonresponse.h91.title);
+        // Assuming json data is wrapped in square brackets as Drew suggests
+        //console.log(jsonresponse.h91.title);
 
-	//});
-	
-	
-	var mydata = JSON.parse(JSON.stringify(data));
+    //});
+    
+    
+    var mydata = JSON.parse(JSON.stringify(data));
 
-	
-	var techniques = {
+    
+    var techniques = {
         h91 : {
             refactorText:"",
             parameter:[],
@@ -142,12 +142,12 @@
         return "<br><hr><input id='"+name+"' type='checkbox' name='"+name+"' value='1'><label for='"+name+"'>"+label+"</label></fieldset>";
     }
     
-	//own
-	//options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
-	//HTMLCS.build(standard, messages, options);
-	
+    //own
+    //options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
+    //HTMLCS.build(standard, messages, options);
+    
 
-	var asd = _messagesProcess2;
+    var asd = _messagesProcess2;
 
     var myParam = [];
     var countParam = location.search.split("&").length;
@@ -156,9 +156,9 @@
     source = '<textarea type="text" name=source >'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
     document.getElementById("mySource").innerHTML = source;
     
-	//test
-	var message = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
-	
+    //test
+    var message = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+    
     for(var i = 0; i < countParam -1 ; i++){
         myParam[i] = location.search.split("&")[i].replace("?","").split("=")[1];
     }
@@ -166,14 +166,14 @@
 
     for(var i = 0 ; i < countParam -1 ; i++) {
         //processTechniques(myParam[i]);
-		//var snippet = myParam[i].split("-")[1];
-		indexsnippet = myParam[i].indexOf("-");
-		snippet = myParam[i].slice(indexsnippet + 1);
-		snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
-		snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
-		//snippet = decodeURIComponent(snippet);
-		var techniqueError = myParam[i].split("-")[0];
-		
+        //var snippet = myParam[i].split("-")[1];
+        indexsnippet = myParam[i].indexOf("-");
+        snippet = myParam[i].slice(indexsnippet + 1);
+        snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
+        snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
+        //snippet = decodeURIComponent(snippet);
+        var techniqueError = myParam[i].split("-")[0];
+        
         //var technique = techniqueError.split("_")[0].toLowerCase();
         var technique = "";
         var regex = techniqueError.match( /.(\d+)/g );
