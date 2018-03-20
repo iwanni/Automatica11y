@@ -2,27 +2,27 @@
 <html lang="en">
 
 <head>
-    <title>Automatica11y</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="Shortcut Icon" href="images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="css/home.css">
-    <link rel="stylesheet" type="text/css" media="print" href="css/home-print.css">
-    <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
+	<title>Automatica11y</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="Shortcut Icon" href="images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="css/home.css">
+	<link rel="stylesheet" type="text/css" media="print" href="css/home-print.css">
+	<link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
 
-    <script type="text/javascript" src="./build/HTMLCS.js"></script>
-    <script type="text/javascript" src="./home.js"></script>
-    <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-359178-16']);
-        _gaq.push(['_trackPageview']);
+	<script type="text/javascript" src="./build/HTMLCS.js"></script>
+	<script type="text/javascript" src="./home.js"></script>
+	<script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-359178-16']);
+		_gaq.push(['_trackPageview']);
 
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 </head>
 <body>
 <!--<div id="test-area">
@@ -41,17 +41,20 @@
 
 <script type="text/javascript">
 
-    var paramKey = [];
-    var paramValue = [];
-    var countParam = location.search.split("&").length;
+	var paramKey = [];
+	var paramValue = [];
+	var countParam = location.search.split("&").length;
 	
 	var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
-	oldSource = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
+	oldSource = "<textarea type='text' name='source' id='asd' rows='20' cols='100'>"+decodeURIComponent((source + '').replace(/\+/g, '%20'))+"</textarea>";
 	
+	document.getElementsByTagName("html")[0].innerHTML = "";
+	var asdasd = decodeURIComponent((source + '').replace(/\+/g, '%20'));
 	document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));
+	//document.write(decodeURIComponent((source + '').replace(/\+/g, '%20')));
 	
 	
-    for(var k = 0; k < countParam ; k++){
+	for(var k = 0; k < countParam ; k++){
 		/*number = location.search.split("&")[i].replace("?","").split("=")[0].replace("]", "").split("[")[1];
 		number =decodeURIComponent((number + '').replace(/\+/g, '%20'));
 		
@@ -68,26 +71,33 @@
 		paramKey[number] = location.search.split("&")[k].replace("?","").split("=")[0];
 		paramKey[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));
 		
-        paramValue[number] = location.search.split("&")[k].replace("?","").split("=")[1];
+		paramValue[number] = location.search.split("&")[k].replace("?","").split("=")[1];
 		paramValue[number] = decodeURIComponent((paramValue[number] + '').replace(/\+/g, '%20'));
 		
 		
 		for(let i = 0 ; i < document.getElementsByTagName("a").length ; i++) {
-        if (document.getElementsByTagName("a")[i].getAttribute("href") == false ||
-            document.getElementsByTagName("a")[i].getAttribute("href") == null ||
-			document.getElementsByTagName("a")[i].innerHTML == false) {
-            
-			for(let j = 0 ; j < document.getElementsByTagName("a").length ; j++) {
-				if(paramKey[j] == "href["+i+"]") {
-					document.getElementsByTagName("a")[i].setAttribute("href", paramValue[i]);
-				}
-				if(paramKey[j] == "valueLink["+i+"]") {
-					document.getElementsByTagName("a")[i].innerHTML = paramValue[i];
+			if (document.getElementsByTagName("a")[i].getAttribute("href") == false ||
+				document.getElementsByTagName("a")[i].getAttribute("href") == null ||
+				document.getElementsByTagName("a")[i].innerHTML == false) {
+				
+				for(let j = 0 ; j < document.getElementsByTagName("a").length ; j++) {
+					if(paramKey[j] == "href["+i+"]") {
+						document.getElementsByTagName("a")[i].setAttribute("href", paramValue[i]);
+					}
+					if(paramKey[j] == "valueLink["+i+"]") {
+						document.getElementsByTagName("a")[i].innerHTML = paramValue[i];
+					}
 				}
 			}
-        }
-    }
-    }
+		}
+
+		if (document.title == false) {
+			document.title = "Please enter title text ";
+		}
+		if (document.getElementsByTagName("html")[0] == false) {
+			document.getElementsByTagName("html")[0].setAttribute("lang", "en");
+		}
+	}
 	
 	
 	
@@ -97,11 +107,16 @@
 	
 	document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));*/
 	//var x = document.body.getElementsByTagName("*");
-	//var x = document.querySelectorAll('body > *');
-	var x = document.querySelectorAll('*');
+	//var x = document.querySelector('*');
+	//var x = document.documentElement.getElementsByTagName("*");
+	var x = document.querySelectorAll('body > *');
+	console.log(x);
 	//var x = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+x+'</textarea>';
 	
-	document.body.parentNode.removeChild(document.body);
+
+	//document.body.parentNode.removeChild(document.body);
+	//document.write();
+	//document.getElementsByTagName("html")[0].innerHTML = "";
 	
 	document.body = document.createElement("body");
 	//document.body.innerHTML = document.createElement("div")setAttribute("id", "oldHTML");
@@ -112,7 +127,7 @@
 	//g.setAttribute("id", "oldHTML");
 	
 	document.getElementById("oldHTML").innerHTML = oldSource;
-	
+	console.log(x);
 	
 	
 	//newsource = document.getElementById("asd").value;
@@ -132,22 +147,33 @@
 			}
         }
     }*/
-	
-	var result = "";
+    
+    var result = "";
 	//newsource = '<textarea type="text" name=source rows="20" cols="100">'+x+'</textarea>';
 	/*x.forEach (query => {
         result += query;
-	});*/
-	
-	for (var index = 0; index < x.length; index++) {
-		result += x[index].outerHTML;
-		result += "\n";
-	}
+    });*/
+    console.log(x);
+    for (var index = 0; index < x.length; index++) {
+    	result += x[index].outerHTML;
+    	console.log(result);
+    	result += "\n";
+
+    	/*var z = x[index].cloneNode();
+    	z.innerHTML = "";
+    	result += z.outerHTML;
+    	console.log(result);
+    	result += "\n";*/
+    }
+    //result += x[2].outerHTML;
+
+    //result += x[x.length - 1].outerHTML;
+    console.log(x);
 	/*result = [];
     for (var i = 0; i < x.length; i++) {
         result.push(x[i].outerHTML);
     }*/
-	document.getElementById("newHTML").innerHTML = result;
+    document.getElementById("newHTML").innerHTML = result;
 	//document.getElementById("newHTML").innerHTML = newsource;
 	
 

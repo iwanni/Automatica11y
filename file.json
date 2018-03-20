@@ -1,15 +1,67 @@
-/*data = '{
+
+
+data = {
     "h91": {
-        "title": "ini teknik h91",
 		"refactorText": {
 			"aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link",
 			"aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link",
 			"aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href"
-        }
+        },
+		"parameterText": {
+			"href": "Nilai href: ",
+			"content": "Text untuk link: "
+		}
+		/*"parameterName": {
+			"href" : "href[\"+ this.counter + \"]",
+			"content" : "valueLink[\"+ this.counter + \"]"
+		},
+		"parameterTextName": {
+			"href" : "Nilai href: \", \"href[\"+ this.counter + \"]\"",
+		},
+		"function": {
+			"inputHref": "processInputText(mydata.h91.parameterText.href, \"href[\"+ this.counter + \"]\")",
+		}*/
+    }, 
+    "g151": {
+    	"refactorText": {
+			"NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
+        },
+		"parameterText": {
+			"content": "Transkrip untuk live audio : "
+		}
+    },
+    "g150": {
+    	"refactorText": {
+			"NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
+        },
+		"parameterText": {
+			"content": "Transkrip untuk live audio : "
+		}
+    },
+    "g151g157": {
+    	"refactorText": {
+			"NaN" : ""
+        },
+		"parameterText": {
+			"content": "Speech to Text API"
+		}
     }
-}';*/
+};
 
 
 
 
-data = '{ "h91": { "title": "ini teknik h91", "refactorText": { "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link", "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link", "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href" } } }';
+
+
+
+//data = '{ "h91": { "title": "ini teknik h91", "refactorText": { "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link", "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link", "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href" }, "parameterText": { "href": "Nilai href: ", "content": "Text untuk link: " } } }';
+
+//data = '{  \r\n   \"h91\":{  \r\n      \"title\":\"ini teknik h91\",\r\n      \"refactorText\":{  \r\n         \"aNoContentHref\":\"Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link\",\r\n         \"aNoContent\":\"Refactoring dilakukan dengan memasukkan text untuk link\",\r\n         \"aNoHref\":\"Refactoring dilakukan dengan memasukkan nilai dari atribut href\"\r\n      },\r\n      \"parameterText\":{  \r\n         \"href\":\"Nilai href: \",\r\n         \"content\":\"Text untuk link: \"\r\n      },\r\n      \"parameter\":{  \r\n         \"href\":\"\\\"Nilai href: \\\",\\\"href[\\\"+this.counter+\\\"]\",\r\n         \"content\":\"\\\"Text untuk link: \\\",\\\"valueLink[\\\"+this.counter+\\\"]\"\r\n      }\r\n   }\r\n}';
+
+
+//data = { "h91": { "title": "ini teknik h91", "refactorText": { "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link", "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link", "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href" }, "parameterText": { "href": "Nilai href: ", "content": "Text untuk link: " }, "parameter": { "href" : "\"Nilai href: \",\"href[\"+this.counter+\"]", "content" : "\"Text untuk link: \",\"valueLink[\"+this.counter+\"]" } } };
+
+//data = { "h91": { "title": "ini teknik h91", "counter" : 0, "refactorText": { "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link", "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link", "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href" }, "parameterText": { "href": "Nilai href: ", "content": "Text untuk link: " }, "parameterName": { "href" : "href[+ this.counter + ]", "content" : "valueLink[+ this.counter + ]" } } };
+
+//data = { "h91": { "title": "ini teknik h91", "counter" : 0, "refactorText": { "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link", "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link", "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href" }, "parameterText": { "href": "Nilai href: ", "content": "Text untuk link: " }, "parameterName": { "href" : "href[\"+ this.counter + \"]", "content" : "valueLink[\"+ this.counter + \"]" }, "fungsi": { "input": "processInputText(mydata.h91.parameterText.href, \"href[\"+ this.counter + \"]\");" } } };
+
