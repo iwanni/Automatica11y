@@ -53,28 +53,28 @@ function updateResults(resultsWrapper)
     var a = 0;
 
     for (var i = 0; i < window._messagesProcess.length; i++) {
-            var msg = window._messagesProcess[i];
-            var type = '';
-            switch (msg.type) {
-                case HTMLCS.ERROR:
-                type = 'Error';
-                errors++;
-                break;
+        var msg = window._messagesProcess[i];
+        var type = '';
+        switch (msg.type) {
+            case HTMLCS.ERROR:
+            type = 'Error';
+            errors++;
+            break;
 
-                case HTMLCS.WARNING:
-                type = 'Warning';
-                warnings++;
-                break;
+            case HTMLCS.WARNING:
+            type = 'Warning';
+            warnings++;
+            break;
 
-                case HTMLCS.NOTICE:
-                type = 'Notice';
-                notices++;
-                break;
+            case HTMLCS.NOTICE:
+            type = 'Notice';
+            notices++;
+            break;
 
-                default:
-                type = 'Unknown';
-                break;
-            }
+            default:
+            type = 'Unknown';
+            break;
+        }
 
         // Get the success criterion so we can provide a link.
         var msgParts   = msg.code.split('.');
@@ -90,6 +90,68 @@ function updateResults(resultsWrapper)
         msgParts.unshift('[Standard]');
         var noStdMsgParts = msgParts.join('.');
 
+        console.log("msg element : " + msg.element.outerHTML);
+        console.log("msg element previous : " + msg.element.previousSibling);
+        console.log("i : "+ i);
+        var preText = "";
+        var preNode = msg.element.previousSibling;
+        console.log("prenode : " + preNode);
+        while (preText.length <= 31) {
+            console.log("pretext : " + preText);
+            if (preNode === null) {
+                /*if(msg.element.parentNode.nodeType ===1) {
+                    preText = msg.element.parentNode.outerHTML + preText;
+                } else if (msg.element.parentNode.nodeType === 3) {
+                    if (msg.element.parentNode.textContent !== undefined) {
+                        preText = msg.element.parentNode.textContent + preText;
+                    } else {
+                        preText = msg.element.parentNode.nodeValue + preText;
+                    }
+                }*/
+                break;
+            } else {
+                if (preNode.nodeType === 1) {
+                    // Element node.
+                    preText = preNode.outerHTML + preText;
+                } else if (preNode.nodeType === 3) {
+                    // Text node.
+                    if (preNode.textContent !== undefined) {
+                        preText = preNode.textContent + preText;
+                    } else {
+                        preText = preNode.nodeValue + preText;
+                    }
+                }
+                if (preText.length > 31) {
+                    preText = "..." + preText.substr(preText.length - 31);
+                }
+            }
+            preNode = preNode.previousSibling;
+        }
+
+        var postText = "";
+        var postNode = msg.element.nextSibling;
+        while (postText.length <= 31) {
+            if (postNode === null) {
+                break;
+            } else {
+                if (postNode.nodeType === 1) {
+                    // Element node.
+                    postText += postNode.outerHTML;
+                } else if (postNode.nodeType === 3) {
+                    // Text node.
+                    if (postNode.textContent !== undefined) {
+                        postText += postNode.textContent;
+                    } else {
+                        postText += postNode.nodeValue;
+                    }
+                }
+                if (postText.length > 31) {
+                    postText = postText.substr(0, 31) + "...";
+                }
+            }
+            postNode = postNode.nextSibling;
+        }
+
 
         content += '<tr class="' + type.toLowerCase() + '">';
         if(type != "Notice" || sc == "1_2_9") {
@@ -97,13 +159,13 @@ function updateResults(resultsWrapper)
             for (var j = 0; j < techniques.length; j++) {
                 content += techniques[j] + "_" + source;
             }
-            content += "-" + encodeURIComponent(window._messagesProcess[i].element.outerHTML) + '"></td>';
+            content += "-" + encodeURIComponent(preText) + encodeURIComponent(window._messagesProcess[i].element.outerHTML) + encodeURIComponent(postText) + '"></td>';
             //content += ;
         } else {
             content += '<td></td>';
         }
         content += '<td class="number"><span class="flag"></span></td>';
-        content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg + '</td>';
+        content += '<td class="messageText"><strong>' + type + ':</strong> ' + msg.msg +'</td>';
         content += '<td class="messagePrinciple">';
         content += '<a href="http://www.w3.org/TR/WCAG20/#' + principles[principle].toLowerCase() + '">' + principles[principle] + '</a>';
         content += '</td>';

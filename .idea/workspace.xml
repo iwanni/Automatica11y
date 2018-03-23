@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d23b5f4-46e1-43c9-aa6e-81995ee34293" name="Default" comment="" />
+    <list default="true" id="7d23b5f4-46e1-43c9-aa6e-81995ee34293" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/home.js" afterPath="$PROJECT_DIR$/home.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,11 +29,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="17">
               <caret line="40" column="26" lean-forward="false" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+              <folding>
+                <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tokopedia.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tokopedia.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="571" column="33" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="597" selection-end-column="185" />
               <folding />
             </state>
           </provider>
@@ -39,8 +54,8 @@
       <file leaf-file-name="automatedrefactoring.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/automatedrefactoring.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2567">
-              <caret line="151" column="23" lean-forward="false" selection-start-line="151" selection-start-column="23" selection-end-line="151" selection-end-column="23" />
+            <state relative-caret-position="2686">
+              <caret line="158" column="23" lean-forward="false" selection-start-line="158" selection-start-column="23" selection-end-line="158" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -123,6 +138,9 @@
       <replace>&quot;input&quot;</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -136,6 +154,7 @@
         <option value="$PROJECT_DIR$/home.js" />
         <option value="$PROJECT_DIR$/automatedrefactoring.html" />
         <option value="$PROJECT_DIR$/build/HTMLCS.js" />
+        <option value="$PROJECT_DIR$/tokopedia.js" />
       </list>
     </option>
   </component>
@@ -256,11 +275,12 @@
       <workItem from="1521004130764" duration="623000" />
       <workItem from="1521006078662" duration="594000" />
       <workItem from="1521456706461" duration="5000" />
+      <workItem from="1521651559902" duration="1130000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82943000" />
+    <option name="totallyTimeSpent" value="84073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -269,12 +289,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -297,14 +317,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -327,7 +339,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -353,7 +367,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -379,7 +395,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -405,7 +423,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -431,7 +451,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
           <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -457,7 +479,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="29" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -491,7 +515,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4879">
           <caret line="287" column="51" lean-forward="true" selection-start-line="287" selection-start-column="51" selection-end-line="287" selection-end-column="51" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -517,7 +543,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -543,7 +571,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="29" lean-forward="false" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
-          <folding />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -623,13 +653,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dummy/ranbuch_accessibility/node_modules/accessibility/node_modules/watchpack/node_modules/async/lib/async.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="827" column="50" lean-forward="true" selection-start-line="827" selection-start-column="50" selection-end-line="827" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dummy/ranbuch_accessibility/node_modules/accessibility/node_modules/watchpack/node_modules/async/lib/async.js" />
     <entry file="file://$PROJECT_DIR$/build/HTMLCS2.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -646,8 +670,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/automatedrefactoring.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2567">
-          <caret line="151" column="23" lean-forward="false" selection-start-line="151" selection-start-column="23" selection-end-line="151" selection-end-column="23" />
+        <state relative-caret-position="2686">
+          <caret line="158" column="23" lean-forward="false" selection-start-line="158" selection-start-column="23" selection-end-line="158" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -688,8 +712,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="17">
           <caret line="40" column="26" lean-forward="false" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
+          <folding>
+            <marker date="1521624730183" expanded="true" signature="8256:8269" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tokopedia.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="571" column="33" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="597" selection-end-column="185" />
           <folding />
         </state>
       </provider>

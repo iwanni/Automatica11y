@@ -3107,8 +3107,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_2 = {
      * @param {DOMNode} top     The top element of the tested code.
      */
     process: function(element, top) {
-        HTMLCS.addMessage(HTMLCS.NOTICE, top, "If this element contains audio that plays automatically for longer than 3 seconds, check that there is the ability to pause, stop or mute the audio.", "F23");
+        HTMLCS.addMessage(HTMLCS.NOTICE, element, "If this element contains audio that plays automatically for longer than 3 seconds, check that there is the ability to pause, stop or mute the audio.", "F23");
     }
+    //perbaiki
 };
 
 /**
