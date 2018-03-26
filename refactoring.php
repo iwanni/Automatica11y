@@ -36,54 +36,94 @@
         </div>
 
     </div>
+    <?php var_dump($_POST); ?>
+    <!--<?php echo count($_POST) ?>-->
 
 
-
-    <script type="text/javascript" src="./home.js"></script>
+    <!--<script type="text/javascript" src="./home.js"></script>-->
     <script type="text/javascript" src="file.json"></script>
     <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
     <script type="text/javascript">
-    //JSON FILE
+    //JSON FILE 
     
     
-    //function loadJSON(callback) {
+    /*function loadJSON(callback) {
 
-    /*var xobj = new XMLHttpRequest();
+
+    var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', 'file.json', true);
     xobj.onreadystatechange = function() {
         if (xobj.readyState == 4 && xobj.status == 200) {
 
             // .open will NOT return a value but simply returns undefined in async mode so use a callback
-            console.log(xobj.responseText);
-            window.jsonresponse = JSON.parse(xobj.responseText);
-
+            //console.log(xobj.responseText);
+            //window.jsonresponse = JSON.parse(xobj.responseText);
+            //APP = window.jsonresponse;
+            //console.log(window.jsonresponse);
             // Assuming json data is wrapped in square brackets as Drew suggests
-            console.log(jsonresponse.h91.title);
-            init(jsonresponse);
+            //init(jsonresponse);
+            callback(JSON.parse(xobj.responseText));
         }
     }
     xobj.send(null);
-    
-    function init(res){
-        window.all = res;
     }*/
-
+    
+    
     //}
     
     // Call to function with anonymous callback
-    //loadJSON(function(response) {
-        // Do Something with the response e.g.
-        //window.jsonresponse = JSON.parse(response);
-
-        // Assuming json data is wrapped in square brackets as Drew suggests
-        //console.log(jsonresponse.h91.title);
-
-    //});
     
+
+    //include the   'async':false   parameter or the object data won't get captured when loading
+/*var json = $.getJSON({'url': "http://localhost/web_developer/Automatica11ly/file.json", 'async': false});  
+
+//The next line of code will filter out all the unwanted data from the object.
+json = JSON.parse(json.responseText); 
+
+//You can now access the json variable's object data like this json.a and json.c
+//document.write(json.a);
+console.log(json);*/
+    var data = {
+    "h91": {
+        "refactorText": {
+            "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link",
+            "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link",
+            "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href"
+        },
+        "parameterText": {
+            "href": "Nilai href: ",
+            "content": "Text untuk link: "
+        }
+    }, 
+    "g151": {
+        "refactorText": {
+            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
+        },
+        "parameterText": {
+            "content": "Transkrip untuk live audio : "
+        }
+    },
+    "g150": {
+        "refactorText": {
+            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
+        },
+        "parameterText": {
+            "content": "Transkrip untuk live audio : "
+        }
+    },
+    "g151g157": {
+        "refactorText": {
+            "NaN" : ""
+        },
+        "parameterText": {
+            "content": "Speech to Text API"
+        }
+    }
+};
     
     var mydata = JSON.parse(JSON.stringify(data));
-
+    console.log(mydata);
     
     var techniques = {
         h91 : {
@@ -94,7 +134,8 @@
             processErrorMessage: function(errorMessage) {
                 if(errorMessage == "H91_AEmpty" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
                     //this.refactorText =  "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link";
-                    this.refactorText =  mydata.h91.refactorText.aNoContentHref;
+                    this.refactorText = mydata.h91.refactorText.aNoContentHref;
+
                     //this.parameter[0] = processInputText(mydata.h91.parameterText.href, "href["+ this.counter + "]");
                     //this.parameter[0] = processInputText(mydata.h91.parameterText.href, mydata.h91.parameterName.href);
                     //this.parameter[0] = eval(mydata.h91.function.inputHref);
@@ -147,23 +188,32 @@
     //own
     //options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
     //HTMLCS.build(standard, messages, options);
-    
 
-    var asd = _messagesProcess2;
+
+
+    //var asd = _messagesProcess2;
 
     var myParam = [];
-    var countParam = location.search.split("&").length;
+    //var countParam = location.search.split("&").length;
+    var countParam = <?php echo count($_POST["r"]) + 1 ?>;
     
-    var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+    //var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+    var source = <?php echo '"'. $_POST['source'] .'"' ?>;
     source = '<textarea type="text" name=source >'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
     document.getElementById("mySource").innerHTML = source;
     
     //test
-    var message = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
-    
-    for(var i = 0; i < countParam -1 ; i++){
-        myParam[i] = location.search.split("&")[i].replace("?","").split("=")[1];
-    }
+    //var message = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
+
+    <?php 
+        for ($i = 0; $i < count($_POST['r']); $i++)
+        {
+            $myParam[$i] = $_POST['r'][$i];
+        }
+    ?>
+
+    myParam = <?php echo json_encode($myParam); ?>;    
+
     var content = '<table id="test-results-table" class="table"><thead><tr><th scope="col">No</th><th scope="col">Success Criteria - Technique</th><th scope="col">Refactoring</th><th scope="col">Parameter</th></tr></thead>';
 
     for(var i = 0 ; i < countParam -1 ; i++) {

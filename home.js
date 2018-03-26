@@ -155,7 +155,7 @@ function updateResults(resultsWrapper)
 
         content += '<tr class="' + type.toLowerCase() + '">';
         if(type != "Notice" || sc == "1_2_9") {
-            content += '<td><input type="checkbox" name="result" value="';
+            content += '<td><input type="checkbox" name="r[]" value="';
             for (var j = 0; j < techniques.length; j++) {
                 content += techniques[j] + "_" + source;
             }
@@ -199,7 +199,7 @@ function updateResults(resultsWrapper)
 
 
     var heading = '<h3>Test results</h3>';
-    heading += '<form action="refactoring.html">';
+    heading += '<form action="refactoring.php" method="POST">';
 
     var noticeActive     = '';
     var testResultsClass = 'hide-notice';
@@ -221,7 +221,7 @@ function updateResults(resultsWrapper)
     //content += '<span class="footnote"><em>Add the Accessibility Auditor bookmarklet to your browser to run this test on any web page.</em></span></div>';
     //content += '<br><a href="refactoring.html?source='+document.getElementById('source').value + auto()+'">Automated Refactoring</a>';
     //*content += '<br><input type="button" value="Automated Refactoring" onclick="auto('+refTechnique+');">';
-    content += '<textarea type="text" name=source style="display:none;">'+document.getElementById('source').value+'</textarea>';
+    content += '<textarea type="text" name=source style="display:none;">'+encodeURIComponent(document.getElementById('source').value)+'</textarea>';
     //content += '<textarea type="text" name=message style="display:none;">'+str+'</textarea>';
     content += '<br><input type="submit" value="Submit">';
     content += '</form>';
@@ -231,8 +231,8 @@ function updateResults(resultsWrapper)
 }
 
 function toggle(source) {
-    checkboxes = document.getElementsByName("result");
-    for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes = document.getElementsByName("r[]");
+    for(var i=0 ; i<checkboxes.length ; i++) {
         checkboxes[i].checked = source.checked;
     }
 }

@@ -1,0 +1,22 @@
+<pre contenteditable="" onclick="getPos()">
+line 1
+line 2
+line 3
+line 4
+line 5
+</pre>
+<p>&nbsp;</p>
+<div id="res"></div>
+
+<script>
+function getPos() {
+    var sel = document.getSelection(),
+        nd = sel.anchorNode,
+        text = nd.textContent.slice( 0, sel.focusOffset );
+    
+    var line = text.split( '\n' ).length;
+    var col = text.split( '\n' ).pop().length;
+
+    document.getElementById( 'res' ).innerHTML = 'row: ' + line + ', col: ' + col;
+}
+</script>
