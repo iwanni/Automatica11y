@@ -18,7 +18,7 @@ var data = {
             "content": "Transkrip untuk live audio : "
         }
     },
-    "g150": {
+    "g151": {
         "refactorText": {
             "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
         },
@@ -26,12 +26,39 @@ var data = {
             "content": "Transkrip untuk live audio : "
         }
     },
-    "g151g157": {
+    "g150g157": {
         "refactorText": {
             "NaN" : ""
         },
         "parameterText": {
             "content": "Speech to Text API"
+        }
+    },
+    "g158": {
+        "refactorText": {
+            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk audio (prerecorded) yang kemudian akan disisipkan di bawah audio. Tambahkan juga deskripsi tentang informasi penting seperti background audio yang digunakan. Dengan menggunakan API speech to text deskripsi tentang informasi penting pada audio tidak dapat ditangkap oleh API."
+        },
+        "parameterText": {
+            "content1": "Transkrip untuk audio (prerecorded) : ",
+            "content2": "Speech to Text API"
+        }
+    },
+    "g159g166": {
+    	"refactorText": {
+            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk video (prerecorded) yang kemudian akan disisipkan di bawah video. Tambahkan juga deskripsi tentang informasi penting seperti deskripsi pemandangan, aksi, ekspresi, dll yang merupakan bagian dari presentasi. Dengan menggunakan API speech to text deskripsi tentang informasi penting pada video tidak dapat ditangkap oleh API."
+        },
+        "parameterText": {
+            "content1": "Transkrip untuk video (prerecorded) : ",
+            "content2": "Speech to Text API"
+        }
+    },
+    "g54g82": {
+        "refactorText": {
+            "NaN" : "Refactoring dapat dilakukan dengan 2 cara yaitu:<br>1. Dilakukan dengan memasukkan transkrip untuk video (prerecorded) yang kemudian akan diubah dengan text to sign language dan disisipkan di bawah video.<br>2. Dilakukan dengan menggunakan speech to sign language langsung dan disisipkan di bawah video"
+        },
+        "parameterText": {
+            "content1": "Transkrip untuk video (prerecorded) : ",
+            "content2": "Speech to Sign Language API"
         }
     }
 };

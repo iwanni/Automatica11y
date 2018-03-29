@@ -84,43 +84,7 @@ json = JSON.parse(json.responseText);
 //You can now access the json variable's object data like this json.a and json.c
 //document.write(json.a);
 console.log(json);*/
-    var data = {
-    "h91": {
-        "refactorText": {
-            "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link",
-            "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link",
-            "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href"
-        },
-        "parameterText": {
-            "href": "Nilai href: ",
-            "content": "Text untuk link: "
-        }
-    }, 
-    "g151": {
-        "refactorText": {
-            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
-        },
-        "parameterText": {
-            "content": "Transkrip untuk live audio : "
-        }
-    },
-    "g150": {
-        "refactorText": {
-            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
-        },
-        "parameterText": {
-            "content": "Transkrip untuk live audio : "
-        }
-    },
-    "g151g157": {
-        "refactorText": {
-            "NaN" : ""
-        },
-        "parameterText": {
-            "content": "Speech to Text API"
-        }
-    }
-};
+    
     
     var mydata = JSON.parse(JSON.stringify(data));
     console.log(mydata);
@@ -132,7 +96,7 @@ console.log(json);*/
             counter : 0,
 
             processErrorMessage: function(errorMessage) {
-                if(errorMessage == "H91_AEmpty" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
+                if(errorMessage == "H91_AEmptyNoId_4.1.2" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
                     //this.refactorText =  "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link";
                     this.refactorText = mydata.h91.refactorText.aNoContentHref;
 
@@ -163,10 +127,54 @@ console.log(json);*/
                 if(errorMessage == "G150_NaNG151_NaNG157_NaN") {
                     this.refactorText =  mydata.g151.refactorText.NaN;
                     this.parameter[0] = processInputTextArea(mydata.g151.parameterText.content, "content["+ this.counter + "]");
-                    this.parameter[1] = processCheckBox(mydata.g151g157.parameterText.content, "checkbox["+ this.counter + "]");
+                    this.parameter[1] = processCheckBox(mydata.g150g157.parameterText.content, "checkbox["+ this.counter + "]");
                     console.log(this.parameter[0]);
                 } 
                 this.counter++;
+            }
+        },
+        g158 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+
+            processErrorMessage: function(errorMessage) {
+                if(errorMessage == "G158_NaN") {
+                    this.refactorText =  mydata.g158.refactorText.NaN;
+                    this.parameter[0] = processInputTextArea(mydata.g158.parameterText.content1, "content["+ this.counter + "]");
+                    this.parameter[1] = processCheckBox(mydata.g158.parameterText.content2, "checkbox["+ this.counter + "]");
+                    console.log(this.parameter[0]);
+                } 
+                this.counter++;
+            }
+        },
+        g159g166 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+
+            processErrorMessage: function(errorMessage) {
+                if(errorMessage == "G159_NaNG166_NaN") {
+                    this.refactorText =  mydata.g159g166.refactorText.NaN;
+                    this.parameter[0] = processInputTextArea(mydata.g159g166.parameterText.content1, "content["+ this.counter + "]");
+                    this.parameter[1] = processCheckBox(mydata.g159g166.parameterText.content2, "checkbox["+ this.counter + "]");
+                    console.log(this.parameter[0]);
+                }
+                this.counter++;
+            }
+        },
+        g54g81 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+
+            processErrorMessage: function(errorMessage) {
+                if(errorMessage == "G54_NaNG81_NaN") {
+                    this.refactorText =  mydata.g54g82.refactorText.NaN;
+                    this.parameter[0] = processRadioButton(mydata.g54g82.parameterText.content1, "radiobutton["+ this.counter + "]");
+                    this.parameter[1] = processInputTextArea("", "content["+ this.counter + "]");
+                    this.parameter[2] = processRadioButton(mydata.g54g82.parameterText.content2, "radiobutton["+ this.counter + "]");
+                }
             }
         }
     };
@@ -182,7 +190,10 @@ console.log(json);*/
     }
 
     var processCheckBox = function(label, name) {
-        return "<br><hr><input id='"+name+"' type='checkbox' name='"+name+"' value='1'><label for='"+name+"'>"+label+"</label></fieldset>";
+        return "<br><hr><input id='"+name+"' type='checkbox' name='"+name+"' value='1'><label for='"+name+"'>"+label+"</label>";
+    }
+    var processRadioButton = function(label, name) {
+        return "<input id='"+name+"' type='radio' name='"+name+"' value='1'><label for="+name+"'>"+label+"</label>";
     }
     
     //own
@@ -228,18 +239,19 @@ console.log(json);*/
         
         //var technique = techniqueError.split("_")[0].toLowerCase();
         var technique = "";
-        var regex = techniqueError.match( /.(\d+)/g );
+        var regex = techniqueError.match( /[A-Z](\d+)/g );
         for(var k=0 ; k < regex.length ; k++) {
             technique += regex[k];
         }
         technique = technique.toLowerCase();
 
+        var sucesscrit = techniqueError.split("_").pop();
 
         if(techniques[technique] != null) {
             techniques[technique].processErrorMessage(techniqueError);
 
         //content += '<tr><th scope="row">'+(i+1)+'</th><td>'+myParam[i]+'</td><td>'+techniques[technique].refactorText+'<br>'+window._messagesProcess[i].element.outerHTML+'</td><td>';
-        content += '<tr><th scope="row">'+(i+1)+'</th><td>'+techniqueError+'</td><td>'+techniques[technique].refactorText+'<br><xmp>'+snippet+'</xmp></td><td>';
+        content += '<tr><th scope="row">'+(i+1)+'</th><td>'+sucesscrit+ "<br>" +techniqueError+'</td><td>'+techniques[technique].refactorText+'<br><xmp>'+snippet+'</xmp></td><td>';
         for(var j = 0 ; j < techniques[technique].parameter.length ; j++) {
             content += techniques[technique].parameter[j];
             content += '<br>';

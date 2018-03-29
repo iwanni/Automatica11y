@@ -82,7 +82,16 @@ function updateResults(resultsWrapper)
         var sc         = msgParts[3].split('_').slice(0, 3).join('_');
         var techniques = msgParts[4];
         //own
-        var source     = msgParts[5]+msgParts[6];
+        var source =  "";
+        if(msgParts[5]) {
+            source     += msgParts[5];
+        }
+        if(msgParts[6]) {
+            source     += msgParts[6];
+        }
+        /*if(source === NaN) {
+            source = "";
+        }*/
         techniques     = techniques.split(',');
 
         // Build a message code without the standard name.
@@ -154,11 +163,16 @@ function updateResults(resultsWrapper)
 
 
         content += '<tr class="' + type.toLowerCase() + '">';
-        if(type != "Notice" || sc == "1_2_9") {
+        if(type != "Notice" || sc == "1_2_9" || sc == "1_2_1" || sc == "1_2_6") {
             content += '<td><input type="checkbox" name="r[]" value="';
             for (var j = 0; j < techniques.length; j++) {
+                //content += techniques[j] + "_" + source + "_" + sc.replace(new RegExp('_', 'g'), '.');
                 content += techniques[j] + "_" + source;
             }
+            if(source) {
+                content += "_";
+            }
+            content += sc.replace(new RegExp('_', 'g'), '.');
             content += "-" + encodeURIComponent(preText) + encodeURIComponent(window._messagesProcess[i].element.outerHTML) + encodeURIComponent(postText) + '"></td>';
             //content += ;
         } else {
