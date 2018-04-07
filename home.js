@@ -235,7 +235,7 @@ function updateResults(resultsWrapper)
     //content += '<span class="footnote"><em>Add the Accessibility Auditor bookmarklet to your browser to run this test on any web page.</em></span></div>';
     //content += '<br><a href="refactoring.html?source='+document.getElementById('source').value + auto()+'">Automated Refactoring</a>';
     //*content += '<br><input type="button" value="Automated Refactoring" onclick="auto('+refTechnique+');">';
-    content += '<textarea type="text" name=source style="display:none;">'+encodeURIComponent(document.getElementById('source').value)+'</textarea>';
+    content += '<textarea type="text" name="source" style="display:none;">'+encodeURIComponent(document.getElementById('source').value)+'</textarea>';
     //content += '<textarea type="text" name=message style="display:none;">'+str+'</textarea>';
     content += '<br><input type="submit" value="Submit">';
     content += '</form>';

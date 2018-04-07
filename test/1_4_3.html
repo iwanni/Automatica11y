@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>1.4.3 Contrast</title>
+<!-- @HTMLCS_Test@
+Name: SC 1.4.3 Contrast
+Standard: WCAG2AA
+Assert: Error *.G18.Fail on #basicContrastFail
+Assert: No Error *.G18 on #issue155
+-->
+</head>
+<body>
+
+<p id="basicContrastFail" style="color: #222; background-color: #000;">Basic failing text</p>
+
+<p>Sample: <span id="issue155" style="color: #7c7cff; background-color: #ffffff; font-size: 14pt; font-weight: bold;">I am 14pt bold text and should pass</span></p>
+
+
+<!--G18.Fail--> = mengganti color degan rekomnedasi
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color:#7f7f7f;}
+div   {color: #3b06a7; font-size:20px}
+</style>
+</head>
+<body>
+<div>This is a heading</div>
+</body>
+</html>
+
+<!--G145.Fail--> = mengganti color degan rekomnedasi
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color:#7f7f7f;}
+div   {color: #3b06a7; font-size:25px}
+</style>
+</head>
+<body>
+<div>This is a heading</div>
+</body>
+</html>
+
+<!--G18.BgImage-->
+<!--G18.Abs-->
+<!--G145.BgImage-->
+<!--G145.Abs--> 4 ini tidak bisa karena tidak diberi rekomendasi warna
+
+
+</body>
+</html>

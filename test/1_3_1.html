@@ -1,0 +1,361 @@
+<!--H42-->
+<h1 id="headingWithHyperlinkAndImage">
+    <a href="www.squiz.net" accesskey="1" title="Title">
+        <img id="logo" alt="Test" src="image.png" />
+    </a>
+</h1>
+
+<h2 id="headingEmpty"><span></span></h2>
+
+
+<!--H93 / F77-->
+<input type="text" id="explicitLabelText" />
+<input type="text" id="explicitLabelText" />
+
+
+<!--H44-->
+<!--H44.NonExistent-->
+<label for="explicitLabelText">
+
+<!--H44.NonExistentFragment-->
+<html>
+<head></head>
+<body>
+<label for="explicitLabelText">
+</body>
+</html>
+
+<!--H44.NotFormControl-->
+<label for="explicitLabelText">
+<h1 id="explicitLabelText"></h1>
+
+<!--H44.NoForAttr / F68-->
+Code not found
+<label>Text: </label><input type="text" id="wrappedLabelText" />
+
+<!--H44.NoId-->
+Code not found
+
+<!--H44.2 / F68-->
+Code not found
+<input type="text"  />
+
+<!--H44.NoLabelAllowed / F68.Hidden-->
+Code not found
+tak bisa-><label for="asdas">asd</label><button type="button" id="asdas">Click Me!</button>
+<label for="asdas">asd</label><input type="hidden" id="asdas">
+<label>Label: <input type="hidden" id="labelHidden" /></label>
+<label for="labelHiddenAttr">Label:</label> <input hidden id="labelHiddenAttr" />
+
+<!--H44.1.After-->
+tak bisa->
+<label for="overnight">Overnight</label>
+<input id="overnight" type="radio" name="shipping" value="overnight">
+tak bisa->
+<label for="ham">Ham</label>
+<input id="ham" type="checkbox" name="toppings" value="ham">
+
+<!--H44.1.Before-->
+tak bisa->
+<input id="name" type="text" name="textfield">
+<label for="name">Name:</label>
+
+
+<!--H65-->
+<input type="text" id="wrappedLabelText" title=""/>
+
+
+<!--H49-->
+<!--H49.[tag]-->
+<!--H49.AlignAttr-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Belajar HTML5</title>
+</head>
+<body>
+  <center>HTML5</center>
+  <div align="left">Example</div>
+</body>
+
+<!--H49.[tag]-->
+<center>HTML5</center>
+<!--H49.AlignAttr-->
+<div align="left">Example</div>
+
+
+<!--H42-->
+<p><strong>HTML5</strong></p>
+
+<!--H63-->
+<!--H63.2--> = mengubah td jadi th, setiap yang ada atribut scope
+<table>
+  <tr>
+    <th></th>
+    <td scope="col">Month</th>
+    <td scope="col">Savings</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
+
+<!--H43-->
+<!--H43.ScopeAmbiguous--> = tidak bisa diotomasi
+<table border="1"> 
+<caption>Contact Information</caption> 
+<tr> 
+<td></td> 
+<th rowspan=2 scope="col">Name</th> 
+<th scope="col">Phone#</th> 
+<th scope="col">Fax#</th> 
+<th scope="col">City</th>
+</tr>
+<tr> 
+<td>1.</td> 
+<th scope="row">Joel Garner</th> 
+<td>412-212-5421</td> 
+<td>412-212-5400</td> 
+<td>Pittsburgh</td>
+</tr><tr> <td>2.</td> <th scope="row">Clive Lloyd</th> <td>410-306-1420</td> <td>410-306-5400</td> <td>Baltimore</td>
+</tr><tr> <td>3.</td> <th scope="row">Gordon Greenidge</th> <td>281-564-6720</td> <td>281-511-6600</td> <td>Houston</td>
+</tr> </table>
+
+<!--H43.IncorrectAttr--> = bisa diotomasi dengan mengambil nilai expected
+<table border=1> 
+<tr> 
+<th rowspan="2">Homework</th> 
+<th colspan="3" id="e">Exams</th> 
+<th colspan="3" id="p">Projects</th>
+</tr> 
+
+<tr> 
+<th id="e1" headers="e">1</th> 
+<th id="e2" headers="e">2</th> 
+<th id="ef" headers="e">Final</th> 
+<th id="p1" headers="p">1</th> 
+<th id="p2" headers="p">2</th> 
+<th id="pf" headers="p">Final</th>
+</tr> 
+
+<tr> 
+<td headers="h">15%</td> 
+<td headers="e e1">15%</td> 
+<td headers="e e2">15%</td> 
+<td headers="e ef">20%</td> 
+<td headers="p p1">10%</td> 
+<td headers="p p2">10%</td> 
+<td headers="p pf">15%</td>
+</tr> </table>
+
+<!--H43.MissingHeadersAttrs--> = minta parameter header pada td yang masih belum ada
+<table border=1> 
+<tr> 
+<th rowspan="2" id="h">Homework</th> 
+<th colspan="3" id="e">Exams</th> 
+<th colspan="3" id="p">Projects</th>
+</tr> 
+
+<tr> 
+<th id="e1" headers="e">1</th> 
+<th id="e2" headers="e">2</th> 
+<th id="ef" headers="e">Final</th> 
+<th id="p1" headers="p">1</th> 
+<th id="p2" headers="p">2</th> 
+<th id="pf" headers="p">Final</th>
+</tr> 
+
+<tr> 
+<td>15%</td> 
+<td headers="e e1">15%</td> 
+<td headers="e e2">15%</td> 
+<td headers="e ef">20%</td> 
+<td headers="p p1">10%</td> 
+<td headers="p p2">10%</td> 
+<td headers="p pf">15%</td>
+</tr> </table>
+
+<!--H43.MissingHeaderIds--> = minta parameter id pada th
+<table border=1> 
+<tr> 
+<th rowspan="2" id="h">Homework</th> 
+<th colspan="3" id="e">Exams</th> 
+<th colspan="3" id="p">Projects</th>
+</tr> 
+
+<tr> 
+<th headers="e">1</th> 
+<th id="e2" headers="e">2</th> 
+<th id="ef" headers="e">Final</th> 
+<th id="p1" headers="p">1</th> 
+<th id="p2" headers="p">2</th> 
+<th id="pf" headers="p">Final</th>
+</tr> 
+
+<tr> 
+<td headers="h">15%</td> 
+<td headers="e e1">15%</td> 
+<td headers="e e2">15%</td> 
+<td headers="e ef">20%</td> 
+<td headers="p p1">10%</td> 
+<td headers="p p2">10%</td> 
+<td headers="p pf">15%</td>
+</tr> </table>
+
+<!--H43.HeadersRequired--> = meminta header pada setiap td yang belum ada
+<table border=1> 
+<tr> 
+<th rowspan="2" id="h">Homework</th> 
+<th colspan="3" id="e">Exams</th> 
+<th colspan="3" id="p">Projects</th>
+</tr> 
+
+<tr> 
+<th id="e1" headers="e">1</th> 
+<th id="e2" headers="e">2</th> 
+<th id="ef" headers="e">Final</th> 
+<th id="p1" headers="p">1</th> 
+<th id="p2" headers="p">2</th> 
+<th id="pf" headers="p">Final</th>
+</tr> 
+
+<tr> 
+<td>15%</td> 
+<td>15%</td> 
+<td>15%</td> 
+<td>20%</td> 
+<td>10%</td> 
+<td>10%</td> 
+<td>15%</td>
+</tr> </table>
+
+
+<!--H43,H63--> = tidak bisa diotomasi karena penambahan belum pasti apakah scope / headers
+<table>
+  <tr>
+    <th></th>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <th>2</th>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
+
+<!--H63.1--> = minta scope apakah row/col
+<table>
+  <tr>
+    <th></th>
+    <th scope="col">Month</th>
+    <th scope="col">Savings</th>
+  </tr>
+  <tr>
+    <th>1</th>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <th>2</th>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
+
+<!--H39,H73.4--> = dengan meminta mengubah summary dan caption
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<table summary="Rout"> 
+<caption>Rout</caption>
+  <tr>
+    <th></th>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <tD>1</tD>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <tD>2</tD>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
+<!--H73.3.Check--> = tidak bisa
+code sama dengan diatas
+
+<!--H39.3.Check--> = tidak bisa
+code sama dengan diatas dengan atau tanpa doctype
+
+
+<!--H71.NoLegend--> = meminta input nilai legend
+<fieldset> 
+
+<input type="radio" id="shakesp" name="hamlet" checked="checked" value="a"> 
+<label for="shakesp">William Shakespeare</label><br /> 
+<input type="radio" id="kipling" name="hamlet" value="b"> 
+<label for="kipling">Rudyard Kipling</label><br /> 
+</fieldset>
+
+
+<!--H71.SameName--> = tdk bisa
+tak bisa
+<fieldset> 
+<input type="radio" id="shakesp" name="hamlet" checked="checked" value="a"> 
+<label for="shakesp">William Shakespeare</label><br /> 
+<input type="radio" id="kipling" name="hamlet" value="b"> 
+<label for="kipling">Rudyard Kipling</label><br /> 
+</fieldset>
+<fieldset> 
+<input type="radio" id="h" name="hamlet" checked="checked" value="a"> 
+<label for="h">William Shakespeare</label><br /> 
+</fieldset>
+
+
+<!--H85.2--> = tidak bisa mngelompokkan secara otomatis
+<label for="food">What is your favorite food?</label> 
+<select id="food" name="food"> 
+
+<option value="1">Apples</option>
+<option value="3">Bananas</option> 
+<option value="4">Peaches</option> 
+<option value="5">...</option>
+
+<option value="2">Carrots</option> 
+<option value="6">Cucumbers</option> 
+<option value="7">...</option>
+
+</select> 
+
+
+<!--G141-->
+This h3 element appears to be the primary document heading, so should be an h1 element.
+<h3>jh</h3>
+<h1>jgfj</h1>
+<h2>asdasd</h2>
+
+This h3 element should be an h2 to be properly nested.
+<h1>jgfj</h1>
+<h3>jh</h3>
+<h2>asdasd</h2>
+

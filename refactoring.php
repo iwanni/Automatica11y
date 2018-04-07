@@ -27,7 +27,7 @@
     <div id="test-area">
         <div class="max-width">
 
-            <form action="automatedrefactoring.html">
+            <form action="automatedrefactoring.php" method="POST">
                 <div id="demo"></div>
                 <div id="mySource"></div>
                 <input type="submit" value="Submit">
@@ -37,6 +37,7 @@
 
     </div>
     <?php var_dump($_POST); ?>
+    <?php echo '"'. $_POST['source'] .'"' ?>
     <!--<?php echo count($_POST) ?>-->
 
 
@@ -67,9 +68,9 @@
         }
     }
     xobj.send(null);
-    }*/
-    
-    
+}*/
+
+
     //}
     
     // Call to function with anonymous callback
@@ -84,19 +85,19 @@ json = JSON.parse(json.responseText);
 //You can now access the json variable's object data like this json.a and json.c
 //document.write(json.a);
 console.log(json);*/
-    
-    
-    var mydata = JSON.parse(JSON.stringify(data));
-    console.log(mydata);
-    
-    var techniques = {
-        h91 : {
-            refactorText:"",
-            parameter:[],
-            counter : 0,
 
-            processErrorMessage: function(errorMessage) {
-                if(errorMessage == "H91_AEmptyNoId_4.1.2" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
+
+var mydata = JSON.parse(JSON.stringify(data));
+console.log(mydata);
+
+var techniques = {
+    h91 : {
+        refactorText:"",
+        parameter:[],
+        counter : 0,
+
+        processErrorMessage: function(errorMessage) {
+            if(errorMessage == "H91_AEmptyNoId_4.1.2" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
                     //this.refactorText =  "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link";
                     this.refactorText = mydata.h91.refactorText.aNoContentHref;
 
@@ -176,6 +177,31 @@ console.log(json);*/
                     this.parameter[2] = processRadioButton(mydata.g54g82.parameterText.content2, "radiobutton["+ this.counter + "]");
                 }
             }
+        },
+        h37 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+
+            processErrorMessage: function(errorMessage) {
+                if (errorMessage == "H37_1.1.1") {
+                    this.refactorText = mydata.h37.refactorText.content;
+                    this.parameter[0] = processInputText(mydata.h37.parameterText.content, "h37["+ this.counter + "]");
+                }
+                this.counter++;
+            }
+        },
+        h57 : {
+            parameter:[],
+            counter : 0,
+
+            processErrorMessage: function(errorMessage) {
+                if (errorMessage == "H57_2_3.1.1") {
+                    this.refactorText = mydata.h57.refactorText.content;
+                    this.parameter[0] = processInputText(mydata.h57.parameterText.content, "h57["+ this.counter + "]");
+                }
+                this.counter++;
+            }
         }
     };
     
@@ -210,17 +236,18 @@ console.log(json);*/
     
     //var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
     var source = <?php echo '"'. $_POST['source'] .'"' ?>;
-    source = '<textarea type="text" name=source >'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
+    //source = '<textarea type="text" name="source">'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
+    source = '<textarea type="text" name="source">'+source+'</textarea>';
     document.getElementById("mySource").innerHTML = source;
     
     //test
     //var message = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
 
     <?php 
-        for ($i = 0; $i < count($_POST['r']); $i++)
-        {
-            $myParam[$i] = $_POST['r'][$i];
-        }
+    for ($i = 0; $i < count($_POST['r']); $i++)
+    {
+        $myParam[$i] = $_POST['r'][$i];
+    }
     ?>
 
     myParam = <?php echo json_encode($myParam); ?>;    

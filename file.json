@@ -60,5 +60,24 @@ var data = {
             "content1": "Transkrip untuk video (prerecorded) : ",
             "content2": "Speech to Sign Language API"
         }
+    },
+
+    "h57" : {
+        "refactorText": {
+            "content" : "belum"
+        },
+        "parameterText": {
+            "content": "lang : "
+        }
+    },
+
+    //sc 1.1.1
+    "h37" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan alternative text pada image"
+        },
+        "parameterText": {
+            "content": "Alternative text : "
+        }
     }
 };

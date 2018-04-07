@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2.1.1 Providing keyboard-triggered event handlers</title>
+<!-- @HTMLCS_Test@
+Name: SC 2.1.1 Providing keyboard-triggered event handlers
+Standard: WCAG2AAA
+Assert: No Warning *.G90 on #standardLink
+Assert: No Warning *.G90 on #standardLinkKeyUp
+Assert: No Warning *.G90 on #standardButton
+Assert: No Warning *.G90 on #staticElemTabIndex
+Assert: No Warning *.G90 on #staticElemAccessKey
+Assert: Warning *.G90 on #standardLinkNoHrefError
+Assert: Warning *.G90 on #standardLinkKeyUpError
+Assert: Warning *.G90 on #staticElemError
+-->
+</head>
+<body>
+
+<!-- keyboard tabbing no errors -->
+<a href="#" id="standardLink" onclick="alert('1');">std1</a>
+<a href="#" id="standardLinkKeyUp" onkeyup="alert('1');">std1</a>
+<button id="standardButton" onclick="alert('2');">std2</button>
+<div id="staticElemTabIndex" tabindex="0" onclick="alert('3');">std3</div>
+<div id="staticElemAccessKey" accesskey="s" onclick="alert('4');">std4</div>
+
+<!-- keyboard tabbing errors -->
+<a id="standardLinkNoHrefError" onclick="alert('5');">std5</a>
+<a href="#" id="standardLinkKeyUpError" tabindex="-1" onkeyup="alert('1');">std1</a>
+<div id="staticElemError" onclick="alert('6');">std6</div>
+
+<!--SCR20.DblClick--> = tidak bisa, karena double klik tidak ada padanan lansung dengan event pada keyboard
+<!DOCTYPE html>
+<html>
+<body>
+<p ondblclick="myFunction()">Double-click this paragraph to trigger a function.</p>
+<p id="demo"></p>
+<script>
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+</body>
+</html>
+
+<!--SCR20.MouseOver & SCR20.MouseOut--> = dengan menambah event focus dan blur dan memanggil fungsi yang sama
+<!DOCTYPE html>
+<html>
+<body>
+<img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="smiley.gif" alt="Smiley" width="32" height="32">
+<p>The function bigImg() is triggered when the user moves the mouse pointer over the image.</p>
+<p>The function normalImg() is triggered when the mouse pointer is moved out of the image.</p>
+<script>
+function bigImg(x) {
+    x.style.height = "64px";
+    x.style.width = "64px";
+}
+function normalImg(x) {
+    x.style.height = "32px";
+    x.style.width = "32px";
+}
+</script>
+</body>
+</html>
+
+
+<!--SCR20.MouseMove--> = tidak bisa, karena mouse move tidak ada padanan lansung dengan event pada keyboard
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<div onmousemove="myFunction(event)" onmouseout="clearCoor()"></div>
+<p>Mouse over the rectangle above, and get the coordinates of your mouse pointer.</p>
+<p>When the mouse is moved over the div, the p element will display the horizontal and vertical coordinates of your mouse pointer, whose values are returned from the clientX and clientY properties on the 
+MouseEvent object.</p>
+<p id="demo"></p>
+<script>
+function myFunction(e) {
+    var x = e.clientX;
+    var y = e.clientY;
+    var coor = "Coordinates: (" + x + "," + y + ")";
+    document.getElementById("demo").innerHTML = coor;
+}
+function clearCoor() {
+    document.getElementById("demo").innerHTML = "";
+}
+</script>
+</body>
+</html>
+
+<!--SCR20.MouseDown & SCR20.MouseUp--> = dengan menambah event keyup dan keydown dan memanggil fungsi yang sama
+<!DOCTYPE html>
+<html>
+<body>
+<p id="myP" onmousedown="mouseDown()" onmouseup="mouseUp()">
+Click the text! The mouseDown() function is triggered when the mouse button is pressed down over this paragraph, and sets the color of the text to red. The mouseUp() function is triggered when the mouse button is released, and sets the color of the text to green.
+</p>
+<script>
+function mouseDown() {
+    document.getElementById("myP").style.color = "red";
+}
+function mouseUp() {
+    document.getElementById("myP").style.color = "green";
+}
+</script>
+</body>
+</html>
+
+
+<!--G90-->
+tak bisa
+<!DOCTYPE html>
+<html>
+<body>
+<p>Click the button to trigger a function that will output "Hello World" in a p element with id="demo".</p>
+<button onclick="myFunction()">Click me</button>
+<p id="demo"></p>
+<script>
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+</body>
+</html>
+
+
+
+</body>
+</html>
+
