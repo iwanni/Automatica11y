@@ -37,7 +37,7 @@ function updateResults(resultsWrapper)
     _messagesProcess2 = window._messagesProcess;
     //HTMLCSAuditor._options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
     //var snippet = HTMLCSAuditor.build('WCAG2AAA', msgs, '//squizlabs.github.io/HTML_CodeSniffer/build/');
-    
+
     if (window._messagesProcess.length === 0) {
         resultsWrapper.innerHTML = '<span class="no-violations">No violations found</span>';
         return;
@@ -57,23 +57,23 @@ function updateResults(resultsWrapper)
         var type = '';
         switch (msg.type) {
             case HTMLCS.ERROR:
-            type = 'Error';
-            errors++;
-            break;
+                type = 'Error';
+                errors++;
+                break;
 
             case HTMLCS.WARNING:
-            type = 'Warning';
-            warnings++;
-            break;
+                type = 'Warning';
+                warnings++;
+                break;
 
             case HTMLCS.NOTICE:
-            type = 'Notice';
-            notices++;
-            break;
+                type = 'Notice';
+                notices++;
+                break;
 
             default:
-            type = 'Unknown';
-            break;
+                type = 'Unknown';
+                break;
         }
 
         // Get the success criterion so we can provide a link.
@@ -198,7 +198,7 @@ function updateResults(resultsWrapper)
         refTechnique[a] = techniques;
         a++;
     }
-    
+
     //object
     /*var str = "";
     for (var key in window._messagesProcess) {
@@ -295,23 +295,23 @@ function updateResults508(resultsWrapper)
         var type = '';
         switch (msg.type) {
             case HTMLCS.ERROR:
-            type = 'Error';
-            errors++;
-            break;
+                type = 'Error';
+                errors++;
+                break;
 
             case HTMLCS.WARNING:
-            type = 'Warning';
-            warnings++;
-            break;
+                type = 'Warning';
+                warnings++;
+                break;
 
             case HTMLCS.NOTICE:
-            type = 'Notice';
-            notices++;
-            break;
+                type = 'Notice';
+                notices++;
+                break;
 
             default:
-            type = 'Unknown';
-            break;
+                type = 'Unknown';
+                break;
         }
 
         // Get the success criterion so we can provide a link.
