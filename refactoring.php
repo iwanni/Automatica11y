@@ -96,7 +96,8 @@
         h91 : {
             refactorText:"",
             parameter:[],
-            counter : 0,
+            counter0 : 0,   //0 = Href
+            counter1 : 0,   //1 = Content
 
             processErrorMessage: function(errorMessage) {
                 if(errorMessage == "H91_AEmptyNoId_4.1.2" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
@@ -107,18 +108,24 @@
                     //this.parameter[0] = processInputText(mydata.h91.parameterText.href, mydata.h91.parameterName.href);
                     //this.parameter[0] = eval(mydata.h91.function.inputHref);
                     //this.parameter[0] = processInputText(mydata.h91.parameterTextName.href);
-                    this.parameter[0] = processInputText(mydata.h91.parameterText.href, "h91Href["+ this.counter + "]");
-                    this.parameter[1] = processInputText(mydata.h91.parameterText.content, "h91ValueLink["+ this.counter + "]");
-                    console.log(this.parameter[0]);
-                    console.log(this.parameter[1]);
-                } else if (errorMessage == "H91_ANoContent") {
+                    this.parameter[0] = processInputText(mydata.h91.parameterText.href, "h91_Href["+ this.counter0 + "]");
+                    this.parameter[1] = processInputText(mydata.h91.parameterText.content, "h91_Content["+ this.counter1 + "]");
+                    //console.log(this.parameter[0]);
+                    //console.log(this.parameter[1]);
+                    this.counter0++;
+                    this.counter1++;
+                } else if (errorMessage == "H91_ANoContent_4.1.2") {
                     this.refactorText = mydata.h91.refactorText.aNoContent;
-                    this.parameter[0] = processInputText(mydata.h91.parameterText.content, "valueLink["+ this.counter + "]");
+                    //this.parameter[0] = processInputTextHidden("h91Href["+ this.counter + "]");
+                    //"<input type='hidden' id='"+"h91Href["+ this.counter + "]"+"' type='text' name='"+"h91Href["+ this.counter + "]"+"'></input>";
+                    //processInputText(mydata.h91.parameterText.content, "h91ValueLink["+ this.counter + "]");
+                    this.parameter[0] = processInputText(mydata.h91.parameterText.content, "h91_Content["+ this.counter1 + "]");
+                    this.counter1++;
                 } else if (errorMessage == "H91_APlaceholder" || errorMessage == "H91_ANoHref") {
                     this.refactorText = mydata.h91.refactorText.aNoHref;
-                    this.parameter[0] = processInputText(mydata.h91.parameterText.href, "href["+ this.counter + "]");
+                    this.parameter[0] = processInputText(mydata.h91.parameterText.href, "h91_Href["+ this.counter0 + "]");
                 }
-                this.counter++;
+                //this.counter++;
             }
         },
         g150g151g157 : {
@@ -210,7 +217,7 @@
 
 
     var processInputText = function(label, name) {
-        return "<label for='"+name+"''>"+label+"</label><input id='"+name+"' type='text' name='"+name+"'></input>";
+        return "<label for='"+name+"''>"+label+"</label><input id='"+name+"' type='text' name='"+name+"'>";
     }
 
     var processInputTextArea = function(label, name) {
@@ -222,6 +229,9 @@
     }
     var processRadioButton = function(label, name) {
         return "<input id='"+name+"' type='radio' name='"+name+"' value='1'><label for="+name+"'>"+label+"</label>";
+    }
+    var processInputTextHidden = function(name) {
+        return "<input id='"+name+"' type='hidden' name='"+name+"'>";
     }
 
     //own

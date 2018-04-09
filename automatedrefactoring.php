@@ -132,8 +132,8 @@ $values = array_values($_POST);
 			            k++;
 		    	    }
 		    	}*/
-		    	insertTag("img", "alt", i);
-	    	} else if(keys[i] == "h91Href") {
+		    	insertAttr("img", "alt", i);
+	    	} else if(keys[i] == "h91_Href") {
 	    		/*var k = 0;
 		        for(var j = 0 ; j < innerDoc.getElementsByTagName("a").length ; j++) {
 		        	if(innerDoc.getElementsByTagName("a")[j].getAttribute("href") == null) {
@@ -141,19 +141,21 @@ $values = array_values($_POST);
 		            	k++;
 		    	    }
 		    	}*/
-		    	insertTag("a", "href", i);
-	    	} else if(keys[i] == "h91ValueLink") {
-	    		var k = 0;
+		    	insertAttr("a", "href", i);
+	    	} else if(keys[i] == "h91_Content") {
+	    		/*var k = 0;
 		        for(var j = 0 ; j < innerDoc.getElementsByTagName("a").length ; j++) {
 		        	if(innerDoc.getElementsByTagName("a")[j].innerHTML == false) {
 		            	innerDoc.getElementsByTagName("a")[j].innerHTML = values[i][k];
 		            	k++;
 		    	    }
-		    	}
+		    	}*/
+		    	insertContent("a", i);
+
 	    	}
     	}
 
-    	function insertTag(element, attribute, i) {
+    	function insertAttr(element, attribute, i) {
     		var k = 0;
     		for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
 	        	if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null) {
@@ -161,6 +163,16 @@ $values = array_values($_POST);
 		            k++;
 	    	    }
 		    }
+    	}
+
+    	function insertContent(element, i) {
+		    var k = 0;
+		        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+		        	if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) {
+		            	innerDoc.getElementsByTagName(element)[j].innerHTML = values[i][k];
+		            	k++;
+		    	    }
+		    	}
     	}
 
         /*innerDoc.getElementsByTagName("a")[0].setAttribute("href", "yes");
