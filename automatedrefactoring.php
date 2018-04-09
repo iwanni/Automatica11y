@@ -86,15 +86,51 @@ $values = array_values($_POST);
     //oldSource = "<textarea type='text' name='source' id='asd' rows='20' cols='100'>"+decodeURIComponent((source + '').replace(/\+/g, '%20'))+"</textarea>";
 
     var techniques = {
-        h91 : {
-            refactorText:"",
-            parameter:[],
-            counter : 0
+    	//1.1.1
+    	h30 : {
+    		processAutomatedRefactoring: function(message, i){
+            	
+            }
+    	},
+    	h37 : {
+        	processAutomatedRefactoring: function(message, i){
+          		insertAttr("img", "alt", i);
+            }
         },
-        h30 : {
 
-        }
-    }
+        
+        h91 : {
+            processAutomatedRefactoring: function(message, i){
+            	if(message == "Href") {
+            		insertAttr("a", "href", i);
+            	} else if(message == "Content") {
+            		insertContent("a", i);
+            	}
+            }
+        },
+        
+    };
+
+    function insertAttr(element, attribute, i) {
+		var k = 0;
+		for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+        	if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null || 
+        		innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+	            innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+	            k++;
+    	    }
+	    }
+	}
+
+	function insertContent(element, i) {
+	    var k = 0;
+	        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+	        	if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) {
+	            	innerDoc.getElementsByTagName(element)[j].innerHTML = values[i][k];
+	            	k++;
+	    	    }
+	    	}
+	}
 
     //Define an iframe, place where automated refactoring heppened
     var iframe = document.createElement('iframe');
@@ -124,56 +160,13 @@ $values = array_values($_POST);
         innerDoc.body.innerHTML = source;
 
         for(var i = 0 ; i < keys.length ; i++) {
-	        if(keys[i] == "h37") {
-	        	/*var k = 0;
-		        for(var j = 0 ; j < innerDoc.getElementsByTagName("img").length ; j++) {
-		        	if(innerDoc.getElementsByTagName("img")[j].getAttribute("alt") == null) {
-			            innerDoc.getElementsByTagName("img")[j].setAttribute("alt", values[i][k]);
-			            k++;
-		    	    }
-		    	}*/
-		    	insertAttr("img", "alt", i);
-	    	} else if(keys[i] == "h91_Href") {
-	    		/*var k = 0;
-		        for(var j = 0 ; j < innerDoc.getElementsByTagName("a").length ; j++) {
-		        	if(innerDoc.getElementsByTagName("a")[j].getAttribute("href") == null) {
-		            	innerDoc.getElementsByTagName("a")[j].setAttribute("href", values[i][k]);
-		            	k++;
-		    	    }
-		    	}*/
-		    	insertAttr("a", "href", i);
-	    	} else if(keys[i] == "h91_Content") {
-	    		/*var k = 0;
-		        for(var j = 0 ; j < innerDoc.getElementsByTagName("a").length ; j++) {
-		        	if(innerDoc.getElementsByTagName("a")[j].innerHTML == false) {
-		            	innerDoc.getElementsByTagName("a")[j].innerHTML = values[i][k];
-		            	k++;
-		    	    }
-		    	}*/
-		    	insertContent("a", i);
-
-	    	}
+        	var technique = keys[i].split("_")[0];
+        	var message = keys[i].split("_")[1];
+        	techniques[technique].processAutomatedRefactoring(message, i);
+	        
     	}
 
-    	function insertAttr(element, attribute, i) {
-    		var k = 0;
-    		for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-	        	if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null) {
-		            innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
-		            k++;
-	    	    }
-		    }
-    	}
-
-    	function insertContent(element, i) {
-		    var k = 0;
-		        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-		        	if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) {
-		            	innerDoc.getElementsByTagName(element)[j].innerHTML = values[i][k];
-		            	k++;
-		    	    }
-		    	}
-    	}
+    	
 
         /*innerDoc.getElementsByTagName("a")[0].setAttribute("href", "yes");
         innerDoc.getElementsByTagName("a")[0].innerHTML = 

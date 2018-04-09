@@ -99,27 +99,26 @@
             counter0 : 0,   //0 = Href
             counter1 : 0,   //1 = Content
 
-            processErrorMessage: function(errorMessage) {
+            processErrorMessage: function(errorMessage, element) {
                 if(errorMessage == "H91_AEmptyNoId_4.1.2" || errorMessage == "H91_AEmptyWithName" || errorMessage == "H91_AEmptyNoId") {
-                    //this.refactorText =  "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link";
-                    this.refactorText = mydata.h91.refactorText.aNoContentHref;
+                    //this.refactorText = mydata.h91.refactorText.aNoContentHref;
+                    this.refactorText = textRefactor(element, "aNoContentHref");
 
-                    //this.parameter[0] = processInputText(mydata.h91.parameterText.href, "href["+ this.counter + "]");
-                    //this.parameter[0] = processInputText(mydata.h91.parameterText.href, mydata.h91.parameterName.href);
-                    //this.parameter[0] = eval(mydata.h91.function.inputHref);
-                    //this.parameter[0] = processInputText(mydata.h91.parameterTextName.href);
-                    this.parameter[0] = processInputText(mydata.h91.parameterText.href, "h91_Href["+ this.counter0 + "]");
-                    this.parameter[1] = processInputText(mydata.h91.parameterText.content, "h91_Content["+ this.counter1 + "]");
+                    //this.parameter[0] = processInputText(mydata.h91.parameterText.href, "h91_Href["+ this.counter0 + "]");
+                    this.parameter[0] = textFormParamater("text", element, "href","Href", this.counter0);
+
+                    this.parameter[1] = textFormParamater("text", element, "content","Content", this.counter1);
                     //console.log(this.parameter[0]);
                     //console.log(this.parameter[1]);
                     this.counter0++;
                     this.counter1++;
                 } else if (errorMessage == "H91_ANoContent_4.1.2") {
-                    this.refactorText = mydata.h91.refactorText.aNoContent;
+                    //this.refactorText = mydata.h91.refactorText.aNoContent;
+                    this.refactorText = textRefactor(element, "aNoContent");
                     //this.parameter[0] = processInputTextHidden("h91Href["+ this.counter + "]");
                     //"<input type='hidden' id='"+"h91Href["+ this.counter + "]"+"' type='text' name='"+"h91Href["+ this.counter + "]"+"'></input>";
                     //processInputText(mydata.h91.parameterText.content, "h91ValueLink["+ this.counter + "]");
-                    this.parameter[0] = processInputText(mydata.h91.parameterText.content, "h91_Content["+ this.counter1 + "]");
+                    this.parameter[0] = textFormParamater("text", element, "content","Content", this.counter1);
                     this.counter1++;
                 } else if (errorMessage == "H91_APlaceholder" || errorMessage == "H91_ANoHref") {
                     this.refactorText = mydata.h91.refactorText.aNoHref;
@@ -187,15 +186,26 @@
                 }
             }
         },
+        h30: {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+            processErrorMessage: function(errorMessage) {
+                techniques[h37].processErrorMessage(errorMessage);
+            }
+        },
         h37 : {
             refactorText:"",
             parameter:[],
             counter : 0,
 
-            processErrorMessage: function(errorMessage) {
+            processErrorMessage: function(errorMessage, element) {
                 if (errorMessage == "H37_1.1.1") {
-                    this.refactorText = mydata.h37.refactorText.content;
-                    this.parameter[0] = processInputText(mydata.h37.parameterText.content, "h37["+ this.counter + "]");
+                    /*this.refactorText = mydata.h37.refactorText.content;
+                    this.parameter[0] = processInputText(mydata.h37.parameterText.content, "h37["+ this.counter + "]");*/
+                    this.refactorText = textRefactor(element, "content");
+                    //this.parameter[0] = processInputText(mydata[element].parameterText.content, "h37["+ this.counter + "]");
+                    this.parameter[0] = textFormParamater("text", element, "content","", this.counter);
                 }
                 this.counter++;
             }
@@ -215,15 +225,21 @@
     };
 
 
+    var textRefactor = function(element, objectRefactorText) {
+        return mydata[element].refactorText[objectRefactorText];
+    }
+    var textFormParamater = function(form, element, objectRefactorText, messageRefactoring, counter) {
+        if(form == "text") {
+            return processInputText(mydata[element].parameterText[objectRefactorText], element+"_"+messageRefactoring+"["+ counter + "]");
+        } 
+    }
 
     var processInputText = function(label, name) {
         return "<label for='"+name+"''>"+label+"</label><input id='"+name+"' type='text' name='"+name+"'>";
     }
-
     var processInputTextArea = function(label, name) {
         return "<label for='"+name+"'>"+label+"</label><textarea id='"+name+"' name='"+name+"' rows='5' cols='21'></textarea>";
     }
-
     var processCheckBox = function(label, name) {
         return "<br><hr><input id='"+name+"' type='checkbox' name='"+name+"' value='1'><label for='"+name+"'>"+label+"</label>";
     }
@@ -287,7 +303,7 @@
         var sucesscrit = techniqueError.split("_").pop();
 
         if(techniques[technique] != null) {
-            techniques[technique].processErrorMessage(techniqueError);
+            techniques[technique].processErrorMessage(techniqueError, technique);
 
             //content += '<tr><th scope="row">'+(i+1)+'</th><td>'+myParam[i]+'</td><td>'+techniques[technique].refactorText+'<br>'+window._messagesProcess[i].element.outerHTML+'</td><td>';
             content += '<tr><th scope="row">'+(i+1)+'</th><td>'+sucesscrit+ "<br>" +techniqueError+'</td><td>'+techniques[technique].refactorText+'<br><xmp>'+snippet+'</xmp></td><td>';
