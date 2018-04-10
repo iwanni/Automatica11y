@@ -230,14 +230,25 @@
             parameter:[],
             counter : 0,
             processErrorMessage: function(errorMessage, technique) {
-                if(errorMessage == "H67_1_1.1.1") {
+                //if(errorMessage == "H67_1_1.1.1") {
                     this.refactorText = textRefactor(technique, "content");
-                    this.parameter[0] = processInputTextHidden(technique+"_"+""+"["+ this.counter + "]");
+                    this.parameter[0] = processInputHidden(technique+"_"+""+"["+ this.counter + "]");
+                    //this.parameter[0] = textFormParamater("hidden", technique, "content","", this.counter);
                     this.counter++;
-                }
+                //}
             }
         },
         h36 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+            processErrorMessage: function(errorMessage, technique) {
+                this.refactorText = textRefactor(technique, "content");
+                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.counter++;
+            } 
+        },
+        h24 : {
             refactorText:"",
             parameter:[],
             counter : 0,
@@ -257,7 +268,9 @@
     var textFormParamater = function(form, technique, objectRefactorText, messageRefactoring, counter) {
         if(form == "text") {
             return processInputText(mydata[technique].parameterText[objectRefactorText], technique+"_"+messageRefactoring+"["+ counter + "]");
-        } 
+        } else if(form == "hidden") {
+            return processInputHidden(technique+"_"+messageRefactoring+"["+ counter + "]");
+        }
     }
 
     var processInputText = function(label, name) {
@@ -272,7 +285,7 @@
     var processRadioButton = function(label, name) {
         return "<input id='"+name+"' type='radio' name='"+name+"' value='1'><label for="+name+"'>"+label+"</label>";
     }
-    var processInputTextHidden = function(name) {
+    var processInputHidden = function(name) {
         return "<input id='"+name+"' type='hidden' name='"+name+"' value='1'>";
     }
 

@@ -85,7 +85,7 @@ $values = array_values($_POST);
     //oldSource = "<textarea type='text' name='source' id='asd' rows='20' cols='100'>"+decodeURIComponent((source + '').replace(/\+/g, '%20'))+"</textarea>";
 
     var techniques = {
-		h91 : {
+		/*h91 : {
             processAutomatedRefactoring: function(message, i){
                 if(message == "Href") {
                     insertAttr("a", "href", i);
@@ -93,7 +93,7 @@ $values = array_values($_POST);
                     insertContent("a", i);
                 }
             }
-        },
+        },*/
 
         //1.1.1
         h30 : {
@@ -109,12 +109,12 @@ $values = array_values($_POST);
         },
         h37 : {
             processAutomatedRefactoring: function(message, i){
-                var k = 0;
-                for(var j = 0 ; j < innerDoc.getElementsByTagName("img").length ; j++) {
-                    if(innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() != "a") {
-                        insertAttr("img", "alt", i, j, k);
-                    }
-                }
+                //var k = 0;
+                //for(var j = 0 ; j < innerDoc.getElementsByTagName("img").length ; j++) {
+                    //if(innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() != "a") {
+                        insertAttr("img", "alt", i);
+                    //}
+                //}
             }
         },
         h67 : {
@@ -126,18 +126,25 @@ $values = array_values($_POST);
         	processAutomatedRefactoring: function(message, i){
                 insertAttrWhenAttr("input", "alt", "type", "image", i);
             }
+        },
+        h24 : {
+        	processAutomatedRefactoring: function(message, i){
+                insertAttr("area", "alt", i);
+            }
         }
     };
 
 
-    function insertAttr(element, attribute, i, j, k) {
+    function insertAttr(element, attribute, i) {
         var k = 0;
         for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-        if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
-            innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-            innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
-            k++;
-        }
+	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
+	            innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+	        	if(values[i][k] != null) {
+	            	innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+	            	k++;
+	        	}
+	        }
         }
     }
 

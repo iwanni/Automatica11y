@@ -91,11 +91,22 @@ var data = {
     "h67" : {
         "refactorText": {
             "content" : "Refactoring dilakukan dengan menghapus attribute title apabila image ditemukan dengan alternative text kosong"
+        },
+        "parameterText": {
+            "content": "Otomatis"
         }
     },
     "h36" : {
         "refactorText": {
             "content" : "Refactoring dilakukan dengan menambahkan alternative text pada input type image"
+        },
+        "parameterText": {
+            "content": "Alternative text : "
+        }
+    },
+    "h24" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan alternative text pada tag area"
         },
         "parameterText": {
             "content": "Alternative text : "
