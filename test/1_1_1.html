@@ -20,17 +20,25 @@ Assert: Error *.H24 on #areaWithEmptyAlt
 -->
 </head>
 <body>
+<!--H30-->
+<a href="asd">
+	<img>
+</a>
+
 <!--H37-->
 <img id="hasNoAltText" />
 <img id="hasAltText" alt="Alt Text" />
 
-
-
-
-<img id="hasNoAltText" />
+<!--H67-->
 <img id="hasEmptyAltText" alt="" />
 <img id="hasEmptyAltTextWithTitle" alt="" title="Empty" />
 <img id="hasSpacedAltText" alt=" " />
+
+<!--H36-->
+<input type="image" name="submit" src="button.gif" alt="" />
+<input type="image" name="submit" src="button.gif" />
+
+
 
 <map>
 	<area id="areaWithAlt" alt="Has Alt" />

@@ -163,7 +163,11 @@ function updateResults(resultsWrapper)
 
 
         content += '<tr class="' + type.toLowerCase() + '">';
-        if(type != "Notice" || sc == "1_2_9" || sc == "1_2_1" || sc == "1_2_6") {
+
+        for (var j = 0; j < techniques.length; j++) {
+            var notCheckTechnique = techniques[j];
+        }
+        if((type != "Notice" || sc == "1_2_9" || sc == "1_2_1" || sc == "1_2_6") && (notCheckTechnique == "H67" && source != "2")) {
             content += '<td><input type="checkbox" name="r[]" value="';
             for (var j = 0; j < techniques.length; j++) {
                 //content += techniques[j] + "_" + source + "_" + sc.replace(new RegExp('_', 'g'), '.');

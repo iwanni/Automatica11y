@@ -72,9 +72,30 @@ var data = {
     },
 
     //sc 1.1.1
+    "h30" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan alternative text pada image"
+        },
+        "parameterText": {
+            "content": "Alternative text : "
+        }
+    },
     "h37" : {
         "refactorText": {
             "content" : "Refactoring dilakukan dengan menambahkan alternative text pada image"
+        },
+        "parameterText": {
+            "content": "Alternative text : "
+        }
+    },
+    "h67" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menghapus attribute title apabila image ditemukan dengan alternative text kosong"
+        }
+    },
+    "h36" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan alternative text pada input type image"
         },
         "parameterText": {
             "content": "Alternative text : "

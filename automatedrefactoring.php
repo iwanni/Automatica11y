@@ -10,7 +10,6 @@
     <link rel="stylesheet" media="screen" type="text/css" href="./build/HTMLCS.css">
 
     <script type="text/javascript" src="./build/HTMLCS.js"></script>
-    <script type="text/javascript" src="./home.js"></script>
     <script type="text/javascript" src="./jquery-1.8.0.min.js"></script>
 </head>
 <body>
@@ -43,34 +42,34 @@ $values = array_values($_POST);
 
 
 <script type="text/javascript">
-	//POST all keys and values from php, then give to javascript variable
-	var keys = [];
-	var values = [];
-	var dummy = [];
-	<?php
-	for($i = 0 ; $i < count($keys) - 1 ; $i++){ ?>
-    	keys.push(<?php echo "'". $keys[$i] ."'" ?>);
-    	<?php 
-	}
-	?>
-	<?php
-	//var_dump(count($values[0]));
-	for($i = 0 ; $i < count($values) - 1 ; $i++){ 
-		for($j = 0 ; $j < count($values[$i]) ; $j++){ 
-		?>
-		dummy.push(<?php echo "'". $values[$i][$j] ."'" ?>);
-		<?php
-			if(count($values[$i]) - 1 == $j){?>
-    		values.push(dummy);
-    		dummy = [];
-    	<?php 
-    		}
-		}
-	}
-	?>
-	console.log(keys);
-	console.log(values);
-    
+    //POST all keys and values from php, then give to javascript variable
+    var keys = [];
+    var values = [];
+    var dummy = [];
+    <?php
+    for($i = 0 ; $i < count($keys) - 1 ; $i++){ ?>
+    keys.push(<?php echo "'". $keys[$i] ."'" ?>);
+    <?php
+    }
+    ?>
+    <?php
+    //var_dump(count($values[0]));
+    for($i = 0 ; $i < count($values) - 1 ; $i++){
+    for($j = 0 ; $j < count($values[$i]) ; $j++){
+    ?>
+    dummy.push(<?php echo "'". $values[$i][$j] ."'" ?>);
+    <?php
+    if(count($values[$i]) - 1 == $j){?>
+    values.push(dummy);
+    dummy = [];
+    <?php
+    }
+    }
+    }
+    ?>
+    console.log(keys);
+    console.log(values);
+
 
     var paramKey = [];
     var paramValue = [];
@@ -86,51 +85,107 @@ $values = array_values($_POST);
     //oldSource = "<textarea type='text' name='source' id='asd' rows='20' cols='100'>"+decodeURIComponent((source + '').replace(/\+/g, '%20'))+"</textarea>";
 
     var techniques = {
-    	//1.1.1
-    	h30 : {
-    		processAutomatedRefactoring: function(message, i){
-            	
-            }
-    	},
-    	h37 : {
-        	processAutomatedRefactoring: function(message, i){
-          		insertAttr("img", "alt", i);
+		h91 : {
+            processAutomatedRefactoring: function(message, i){
+                if(message == "Href") {
+                    insertAttr("a", "href", i);
+                } else if(message == "Content") {
+                    insertContent("a", i);
+                }
             }
         },
 
-        
-        h91 : {
-            processAutomatedRefactoring: function(message, i){
-            	if(message == "Href") {
-            		insertAttr("a", "href", i);
-            	} else if(message == "Content") {
-            		insertContent("a", i);
-            	}
+        //1.1.1
+        h30 : {
+            processAutomatedRefactoring: function (message, i) {
+                /*var k = 0;
+                for (var j = 0; j < innerDoc.getElementsByTagName("img").length; j++) {
+                    if (innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() == "a") {
+                        insertAttr("img", "alt", i, j, k);
+                    }
+                }*/
+                insertAttrWhenParent("img", "alt", "a", i);
             }
         },
-        
+        h37 : {
+            processAutomatedRefactoring: function(message, i){
+                var k = 0;
+                for(var j = 0 ; j < innerDoc.getElementsByTagName("img").length ; j++) {
+                    if(innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() != "a") {
+                        insertAttr("img", "alt", i, j, k);
+                    }
+                }
+            }
+        },
+        h67 : {
+        	processAutomatedRefactoring: function(message, i){
+                deleteAttr("img", "alt", "title", i);
+            }
+        }, 
+        h36 : {
+        	processAutomatedRefactoring: function(message, i){
+                insertAttrWhenAttr("input", "alt", "type", "image", i);
+            }
+        }
     };
 
-    function insertAttr(element, attribute, i) {
-		var k = 0;
-		for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-        	if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null || 
-        		innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-	            innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
-	            k++;
-    	    }
-	    }
+
+    function insertAttr(element, attribute, i, j, k) {
+        var k = 0;
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+        if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
+            innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+            innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+            k++;
+        }
+        }
+    }
+
+    function insertAttrWhenParent(element, attribute, parent, i) {
+        var k = 0;
+            for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+    	        if(innerDoc.getElementsByTagName(element)[j].parentNode.nodeName.toLowerCase() == parent) {
+        		    if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||	
+        		    	innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+                		innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                	k++;
+            	}
+        	}
+    	}
 	}
 
-	function insertContent(element, i) {
-	    var k = 0;
-	        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-	        	if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) {
-	            	innerDoc.getElementsByTagName(element)[j].innerHTML = values[i][k];
-	            	k++;
-	    	    }
-	    	}
+	function insertAttrWhenAttr(element, attribute, checkAttribute,checkAttributeValue, i) {
+        var k = 0;
+            for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+    	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(checkAttribute) == checkAttributeValue) {
+        		    if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||	
+        		    	innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+                		innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                	k++;
+            	}
+        	}
+    	}
 	}
+
+    function insertContent(element, i) {
+        var k = 0;
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+            if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) {
+                innerDoc.getElementsByTagName(element)[j].innerHTML = values[i][k];
+                k++;
+            }
+        }
+    }
+
+    function deleteAttr(element, attribute, delAttribute, i) {
+        var k = 0;
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+	            innerDoc.getElementsByTagName(element)[j].removeAttribute(delAttribute);
+	            k++;
+	        }
+        }
+    }
 
     //Define an iframe, place where automated refactoring heppened
     var iframe = document.createElement('iframe');
@@ -160,18 +215,20 @@ $values = array_values($_POST);
         innerDoc.body.innerHTML = source;
 
         for(var i = 0 ; i < keys.length ; i++) {
-        	var technique = keys[i].split("_")[0];
-        	var message = keys[i].split("_")[1];
-        	techniques[technique].processAutomatedRefactoring(message, i);
-	        
-    	}
+            var technique = keys[i].split("_")[0];
+            var message = keys[i].split("_")[1];
 
-    	
+            if(techniques[technique] != null) {
+            	techniques[technique].processAutomatedRefactoring(message, i);
+        	}
+        }
+
+
 
         /*innerDoc.getElementsByTagName("a")[0].setAttribute("href", "yes");
         innerDoc.getElementsByTagName("a")[0].innerHTML = 
-        <?php //echo '"'. $_POST['valueLink'][0] .'"' ?>;;*/
-        
+        //echo '"'. $_POST['valueLink'][0] .'"' ?>;;*/
+
         allTagInsideIframe = innerDoc.querySelectorAll('body');
 
         for (var index = 0; index < allTagInsideIframe.length; index++) {
@@ -202,7 +259,7 @@ $values = array_values($_POST);
 
 
     /*for(var k = 0; k < countParam -1 ; k++){
-        number = <?php //echo '"'. $_POST['source'] .'"' ?>;
+        number =  //echo '"'. $_POST['source'] .'"' ?>;
 		
 		paramKey[number] = location.search.split("&")[k].replace("?","").split("=")[0];
 		paramKey[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));

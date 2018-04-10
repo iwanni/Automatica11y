@@ -186,30 +186,6 @@
                 }
             }
         },
-        h30: {
-            refactorText:"",
-            parameter:[],
-            counter : 0,
-            processErrorMessage: function(errorMessage) {
-                techniques[h37].processErrorMessage(errorMessage);
-            }
-        },
-        h37 : {
-            refactorText:"",
-            parameter:[],
-            counter : 0,
-
-            processErrorMessage: function(errorMessage, element) {
-                if (errorMessage == "H37_1.1.1") {
-                    /*this.refactorText = mydata.h37.refactorText.content;
-                    this.parameter[0] = processInputText(mydata.h37.parameterText.content, "h37["+ this.counter + "]");*/
-                    this.refactorText = textRefactor(element, "content");
-                    //this.parameter[0] = processInputText(mydata[element].parameterText.content, "h37["+ this.counter + "]");
-                    this.parameter[0] = textFormParamater("text", element, "content","", this.counter);
-                }
-                this.counter++;
-            }
-        },
         h57 : {
             parameter:[],
             counter : 0,
@@ -221,16 +197,66 @@
                 }
                 this.counter++;
             }
+        },
+
+        //1.1.1
+        h30: {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+            processErrorMessage: function(errorMessage, technique) {
+                this.refactorText = textRefactor(technique, "content");
+                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+            }
+        },
+        h37 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+
+            processErrorMessage: function(errorMessage, technique) {
+                //if (errorMessage == "H37_1.1.1") {
+                    /*this.refactorText = mydata.h37.refactorText.content;
+                    this.parameter[0] = processInputText(mydata.h37.parameterText.content, "h37["+ this.counter + "]");*/
+                    this.refactorText = textRefactor(technique, "content");
+                    //this.parameter[0] = processInputText(mydata[element].parameterText.content, "h37["+ this.counter + "]");
+                    this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                //}
+                this.counter++;
+            }
+        },
+        h67 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+            processErrorMessage: function(errorMessage, technique) {
+                if(errorMessage == "H67_1_1.1.1") {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = processInputTextHidden(technique+"_"+""+"["+ this.counter + "]");
+                    this.counter++;
+                }
+            }
+        },
+        h36 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+            processErrorMessage: function(errorMessage, technique) {
+                this.refactorText = textRefactor(technique, "content");
+                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.counter++;
+            } 
         }
+        
     };
 
 
-    var textRefactor = function(element, objectRefactorText) {
-        return mydata[element].refactorText[objectRefactorText];
+    var textRefactor = function(technique, objectRefactorText) {
+        return mydata[technique].refactorText[objectRefactorText];
     }
-    var textFormParamater = function(form, element, objectRefactorText, messageRefactoring, counter) {
+    var textFormParamater = function(form, technique, objectRefactorText, messageRefactoring, counter) {
         if(form == "text") {
-            return processInputText(mydata[element].parameterText[objectRefactorText], element+"_"+messageRefactoring+"["+ counter + "]");
+            return processInputText(mydata[technique].parameterText[objectRefactorText], technique+"_"+messageRefactoring+"["+ counter + "]");
         } 
     }
 
@@ -247,7 +273,7 @@
         return "<input id='"+name+"' type='radio' name='"+name+"' value='1'><label for="+name+"'>"+label+"</label>";
     }
     var processInputTextHidden = function(name) {
-        return "<input id='"+name+"' type='hidden' name='"+name+"'>";
+        return "<input id='"+name+"' type='hidden' name='"+name+"' value='1'>";
     }
 
     //own
