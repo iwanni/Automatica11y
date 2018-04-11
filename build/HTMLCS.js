@@ -1803,6 +1803,9 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
         var elements = HTMLCS.util.getAllElements(top, "applet");
         for (var el = 0; el < elements.length; el++) {
             // Test firstly for whether we have an object alternative.
+            //own fix iwan
+            var element = elements[el];
+            
             var childObject = element.querySelector("object");
             var hasError = false;
             // If we have an object as our alternative, skip it. Pass the blame onto

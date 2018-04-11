@@ -20,6 +20,8 @@ Assert: Error *.H24 on #areaWithEmptyAlt
 -->
 </head>
 <body>
+
+
 <!--H30-->
 <a href="asd">
 	<img>
@@ -44,6 +46,82 @@ Assert: Error *.H24 on #areaWithEmptyAlt
 	<area id="areaWithNoAlt" />
 	<area id="areaWithEmptyAlt" alt="" />
 </map>
+
+<!--H2-->
+Tidak ketemu test
+
+<!--H53-->
+<object classid="http://www.example.com/analogclock.py"> 
+</object>
+<object classid="http://www.example.com/animatedlogo.py"> 
+<img src="staticlogo.gif" alt="Company Name" />
+</object>
+
+<!--H35-->
+<applet code="tictactoe.class" width="250" height="250" alt=""> tic-tac-toe game
+</applet>
+<applet code="tictactoe.class" width="250" height="250" alt="alt">
+</applet>
+<applet code="tictactoe.class" width="250" height="250">
+</applet>
+
+<applet code="tictactoe.class" width="250" height="250" alt="tic-tac-toe game"> tic-tac-toe game
+</applet>
+
+
+
+
+
+
+
+
+
+
+
+<!--RESULT-->
+<body><!--H30-->
+<a href="asd">
+	<img alt="h30">
+</a>
+
+<!--H37-->
+<img id="hasNoAltText" alt="h37">
+<img id="hasAltText" alt="Alt Text">
+
+<!--H67-->
+<img id="hasEmptyAltText" alt="">
+<img id="hasEmptyAltTextWithTitle" alt="">
+<img id="hasSpacedAltText" alt=" ">
+
+<!--H36-->
+<input type="image" name="submit" src="button.gif" alt="h36">
+<input type="image" name="submit" src="button.gif" alt="h36">
+
+<!--H24-->
+<map>
+	<area id="areaWithAlt" alt="Has Alt">
+	<area id="areaWithNoAlt" alt="h24">
+	<area id="areaWithEmptyAlt" alt="h24">
+</map>
+
+<!--H2-->
+Tidak ketemu test
+
+<!--H53-->
+<object classid="http://www.example.com/analogclock.py">h53</object>
+<object classid="http://www.example.com/animatedlogo.py"> 
+<img src="staticlogo.gif" alt="Company Name">
+</object>
+
+<!--H35-->
+<applet code="tictactoe.class" width="250" height="250" alt="h35"> tic-tac-toe game
+</applet>
+<applet code="tictactoe.class" width="250" height="250" alt="alt">h35 body</applet>
+<applet code="tictactoe.class" width="250" height="250" alt="h35">h35 body</applet>
+
+<applet code="tictactoe.class" width="250" height="250" alt="tic-tac-toe game"> tic-tac-toe game
+</applet></body>
+
 
 
 </body>

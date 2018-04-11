@@ -232,8 +232,8 @@
             processErrorMessage: function(errorMessage, technique) {
                 //if(errorMessage == "H67_1_1.1.1") {
                     this.refactorText = textRefactor(technique, "content");
-                    this.parameter[0] = processInputHidden(technique+"_"+""+"["+ this.counter + "]");
-                    //this.parameter[0] = textFormParamater("hidden", technique, "content","", this.counter);
+                    //this.parameter[0] = processInputHidden(technique+"_"+""+"["+ this.counter + "]");
+                    this.parameter[0] = textFormParamater("hidden", technique, "content","", this.counter);
                     this.counter++;
                 //}
             }
@@ -257,8 +257,35 @@
                 this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
                 this.counter++;
             } 
+        },
+        h53aria6 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+            processErrorMessage: function(errorMessage, technique) {
+                this.refactorText = textRefactor(technique, "content");
+                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.counter++;
+            } 
+        },
+        h35 : {
+            refactorText:"",
+            parameter:[],
+            counter0 : 0,   //0 = 2 = tag alt
+            counter1 : 0,   //1 = 3 = in body
+
+            processErrorMessage: function(errorMessage, technique) {
+                if(errorMessage == "H35_2_1.1.1") {
+                    this.refactorText = textRefactor(technique, "alt");
+                    this.parameter[0] = textFormParamater("text", technique, "alt","alt", this.counter0);
+                    this.counter0++;
+                } else if (errorMessage == "H35_3_1.1.1") {
+                    this.refactorText = textRefactor(technique, "body");
+                    this.parameter[0] = textFormParamater("text", technique, "body","body", this.counter1);
+                    this.counter1++;
+                }
+            } 
         }
-        
     };
 
 
@@ -269,7 +296,7 @@
         if(form == "text") {
             return processInputText(mydata[technique].parameterText[objectRefactorText], technique+"_"+messageRefactoring+"["+ counter + "]");
         } else if(form == "hidden") {
-            return processInputHidden(technique+"_"+messageRefactoring+"["+ counter + "]");
+            return processInputHidden(mydata[technique].parameterText[objectRefactorText], technique+"_"+messageRefactoring+"["+ counter + "]");
         }
     }
 
@@ -285,8 +312,8 @@
     var processRadioButton = function(label, name) {
         return "<input id='"+name+"' type='radio' name='"+name+"' value='1'><label for="+name+"'>"+label+"</label>";
     }
-    var processInputHidden = function(name) {
-        return "<input id='"+name+"' type='hidden' name='"+name+"' value='1'>";
+    var processInputHidden = function(label, name) {
+        return label+"<input id='"+name+"' type='hidden' name='"+name+"' value='1'>";
     }
 
     //own
@@ -333,7 +360,7 @@
 
         //var technique = techniqueError.split("_")[0].toLowerCase();
         var technique = "";
-        var regex = techniqueError.match( /[A-Z](\d+)/g );
+        var regex = techniqueError.match( /([A-Z]+)(\d+)/g );
         for(var k=0 ; k < regex.length ; k++) {
             technique += regex[k];
         }

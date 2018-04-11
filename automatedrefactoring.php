@@ -119,7 +119,7 @@ $values = array_values($_POST);
         },
         h67 : {
         	processAutomatedRefactoring: function(message, i){
-                deleteAttr("img", "alt", "title", i);
+                deleteAttrwhenAttr("img", "alt", "title", i);
             }
         }, 
         h36 : {
@@ -130,6 +130,20 @@ $values = array_values($_POST);
         h24 : {
         	processAutomatedRefactoring: function(message, i){
                 insertAttr("area", "alt", i);
+            }
+        },
+        h53aria6 : {
+        	processAutomatedRefactoring: function(message, i){
+                insertContent("object", i);
+            }
+        },
+        h35 : {
+        	processAutomatedRefactoring: function(message, i){
+        		if(message == "alt") {
+                	insertAttr("applet", "alt", i);
+            	} else if(message == "body") {
+            		insertContent("applet", i);
+            	}
             }
         }
     };
@@ -161,7 +175,7 @@ $values = array_values($_POST);
     	}
 	}
 
-	function insertAttrWhenAttr(element, attribute, checkAttribute,checkAttributeValue, i) {
+	function insertAttrWhenAttr(element, attribute, checkAttribute, checkAttributeValue, i) {
         var k = 0;
             for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
     	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(checkAttribute) == checkAttributeValue) {
@@ -184,12 +198,10 @@ $values = array_values($_POST);
         }
     }
 
-    function deleteAttr(element, attribute, delAttribute, i) {
-        var k = 0;
+    function deleteAttrwhenAttr(element, attribute, delAttribute, i) {
         for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
 	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
 	            innerDoc.getElementsByTagName(element)[j].removeAttribute(delAttribute);
-	            k++;
 	        }
         }
     }

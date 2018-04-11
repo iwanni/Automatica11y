@@ -111,5 +111,23 @@ var data = {
         "parameterText": {
             "content": "Alternative text : "
         }
+    },
+    "h53aria6" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan alternative text pada body tag object"
+        },
+        "parameterText": {
+            "content": "Alternative text pada body tag object : "
+        }
+    },
+    "h35" : {
+        "refactorText": {
+            "alt" : "Refactoring dilakukan dengan menambahkan alternative text pada applet",
+            "body" : "Refactoring dilakukan dengan menambahkan alternative text pada body applet"
+        },
+        "parameterText": {
+            "alt" : "Alternative text : ",
+            "body" : "Alternative text pada body applet : "
+        }
     }
 };
