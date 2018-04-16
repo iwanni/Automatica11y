@@ -9,7 +9,7 @@ var data = {
             "href": "Nilai href: ",
             "content": "Text untuk link: "
         }
-    }, 
+    },
     "g151": {
         "refactorText": {
             "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
@@ -44,7 +44,7 @@ var data = {
         }
     },
     "g159g166": {
-    	"refactorText": {
+        "refactorText": {
             "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk video (prerecorded) yang kemudian akan disisipkan di bawah video. Tambahkan juga deskripsi tentang informasi penting seperti deskripsi pemandangan, aksi, ekspresi, dll yang merupakan bagian dari presentasi. Dengan menggunakan API speech to text deskripsi tentang informasi penting pada video tidak dapat ditangkap oleh API."
         },
         "parameterText": {
@@ -71,7 +71,9 @@ var data = {
         }
     },
 
-    //sc 1.1.1
+
+
+    //1.1.1
     "h30" : {
         "refactorText": {
             "content" : "Refactoring dilakukan dengan menambahkan alternative text pada image"
@@ -128,6 +130,98 @@ var data = {
         "parameterText": {
             "alt" : "Alternative text : ",
             "body" : "Alternative text pada body applet : "
+        }
+    },
+
+
+
+    //1.3.1
+    "h42" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan memasukkan text untuk heading"
+        },
+        "parameterText": {
+            "h1": "Text untuk heading : ",
+            "h2": "Text untuk heading : ",
+            "h3": "Text untuk heading : ",
+            "h4": "Text untuk heading : ",
+            "h5": "Text untuk heading : ",
+            "h6": "Text untuk heading : "
+        }
+    },
+    "h44" : {
+        "refactorText": {
+            "NonExistent" : "Refactoring dilakukan dengan mengubah nilai dari atribut for pada tag label"
+        },
+        "parameterText": {
+            "content": "Nilai atribut for pada tag label : "
+        }
+    },
+    "f68" : {
+        "refactorText": {
+            "forLabel" : "Refactoring dilakukan dengan menambahkan tag label & atribut for pada form control yang belum ada labelnya, menambahkan atribut for pada label jika ditemukan sebelum tag input",
+            "hidden" : "Refactoring dilakukan dengan menghapus tag label apabila ditemukan sebelum input type hidden"
+        },
+        "parameterText": {
+            "for": "Nilai atribut for pada tag label : ",
+            "contentLabel": "Nilai pada tag label : ",
+            "hidden" : "Otomatis"
+        }
+    },
+    "h65" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan memasukkan nilai pada atribut title yang masih kosong"
+        },
+        "parameterText": {
+            "content": "Atribut title pada form control : "
+        }
+    },
+    "h49" : {
+        "refactorText": {
+            "center" : "Refactoring dilakukan dengan mengganti tag center menjadi span dan menambahkan atribut style='text-align:center;'",
+            "align" : "Refactoring dilakukan dengan mengganti atribut align menjadi style='text-align:(value);",
+            "b" : "Refactoring dilakukan dengan mengganti tag b menjadi strong",
+            "i" : "Refactoring dilakukan dengan mengganti tag i menjadi em",
+            "strike" : "Refactoring dilakukan dengan mengganti tag strike menjadi del/s",
+            "tt" : "Refactoring dilakukan dengan mengganti tag tt menjadi kbd/var/code/samp",
+            "big" : "Refactoring dilakukan dengan mengganti tag big menjadi span dan menambahkan atribut style='font-size: larger;'"
+        },
+        "parameterText": {
+            "center": "Otomatis",
+            "align" : "Otomatis",
+            "b" : "Otomatis",
+            "i" : "Otomatis",
+            "strike" : "Otomatis",
+            "tt" : "Otomatis",
+            "big" : "Otomatis"
+        }
+    },
+    "h63" : {
+        "refactorText": {
+            "scopeCol" : "Refactoring dilakukan dengan mengganti tag td yang menjadi th apabila memiliki atribut scope dengan nilai col"
+        },
+        "parameterText": {
+            "scopeCol": "Otomatis"
+        }
+    },
+    "h43" : {
+
+    },
+    "h39h73" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan mengedit nilai pada caption atau summary"
+        },
+        "parameterText": {
+            "caption": "Caption : ",
+            "summary": "Summary : "
+        }
+    },
+    "h71" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan legend pada fieldset"
+        },
+        "parameterText": {
+            "content": "Legend : "
         }
     }
 };

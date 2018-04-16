@@ -1805,7 +1805,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
             // Test firstly for whether we have an object alternative.
             //own fix iwan
             var element = elements[el];
-            
+
             var childObject = element.querySelector("object");
             var hasError = false;
             // If we have an object as our alternative, skip it. Pass the blame onto
@@ -2921,7 +2921,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
     testEmptyHeading: function(element) {
         var text = HTMLCS.util.getElementTextContent(element, true);
         if (/^\s*$/.test(text) === true) {
-            HTMLCS.addMessage(HTMLCS.ERROR, element, "Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.", "H42.2");
+            //own iwan
+            HTMLCS.addMessage(HTMLCS.ERROR, element, "Heading tag found with no content. Text that is not intended as a heading should not be marked up with heading tags.", "H42.2"+element.nodeName.slice(1,2));
         }
     },
     /**

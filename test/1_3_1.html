@@ -1,17 +1,14 @@
 <!--H42-->
-<h1 id="headingWithHyperlinkAndImage">
-    <a href="www.squiz.net" accesskey="1" title="Title">
-        <img id="logo" alt="Test" src="image.png" />
-    </a>
-</h1>
-
-<h2 id="headingEmpty"><span></span></h2>
-
-
-<!--H93 / F77-->
-<input type="text" id="explicitLabelText" />
-<input type="text" id="explicitLabelText" />
-
+<h1></h1>
+<h1></h1>
+<h2></h2>
+<h5></h5>
+<h3></h3>
+<h3></h3>
+<h5></h5>
+<h4></h4>
+<h5></h5>
+<h6></h6>
 
 <!--H44-->
 <!--H44.NonExistent-->
@@ -25,7 +22,142 @@
 </body>
 </html>
 
-<!--H44.NotFormControl-->
+
+<!--F68--> //isi innerHTML label belum, jika labelnya membungkus input
+<!--H44.NoForAttr / F68-->
+<label>Text: </label><input type="text" id="wrappedLabelText" />
+belum dites <label>Label: <input type="text" id="labelHidden" /></label>
+belum dites <label for="labelHiddenAttr">Label:</label> <input type="text" id="labelHiddenAttr" />
+<!--H44.2 / F68-->
+<input type="text"  />
+<input type="text" id="asd" />
+
+<!--H65--> // tag form control selain input?
+<input type="text" id="wrappedLabelText" title=""/>
+
+<!--H49.[tag]-->// kalau sdah ada style di dalam center, tag u, s
+<!--H49.center--> 
+<center>HTML5</center>
+<center title="asd">HTML5</center>
+<!--H49.align--><div align="center">This is some text!</div>
+<!--H49.strike--><strike>strike</strike>
+<!--H49.tt--><tt>code program</tt>
+<!--H49.big--><big>big size font</big>
+
+<!--H49.align-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Belajar HTML5</title>
+</head>
+<body>
+  <center>HTML5</center>
+</body>
+
+<!--H49.center-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Belajar HTML5</title>
+</head>
+<body>
+  <div align="left">Example</div>
+</body>
+
+<!--H49.strike-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Belajar HTML5</title>
+</head>
+<body>
+<strike>strike</strike>
+</body>
+
+<!--H49.tt-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Belajar HTML5</title>
+</head>
+<body>
+<tt>code program</tt>
+</body>
+
+<!--H49.big-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Belajar HTML5</title>
+</head>
+<body>
+<big>big size font</big>
+</body>
+
+<!--H63.2--> = mengubah td jadi th, setiap yang ada atribut scope
+<table>
+  <tr>
+    <th></th>
+    <td scope="col">Month</td>
+    <td scope="col">Savings</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--F68.Hidden & F68.HiddenAttr--> //ganti nilai for atau hapus 
+<label>Label: <input type="hidden" id="labelHidden" /></label>
+<label for="labelHiddenAttr">Label:</label> <input hidden id="labelHiddenAttr" />
+<label for="label">Label:</label> <input type="hidden" id="label" />
+
+<!--H42--> masih gagal yg ini
+<h1 id="headingWithHyperlinkAndImage">
+    <a href="www.squiz.net" accesskey="1" title="Title">
+        <img id="logo" alt="Test" src="image.png" />
+    </a>
+</h1>
+<h2 id="headingEmpty"><span></span></h2>
+
+
+<!--H93 / F77-->
+<input type="text" id="explicitLabelText" />
+<input type="text" id="explicitLabelText" />
+
+
+<!--H44.NotFormControl--> ada 2 kemungkinan ganti nilai for atau ganti tah h1
 <label for="explicitLabelText">
 <h1 id="explicitLabelText"></h1>
 
@@ -60,55 +192,10 @@ tak bisa->
 <input id="name" type="text" name="textfield">
 <label for="name">Name:</label>
 
-
-<!--H65-->
-<input type="text" id="wrappedLabelText" title=""/>
-
-
-<!--H49-->
-<!--H49.[tag]-->
-<!--H49.AlignAttr-->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Belajar HTML5</title>
-</head>
-<body>
-  <center>HTML5</center>
-  <div align="left">Example</div>
-</body>
-
-<!--H49.[tag]-->
-<center>HTML5</center>
-<!--H49.AlignAttr-->
-<div align="left">Example</div>
-
-
 <!--H42-->
 <p><strong>HTML5</strong></p>
 
 <!--H63-->
-<!--H63.2--> = mengubah td jadi th, setiap yang ada atribut scope
-<table>
-  <tr>
-    <th></th>
-    <td scope="col">Month</th>
-    <td scope="col">Savings</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>January</td>
-    <td>$100</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>February</td>
-    <td>$80</td>
-  </tr>
-</table>
-
-
 <!--H43-->
 <!--H43.ScopeAmbiguous--> = tidak bisa diotomasi
 <table border="1"> 

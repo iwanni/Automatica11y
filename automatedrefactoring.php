@@ -85,7 +85,7 @@ $values = array_values($_POST);
     //oldSource = "<textarea type='text' name='source' id='asd' rows='20' cols='100'>"+decodeURIComponent((source + '').replace(/\+/g, '%20'))+"</textarea>";
 
     var techniques = {
-		/*h91 : {
+        /*h91 : {
             processAutomatedRefactoring: function(message, i){
                 if(message == "Href") {
                     insertAttr("a", "href", i);
@@ -94,6 +94,9 @@ $values = array_values($_POST);
                 }
             }
         },*/
+
+
+
 
         //1.1.1
         h30 : {
@@ -111,87 +114,294 @@ $values = array_values($_POST);
             processAutomatedRefactoring: function(message, i){
                 //var k = 0;
                 //for(var j = 0 ; j < innerDoc.getElementsByTagName("img").length ; j++) {
-                    //if(innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() != "a") {
-                        insertAttr("img", "alt", i);
-                    //}
+                //if(innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() != "a") {
+                insertAttr("img", "alt", i);
+                //}
                 //}
             }
         },
         h67 : {
-        	processAutomatedRefactoring: function(message, i){
+            processAutomatedRefactoring: function(message, i){
                 deleteAttrwhenAttr("img", "alt", "title", i);
             }
-        }, 
+        },
         h36 : {
-        	processAutomatedRefactoring: function(message, i){
+            processAutomatedRefactoring: function(message, i){
                 insertAttrWhenAttr("input", "alt", "type", "image", i);
             }
         },
         h24 : {
-        	processAutomatedRefactoring: function(message, i){
+            processAutomatedRefactoring: function(message, i){
                 insertAttr("area", "alt", i);
             }
         },
         h53aria6 : {
-        	processAutomatedRefactoring: function(message, i){
+            processAutomatedRefactoring: function(message, i){
                 insertContent("object", i);
             }
         },
         h35 : {
-        	processAutomatedRefactoring: function(message, i){
-        		if(message == "alt") {
-                	insertAttr("applet", "alt", i);
-            	} else if(message == "body") {
-            		insertContent("applet", i);
-            	}
+            processAutomatedRefactoring: function(message, i){
+                if(message == "alt") {
+                    insertAttr("applet", "alt", i);
+                } else if(message == "body") {
+                    insertContent("applet", i);
+                }
+            }
+        },
+
+
+
+        //1.3.1
+        h42 : {
+            processAutomatedRefactoring: function(message, i){
+                insertContent(message, i);
+            }
+        },
+        h44 : {
+            processAutomatedRefactoring: function(message, i){
+                //if(message == "NonExistent" || message == "NonExistentFragment"){
+                //this._labelNames = {};
+                var k = 0;
+                var labels = innerDoc.getElementsByTagName("label");
+
+                for (var l = 0; l < labels.length; l++) {
+                    if (labels[l].getAttribute("for") !== null && labels[l].getAttribute("for") !== "") {
+                        var labelFor = labels[l].getAttribute("for");
+                        /*if (this._labelNames[labelFor] && this._labelNames[labelFor] !== null) {
+                            this._labelNames[labelFor] = null;
+                        } else {*/
+                        //this._labelNames[labelFor] = labels[l];
+                        var refNode = innerDoc.getElementById(labelFor);
+                        if (refNode === null) {
+                            /* var level = HTMLCS.ERROR;
+                             var msg = 'This label\'s "for" attribute contains an ID that does not exist in the document.';
+                             var code = "H44.NonExistent";*/
+                            /*if (HTMLCS.isFullDoc(innerDoc) === true || innerDoc.nodeName.toLowerCase() === "body") {
+                                level = HTMLCS.WARNING;
+                                msg = 'This label\'s "for" attribute contains an ID that does not exist in the document fragment.';
+                                var code = "H44.NonExistentFragment";
+                            }*/
+                            //editAttr("label", "for", l);
+
+                            //for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+                            /*if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
+                                innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {*/
+                            if(values[i][k] != null) {
+                                innerDoc.getElementsByTagName("label")[l].setAttribute("for", values[i][k]);
+                                k++;
+                            }
+                            //}
+                        } /*else {
+		                        var nodeName = refNode.nodeName.toLowerCase();
+		                        if ("input|select|textarea|button|keygen|meter|output|progress".indexOf(nodeName) === -1) {
+		                            HTMLCS.addMessage(HTMLCS.WARNING, labels[i], 'This label\'s "for" attribute contains an ID for an element that is not a form control. Ensure that you have entered the correct ID for the intended element.', "H44.NotFormControl");
+		                        }
+		                    }
+		                }*/
+                    }
+                    //}
+                }
+            }
+        },
+        f68 : {
+            processAutomatedRefactoring: function(message, i){
+                if(message == "for") {
+                    var k = 0;
+                    for(var j = 0 ; j < innerDoc.getElementsByTagName("input").length ; j++) {
+                        if(innerDoc.getElementsByTagName("input")[j].previousElementSibling.nodeName == "LABEL") {
+                            var label = innerDoc.getElementsByTagName("input")[j].previousElementSibling;
+                            if(label.getAttribute("for") == false || label.getAttribute("for") == null)
+                                label.setAttribute("for", values[i][k]);
+                                k++;
+                        } else {
+                            var label = innerDoc.createElement("label");
+                            label.setAttribute("for", values[i][k]);
+                            k++;
+
+                            var input = innerDoc.getElementsByTagName("input")[j];
+                            input.parentNode.insertBefore(label, input);
+                        }
+                    }
+                } else if(message == "hidden") {
+                    //delete tag label atau ganti niali for
+                }
+            }
+        },
+        h65 : {
+            processAutomatedRefactoring: function(message, i){
+                editAttrWhenBlank("input", "title", i);
+            }
+        },
+        h49 : {
+            processAutomatedRefactoring: function(message, i){
+                if(message == "center") {
+                    var k = 0;
+                    for(var j = 0 ; j < innerDoc.getElementsByTagName("center").length ; j++) {
+                        var str = innerDoc.getElementsByTagName("center")[j].outerHTML; 
+                        var regexpResult = str.replace(/<center/g, "<span style='text-align:center;'");
+                        var regexpResult = regexpResult.replace(/<\/center>/g, "<\/span>");
+                        innerDoc.getElementsByTagName("center")[j].outerHTML = regexpResult;
+
+                        /*changeTag("center", /<center/g, /<\/center>/g, "span",i);*/
+                    }
+                } else if(message == "align") {
+                    var k = 0;
+                    var elements = getElementsAttr('align');
+                    
+                    for(var j = 0 ; j < elements.length ; j++) {
+                        var alignAttribute = elements[j].getAttribute('align');
+
+                        /*var str = elements[j].outerHTML; 
+                        var regexpResult = str.replace(/align=/g, "style='text-align:"+alignAttribute+"';");
+                        elements[j].outerHTML = regexpResult;*/
+
+                        elements[j].removeAttribute("align");
+                        elements[j].setAttribute("style", "text-align: "+alignAttribute+";");
+                    }
+                } else if(message == "b") {
+                    changeTag("b", /<b/g, /<\/b>/g, "strong",i);
+                } else if(message == "i") {
+                    changeTag("i", /<i/g, /<\/i>/g, "em",i);
+                } else if(message == "strike") {
+                    changeTag("strike", /<strike/g, /<\/strike>/g, "del",i);
+                } else if(message == "tt") {
+                    changeTag("tt", /<tt/g, /<\/tt>/g, "code",i);s
+                } else if(message == "big") {
+                    var k = 0;
+                    for(var j = 0 ; j < innerDoc.getElementsByTagName("big").length ; j++) {
+                        var str = innerDoc.getElementsByTagName("big")[j].outerHTML; 
+                        var regexpResult = str.replace(/<big/g, "<span style='font-size: larger;'");
+                        var regexpResult = regexpResult.replace(/<\/big>/g, "<\/span>");
+                        innerDoc.getElementsByTagName("big")[j].outerHTML = regexpResult;
+                    }
+                }
+            }
+        },
+        h63 : {
+            processAutomatedRefactoring: function(message, i){
+                if(message == "scopeCol") {
+                    var k = 0;
+                    var tdElements = getElementsTag("td");
+                    var tdLength = getElementsTag("td").length;
+                    for(var j = 0 ; j < tdLength ; j++) {
+                        if(tdElements[j].getAttribute("scope") == "col"){
+                            str = tdElements[j].outerHTML; 
+                            var regexpResult = str.replace(/<td/g, "<th");
+                            var regexpResult = regexpResult.replace(/<\/td>/g, "<\/th>");
+                            tdElements[j].outerHTML = regexpResult;
+                        }
+                    }
+                }
+            }
+        },
+        h71 : {
+            processAutomatedRefactoring: function(message, i){
+                var k = 0;
+                var fieldsetElements = getElementsTag("fieldset");
+                var fieldsetLength = getElementsTag("fieldset").length;
+                for(var j = 0 ; j < fieldsetLength ; j++) {
+                    if(fieldsetElements[j].querySelector("legend") == null ||
+                        fieldsetElements[j].querySelector("legend").parentNode.nodeName.toLowerCase() != "fieldset") {
+                        var legend = innerDoc.createElement("legend");
+                        legend.innerHTML = values[i][k];
+                        k++;
+
+                        fieldsetElements[j].insertBefore(legend, fieldsetElements[j].firstChild);
+                    }
+                }
             }
         }
     };
 
 
+
+    function getElementsAttr(attribute) {
+        return innerDoc.querySelectorAll('[' + attribute + ']');
+    }
+
+    function getElementsTag(element) {
+        return innerDoc.querySelectorAll(element);
+    }
+
     function insertAttr(element, attribute, i) {
         var k = 0;
         for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
-	            innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-	        	if(values[i][k] != null) {
-	            	innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
-	            	k++;
-	        	}
-	        }
+            if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
+                innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+                if(values[i][k] != null) {
+                    innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                    k++;
+                }
+            }
+        }
+    }
+
+    function changeTag(element, regexOpenTag, regexCloseTag, newElement, i) {
+        var k = 0;
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+            var str = innerDoc.getElementsByTagName(element)[j].outerHTML; 
+            var regexpResult = str.replace(regexOpenTag, "<"+newElement);
+            var regexpResult = regexpResult.replace(regexCloseTag, "<\/"+newElement+">");
+            innerDoc.getElementsByTagName(element)[j].outerHTML = regexpResult;
+        }
+    }
+
+    function editAttr(element, attribute, i) {
+        var k = 0;
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+            /*if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
+                innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {*/
+            if(values[i][k] != null) {
+                innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                k++;
+            }
+            /*}*/
+        }
+    }
+
+    function editAttrWhenBlank(element, attribute, i) {
+        var k = 0;
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+            if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+                if(values[i][k] != null) {
+                    innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                    k++;
+                }
+            }
         }
     }
 
     function insertAttrWhenParent(element, attribute, parent, i) {
         var k = 0;
-            for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-    	        if(innerDoc.getElementsByTagName(element)[j].parentNode.nodeName.toLowerCase() == parent) {
-        		    if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||	
-        		    	innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-                		innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
-                	k++;
-            	}
-        	}
-    	}
-	}
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+            if(innerDoc.getElementsByTagName(element)[j].parentNode.nodeName.toLowerCase() == parent) {
+                if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
+                    innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+                    innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                    k++;
+                }
+            }
+        }
+    }
 
-	function insertAttrWhenAttr(element, attribute, checkAttribute, checkAttributeValue, i) {
+    function insertAttrWhenAttr(element, attribute, checkAttribute, checkAttributeValue, i) {
         var k = 0;
-            for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-    	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(checkAttribute) == checkAttributeValue) {
-        		    if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||	
-        		    	innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-                		innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
-                	k++;
-            	}
-        	}
-    	}
-	}
+        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
+            if(innerDoc.getElementsByTagName(element)[j].getAttribute(checkAttribute) == checkAttributeValue) {
+                if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
+                    innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+                    innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                    k++;
+                }
+            }
+        }
+    }
 
     function insertContent(element, i) {
         var k = 0;
         for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-            if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) {
+            if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) { // kalau ada tag masih bug
                 innerDoc.getElementsByTagName(element)[j].innerHTML = values[i][k];
                 k++;
             }
@@ -200,9 +410,9 @@ $values = array_values($_POST);
 
     function deleteAttrwhenAttr(element, attribute, delAttribute, i) {
         for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-	        if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-	            innerDoc.getElementsByTagName(element)[j].removeAttribute(delAttribute);
-	        }
+            if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+                innerDoc.getElementsByTagName(element)[j].removeAttribute(delAttribute);
+            }
         }
     }
 
@@ -238,8 +448,8 @@ $values = array_values($_POST);
             var message = keys[i].split("_")[1];
 
             if(techniques[technique] != null) {
-            	techniques[technique].processAutomatedRefactoring(message, i);
-        	}
+                techniques[technique].processAutomatedRefactoring(message, i);
+            }
         }
 
 
