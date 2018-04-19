@@ -11,17 +11,6 @@
 
     <script type="text/javascript" src="./build/HTMLCS.js"></script>
 
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-359178-16']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
 </head>
 <body>
 <div id="test-area">
@@ -206,9 +195,11 @@
             refactorText:"",
             parameter:[],
             counter : 0,
+
             processErrorMessage: function(errorMessage, technique) {
                 this.refactorText = textRefactor(technique, "content");
-                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
+                this.counter++;
             }
         },
         h37 : {
@@ -217,13 +208,8 @@
             counter : 0,
 
             processErrorMessage: function(errorMessage, technique) {
-                //if (errorMessage == "H37_1.1.1") {
-                /*this.refactorText = mydata.h37.refactorText.content;
-                this.parameter[0] = processInputText(mydata.h37.parameterText.content, "h37["+ this.counter + "]");*/
                 this.refactorText = textRefactor(technique, "content");
-                //this.parameter[0] = processInputText(mydata[element].parameterText.content, "h37["+ this.counter + "]");
-                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
-                //}
+                this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
                 this.counter++;
             }
         },
@@ -235,7 +221,7 @@
                 //if(errorMessage == "H67_1_1.1.1") {
                 this.refactorText = textRefactor(technique, "content");
                 //this.parameter[0] = processInputHidden(technique+"_"+""+"["+ this.counter + "]");
-                this.parameter[0] = textFormParamater("hidden", technique, "content","", this.counter);
+                this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
                 this.counter++;
                 //}
             }
@@ -246,7 +232,7 @@
             counter : 0,
             processErrorMessage: function(errorMessage, technique) {
                 this.refactorText = textRefactor(technique, "content");
-                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
                 this.counter++;
             }
         },
@@ -256,7 +242,7 @@
             counter : 0,
             processErrorMessage: function(errorMessage, technique) {
                 this.refactorText = textRefactor(technique, "content");
-                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
                 this.counter++;
             }
         },
@@ -266,25 +252,24 @@
             counter : 0,
             processErrorMessage: function(errorMessage, technique) {
                 this.refactorText = textRefactor(technique, "content");
-                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
                 this.counter++;
             }
         },
         h35 : {
             refactorText:"",
             parameter:[],
-            counter0 : 0,   //0 = 2 = tag alt
-            counter1 : 0,   //1 = 3 = in body
+            counter : [0,0],    //0 = 2 = tag alt, 1 = 3 = in body
 
             processErrorMessage: function(errorMessage, technique) {
                 if(errorMessage == "H35_2_1.1.1") {
                     this.refactorText = textRefactor(technique, "alt");
-                    this.parameter[0] = textFormParamater("text", technique, "alt","alt", this.counter0);
-                    this.counter0++;
+                    this.parameter[0] = textFormParamater("text", technique, "alt", this.counter[0]);
+                    this.counter[0]++;
                 } else if (errorMessage == "H35_3_1.1.1") {
                     this.refactorText = textRefactor(technique, "body");
-                    this.parameter[0] = textFormParamater("text", technique, "body","body", this.counter1);
-                    this.counter1++;
+                    this.parameter[0] = textFormParamater("text", technique, "body", this.counter[1]);
+                    this.counter[1]++;
                 }
             }
         },
@@ -303,7 +288,7 @@
 
                     var test = "h"+errorMessage.slice(5, 6);
                     this.refactorText = textRefactor(technique, "content");
-                    this.parameter[0] = textFormParamater("text", technique, "h"+errorMessage.slice(5, 6),"h"+errorMessage.slice(5, 6), this.counter[errorMessage.slice(5, 6)]);
+                    this.parameter[0] = textFormParamater("text", technique, "h"+errorMessage.slice(5, 6), this.counter[errorMessage.slice(5, 6)]);
                     this.counter[errorMessage.slice(5, 6)]++;
                 } else if (errorMessage == "H42_1.3.1") { //Belum ketemu testnya
 
@@ -318,7 +303,7 @@
             processErrorMessage: function(errorMessage, technique) {
                 if(errorMessage == "H44_NonExistent_1.3.1" || errorMessage == "H44_NonExistentFragment_1.3.1") {
                     this.refactorText = textRefactor(technique, "NonExistent");
-                    this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                    this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
                     this.counter++;
                 }
             }
@@ -328,17 +313,17 @@
             parameter:[],
             counter0:0,
             counter1:0,
+            counter:[0,0],
 
             processErrorMessage: function(errorMessage, technique) {
                 if(errorMessage == "F68_1.3.1") {
                     this.refactorText = textRefactor(technique, "forLabel");
-                    this.parameter[0] = textFormParamater("text", technique, "for","for", this.counter0);
-                    //this.parameter[1] = textFormParamater("text", technique, "content","contentLabel", this.counter);
-                    this.counter0++;
+                    this.parameter[0] = textFormParamater("text", technique, "for", this.counter[0]);
+                    this.counter[0]++;
                 } else if (errorMessage == "F68_Hidden_1.3.1" || errorMessage == "F68_HiddenAttr_1.3.1") {
                     this.refactorText = textRefactor(technique, "hidden");
-                    this.parameter[0] = textFormParamater("hidden", technique, "hidden","hidden", this.counter1);
-                    this.counter1++;
+                    this.parameter[0] = textFormParamater("hidden", technique, "hidden", this.counter[1]);
+                    this.counter[1]++;
                 }
             }
         },
@@ -348,9 +333,11 @@
             counter:0,
 
             processErrorMessage: function(errorMessage, technique) {
-                this.refactorText = textRefactor(technique, "content");
-                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
-                this.counter++;
+                if(errorMessage == "H65_1.3.1") {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
+                    this.counter++;
+                }
             }
         },
         h49 : {
@@ -361,35 +348,35 @@
             processErrorMessage: function(errorMessage, technique) {
                 if(errorMessage == "H49_Center_1.3.1"){
                     this.refactorText = textRefactor(technique, "center");
-                    this.parameter[0] = textFormParamater("hidden", technique, "center","center", this.counter[0]);
+                    this.parameter[0] = textFormParamater("hidden", technique, "center", this.counter[0]);
                     this.counter[0]++;
                 } else if(errorMessage == "H49_AlignAttr_1.3.1") {
                     this.refactorText = textRefactor(technique, "align");
-                    this.parameter[0] = textFormParamater("hidden", technique, "align","align", this.counter[1]);
+                    this.parameter[0] = textFormParamater("hidden", technique, "align", this.counter[1]);
                     this.counter[1]++;
                 } else if(errorMessage == "H49_B_1.3.1") {
                     this.refactorText = textRefactor(technique, "b");
-                    this.parameter[0] = textFormParamater("hidden", technique, "b","b", this.counter[2]);
+                    this.parameter[0] = textFormParamater("hidden", technique, "b", this.counter[2]);
                     this.counter[2]++;
                 } else if(errorMessage == "H49_I_1.3.1") {
                     this.refactorText = textRefactor(technique, "i");
-                    this.parameter[0] = textFormParamater("hidden", technique, "i","i", this.counter[3]);
+                    this.parameter[0] = textFormParamater("hidden", technique, "i", this.counter[3]);
                     this.counter[3]++;
                 } else if(errorMessage == "H49_Strike_1.3.1") {
                     this.refactorText = textRefactor(technique, "strike");
-                    this.parameter[0] = textFormParamater("hidden", technique, "strike","strike", this.counter[4]);
+                    this.parameter[0] = textFormParamater("hidden", technique, "strike", this.counter[4]);
                     this.counter[4]++;
                 } else if(errorMessage == "H49_Tt_1.3.1") {
                     this.refactorText = textRefactor(technique, "tt");
-                    this.parameter[0] = textFormParamater("hidden", technique, "tt","tt", this.counter[5]);
+                    this.parameter[0] = textFormParamater("hidden", technique, "tt", this.counter[5]);
                     this.counter[5]++;
                 } else if(errorMessage == "H49_Big_1.3.1") {
                     this.refactorText = textRefactor(technique, "big");
-                    this.parameter[0] = textFormParamater("hidden", technique, "big","big", this.counter[6]);
+                    this.parameter[0] = textFormParamater("hidden", technique, "big", this.counter[6]);
                     this.counter[6]++;
                 }
             }
-        }, 
+        },
         h63 : {
             refactorText:"",
             parameter:[],
@@ -398,7 +385,7 @@
             processErrorMessage: function(errorMessage, technique) {
                 if(errorMessage == "H63_2_1.3.1") {
                     this.refactorText = textRefactor(technique, "scopeCol");
-                    this.parameter[0] = textFormParamater("hidden", technique, "scopeCol","scopeCol", this.counter);
+                    this.parameter[0] = textFormParamater("hidden", technique, "scopeCol", this.counter);
                     this.counter++;
                 }
             }
@@ -427,8 +414,25 @@
 
             processErrorMessage: function(errorMessage, technique, snippet) {
                 this.refactorText = textRefactor(technique, "content");
-                this.parameter[0] = textFormParamater("text", technique, "content","", this.counter);
+                this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
                 this.counter++;
+            }
+        },
+
+
+
+        //1.4.3
+        g18 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage == "G18_Fail_1.4.3") {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.counter++;
+                }
             }
         }
     };
@@ -437,11 +441,12 @@
     var textRefactor = function(technique, objectRefactorText) {
         return mydata[technique].refactorText[objectRefactorText];
     }
-    var textFormParamater = function(form, technique, objectRefactorText, messageRefactoring, counter) {
+
+    var textFormParamater = function(form, technique, objectParameterTextMessage, counter) {
         if(form == "text") {
-            return processInputText(mydata[technique].parameterText[objectRefactorText], technique+"_"+messageRefactoring+"["+ counter + "]");
+            return processInputText(mydata[technique].parameterText[objectParameterTextMessage], technique+"_"+objectParameterTextMessage+"["+ counter + "]");
         } else if(form == "hidden") {
-            return processInputHidden(mydata[technique].parameterText[objectRefactorText], technique+"_"+messageRefactoring+"["+ counter + "]");
+            return processInputHidden(mydata[technique].parameterText[objectParameterTextMessage], technique+"_"+objectParameterTextMessage+"["+ counter + "]");
         }
     }
 

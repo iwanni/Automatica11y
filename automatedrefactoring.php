@@ -101,23 +101,12 @@ $values = array_values($_POST);
         //1.1.1
         h30 : {
             processAutomatedRefactoring: function (message, i) {
-                /*var k = 0;
-                for (var j = 0; j < innerDoc.getElementsByTagName("img").length; j++) {
-                    if (innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() == "a") {
-                        insertAttr("img", "alt", i, j, k);
-                    }
-                }*/
                 insertAttrWhenParent("img", "alt", "a", i);
             }
         },
         h37 : {
             processAutomatedRefactoring: function(message, i){
-                //var k = 0;
-                //for(var j = 0 ; j < innerDoc.getElementsByTagName("img").length ; j++) {
-                //if(innerDoc.getElementsByTagName("img")[j].parentNode.nodeName.toLowerCase() != "a") {
                 insertAttr("img", "alt", i);
-                //}
-                //}
             }
         },
         h67 : {
@@ -163,8 +152,7 @@ $values = array_values($_POST);
                 //if(message == "NonExistent" || message == "NonExistentFragment"){
                 //this._labelNames = {};
                 var k = 0;
-                var labels = innerDoc.getElementsByTagName("label");
-
+                var labels = getElementsTag("label");
                 for (var l = 0; l < labels.length; l++) {
                     if (labels[l].getAttribute("for") !== null && labels[l].getAttribute("for") !== "") {
                         var labelFor = labels[l].getAttribute("for");
@@ -188,7 +176,7 @@ $values = array_values($_POST);
                             /*if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
                                 innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {*/
                             if(values[i][k] != null) {
-                                innerDoc.getElementsByTagName("label")[l].setAttribute("for", values[i][k]);
+                                labels[l].setAttribute("for", values[i][k]);
                                 k++;
                             }
                             //}
@@ -208,19 +196,21 @@ $values = array_values($_POST);
             processAutomatedRefactoring: function(message, i){
                 if(message == "for") {
                     var k = 0;
-                    for(var j = 0 ; j < innerDoc.getElementsByTagName("input").length ; j++) {
-                        if(innerDoc.getElementsByTagName("input")[j].previousElementSibling.nodeName == "LABEL") {
-                            var label = innerDoc.getElementsByTagName("input")[j].previousElementSibling;
-                            if(label.getAttribute("for") == false || label.getAttribute("for") == null)
+                    var inputs = getElementsTag("input");
+                    for(var j = 0 ; j < inputs.length ; j++) {
+                        if(inputs[j].previousSibling.nodeName == "LABEL") {
+                            var label = inputs[j].previousElementSibling;
+                            if(label.getAttribute("for") == false || label.getAttribute("for") == null) {
                                 label.setAttribute("for", values[i][k]);
                                 k++;
-                        } else {
+                            }
+                        } else { //label before form control not found
                             var label = innerDoc.createElement("label");
                             label.setAttribute("for", values[i][k]);
                             k++;
 
-                            var input = innerDoc.getElementsByTagName("input")[j];
-                            input.parentNode.insertBefore(label, input);
+                            //var input = innerDoc.getElementsByTagName("input")[j];
+                            inputs[j].parentNode.insertBefore(label, inputs[j]);
                         }
                     }
                 } else if(message == "hidden") {
@@ -236,26 +226,17 @@ $values = array_values($_POST);
         h49 : {
             processAutomatedRefactoring: function(message, i){
                 if(message == "center") {
-                    var k = 0;
-                    for(var j = 0 ; j < innerDoc.getElementsByTagName("center").length ; j++) {
-                        var str = innerDoc.getElementsByTagName("center")[j].outerHTML; 
+                    var centerElements = getElementsTag("center");
+                    for(var j = 0 ; j < centerElements.length ; j++) {
+                        var str = centerElements[j].outerHTML;
                         var regexpResult = str.replace(/<center/g, "<span style='text-align:center;'");
                         var regexpResult = regexpResult.replace(/<\/center>/g, "<\/span>");
-                        innerDoc.getElementsByTagName("center")[j].outerHTML = regexpResult;
-
-                        /*changeTag("center", /<center/g, /<\/center>/g, "span",i);*/
+                        centerElements[j].outerHTML = regexpResult;
                     }
                 } else if(message == "align") {
-                    var k = 0;
                     var elements = getElementsAttr('align');
-                    
                     for(var j = 0 ; j < elements.length ; j++) {
                         var alignAttribute = elements[j].getAttribute('align');
-
-                        /*var str = elements[j].outerHTML; 
-                        var regexpResult = str.replace(/align=/g, "style='text-align:"+alignAttribute+"';");
-                        elements[j].outerHTML = regexpResult;*/
-
                         elements[j].removeAttribute("align");
                         elements[j].setAttribute("style", "text-align: "+alignAttribute+";");
                     }
@@ -266,14 +247,14 @@ $values = array_values($_POST);
                 } else if(message == "strike") {
                     changeTag("strike", /<strike/g, /<\/strike>/g, "del",i);
                 } else if(message == "tt") {
-                    changeTag("tt", /<tt/g, /<\/tt>/g, "code",i);s
+                    changeTag("tt", /<tt/g, /<\/tt>/g, "code",i);
                 } else if(message == "big") {
-                    var k = 0;
-                    for(var j = 0 ; j < innerDoc.getElementsByTagName("big").length ; j++) {
-                        var str = innerDoc.getElementsByTagName("big")[j].outerHTML; 
+                    var bigElements = getElementsTag("big");
+                    for(var j = 0 ; j < bigElements.length ; j++) {
+                        var str = bigElements[j].outerHTML;
                         var regexpResult = str.replace(/<big/g, "<span style='font-size: larger;'");
                         var regexpResult = regexpResult.replace(/<\/big>/g, "<\/span>");
-                        innerDoc.getElementsByTagName("big")[j].outerHTML = regexpResult;
+                        bigElements[j].outerHTML = regexpResult;
                     }
                 }
             }
@@ -283,10 +264,9 @@ $values = array_values($_POST);
                 if(message == "scopeCol") {
                     var k = 0;
                     var tdElements = getElementsTag("td");
-                    var tdLength = getElementsTag("td").length;
-                    for(var j = 0 ; j < tdLength ; j++) {
+                    for(var j = 0 ; j < tdElements.length ; j++) {
                         if(tdElements[j].getAttribute("scope") == "col"){
-                            str = tdElements[j].outerHTML; 
+                            str = tdElements[j].outerHTML;
                             var regexpResult = str.replace(/<td/g, "<th");
                             var regexpResult = regexpResult.replace(/<\/td>/g, "<\/th>");
                             tdElements[j].outerHTML = regexpResult;
@@ -299,8 +279,7 @@ $values = array_values($_POST);
             processAutomatedRefactoring: function(message, i){
                 var k = 0;
                 var fieldsetElements = getElementsTag("fieldset");
-                var fieldsetLength = getElementsTag("fieldset").length;
-                for(var j = 0 ; j < fieldsetLength ; j++) {
+                for(var j = 0 ; j < fieldsetElements.length ; j++) {
                     if(fieldsetElements[j].querySelector("legend") == null ||
                         fieldsetElements[j].querySelector("legend").parentNode.nodeName.toLowerCase() != "fieldset") {
                         var legend = innerDoc.createElement("legend");
@@ -309,6 +288,20 @@ $values = array_values($_POST);
 
                         fieldsetElements[j].insertBefore(legend, fieldsetElements[j].firstChild);
                     }
+                }
+            }
+        }
+
+
+
+        //1.4.3
+        g18 : {
+            processAutomatedRefactoring: function(message, i){
+                var elements = getElementsAttr('align');
+                for(var j = 0 ; j < elements.length ; j++) {
+                    var alignAttribute = elements[j].getAttribute('align');
+                    elements[j].removeAttribute("align");
+                    elements[j].setAttribute("style", "text-align: "+alignAttribute+";");
                 }
             }
         }
@@ -325,7 +318,7 @@ $values = array_values($_POST);
     }
 
     function insertAttr(element, attribute, i) {
-        var k = 0;
+        /*var k = 0;
         for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
             if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
                 innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
@@ -334,38 +327,48 @@ $values = array_values($_POST);
                     k++;
                 }
             }
+        }*/
+        var k = 0;
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
+            if(elements[j].getAttribute(attribute) == null ||
+                elements[j].getAttribute(attribute) == false) {
+                if(values[i][k] != null) {
+                    elements[j].setAttribute(attribute, values[i][k]);
+                    k++;
+                }
+            }
         }
     }
 
     function changeTag(element, regexOpenTag, regexCloseTag, newElement, i) {
-        var k = 0;
-        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-            var str = innerDoc.getElementsByTagName(element)[j].outerHTML; 
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
+            var str = elements[j].outerHTML;
             var regexpResult = str.replace(regexOpenTag, "<"+newElement);
             var regexpResult = regexpResult.replace(regexCloseTag, "<\/"+newElement+">");
-            innerDoc.getElementsByTagName(element)[j].outerHTML = regexpResult;
+            elements[j].outerHTML = regexpResult;
         }
     }
 
-    function editAttr(element, attribute, i) {
+    /*function editAttr(element, attribute, i) {
         var k = 0;
-        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-            /*if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
-                innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {*/
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
             if(values[i][k] != null) {
-                innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                elements[j].setAttribute(attribute, values[i][k]);
                 k++;
             }
-            /*}*/
         }
-    }
+    }*/
 
     function editAttrWhenBlank(element, attribute, i) {
         var k = 0;
-        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-            if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
+            if(elements[j].getAttribute(attribute) == false) {
                 if(values[i][k] != null) {
-                    innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+                    elements[j].setAttribute(attribute, values[i][k]);
                     k++;
                 }
             }
@@ -373,7 +376,7 @@ $values = array_values($_POST);
     }
 
     function insertAttrWhenParent(element, attribute, parent, i) {
-        var k = 0;
+        /*var k = 0;
         for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
             if(innerDoc.getElementsByTagName(element)[j].parentNode.nodeName.toLowerCase() == parent) {
                 if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
@@ -382,16 +385,28 @@ $values = array_values($_POST);
                     k++;
                 }
             }
+        }*/
+        var k = 0;
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
+            if(elements[j].parentNode.nodeName.toLowerCase() == parent) {
+                if(elements[j].getAttribute(attribute) == null ||
+                    elements[j].getAttribute(attribute) == false) {
+                    elements[j].setAttribute(attribute, values[i][k]);
+                    k++;
+                }
+            }
         }
     }
 
     function insertAttrWhenAttr(element, attribute, checkAttribute, checkAttributeValue, i) {
         var k = 0;
-        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-            if(innerDoc.getElementsByTagName(element)[j].getAttribute(checkAttribute) == checkAttributeValue) {
-                if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == null ||
-                    innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-                    innerDoc.getElementsByTagName(element)[j].setAttribute(attribute, values[i][k]);
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
+            if(elements[j].getAttribute(checkAttribute) == checkAttributeValue) {
+                if(elements[j].getAttribute(attribute) == null ||
+                    elements[j].getAttribute(attribute) == false) {
+                    elements[j].setAttribute(attribute, values[i][k]);
                     k++;
                 }
             }
@@ -400,40 +415,29 @@ $values = array_values($_POST);
 
     function insertContent(element, i) {
         var k = 0;
-        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-            if(innerDoc.getElementsByTagName(element)[j].innerHTML == false) { // kalau ada tag masih bug
-                innerDoc.getElementsByTagName(element)[j].innerHTML = values[i][k];
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
+            if(elements[j].innerHTML == false) { // kalau ada tag masih bug
+                elements[j].innerHTML = values[i][k];
                 k++;
             }
         }
     }
 
     function deleteAttrwhenAttr(element, attribute, delAttribute, i) {
-        for(var j = 0 ; j < innerDoc.getElementsByTagName(element).length ; j++) {
-            if(innerDoc.getElementsByTagName(element)[j].getAttribute(attribute) == false) {
-                innerDoc.getElementsByTagName(element)[j].removeAttribute(delAttribute);
+        var elements = getElementsTag(element);
+        for(var j = 0 ; j < elements.length ; j++) {
+            if(elements[j].getAttribute(attribute) == false) {
+                elements[j].removeAttribute(delAttribute);
             }
         }
     }
 
+
     //Define an iframe, place where automated refactoring heppened
     var iframe = document.createElement('iframe');
     iframe.id = "iframeId";
-    //document.body.appendChild(iframe);
 
-    //var html = source;
-    //html = html.split("body")[1];
-    //console.log(html);
-
-
-    //iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
-    //iframe.src = 'http://localhost/web_developer/Automatica11ly/automatedrefactoring.php';
-    //iframe = document.body.insertBefore(iframe, null);
-    /*if (iframe.contentDocument) {
-        innerDoc = iframe.contentDocument;
-    } else if (iframe.contentWindow) {
-        innerDoc = iframe.contentWindow.document;
-    }*/
     iframe.onload = function(){
         if (iframe.contentDocument) {
             innerDoc = iframe.contentDocument;
@@ -452,12 +456,6 @@ $values = array_values($_POST);
             }
         }
 
-
-
-        /*innerDoc.getElementsByTagName("a")[0].setAttribute("href", "yes");
-        innerDoc.getElementsByTagName("a")[0].innerHTML = 
-        //echo '"'. $_POST['valueLink'][0] .'"' ?>;;*/
-
         allTagInsideIframe = innerDoc.querySelectorAll('body');
 
         for (var index = 0; index < allTagInsideIframe.length; index++) {
@@ -468,127 +466,9 @@ $values = array_values($_POST);
         document.getElementById("newHTML").innerHTML = result;
     };
 
-    //innerDoc.getElementsByTagName("html")[0].setAttribute("lang", "en");
     document.body.appendChild(iframe);
     //console.log('iframe.contentWindow =', iframe.contentWindow);
 
-
-
-
-
-
-
-
-    //document.getElementsByTagName("html")[0].innerHTML = "";
-    /*var asdasd = decodeURIComponent((source + '').replace(/\+/g, '%20'));
-    document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));*/
-    //document.write(decodeURIComponent((source + '').replace(/\+/g, '%20')));
-
-
-
-
-    /*for(var k = 0; k < countParam -1 ; k++){
-        number =  //echo '"'. $_POST['source'] .'"' ?>;
-		
-		paramKey[number] = location.search.split("&")[k].replace("?","").split("=")[0];
-		paramKey[number] = decodeURIComponent((paramKey[number] + '').replace(/\+/g, '%20'));
-		
-		paramValue[number] = location.search.split("&")[k].replace("?","").split("=")[1];
-		paramValue[number] = decodeURIComponent((paramValue[number] + '').replace(/\+/g, '%20'));
-		
-		
-		for(let i = 0 ; i < document.getElementsByTagName("a").length ; i++) {
-			if (document.getElementsByTagName("a")[i].getAttribute("href") == false ||
-				document.getElementsByTagName("a")[i].getAttribute("href") == null ||
-				document.getElementsByTagName("a")[i].innerHTML == false) {
-				
-				for(let j = 0 ; j < document.getElementsByTagName("a").length ; j++) {
-					if(paramKey[j] == "href["+i+"]") {
-						document.getElementsByTagName("a")[i].setAttribute("href", paramValue[i]);
-					}
-					if(paramKey[j] == "valueLink["+i+"]") {
-						document.getElementsByTagName("a")[i].innerHTML = paramValue[i];
-					}
-				}
-			}
-		}
-
-		if (document.title == false) {
-			document.title = "Please enter title text ";
-		}
-		if (document.getElementsByTagName("html")[0] == false) {
-			document.getElementsByTagName("html")[0].setAttribute("lang", "en");
-		}
-	}*/
-
-
-
-    //Old HTML
-    /*var source = location.search.split("&")[countParam - 1].replace("?","").split("=")[1];
-    oldSource = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+decodeURIComponent((source + '').replace(/\+/g, '%20'));+'</textarea>';
-
-    document.body.innerHTML = decodeURIComponent((source + '').replace(/\+/g, '%20'));*/
-    //var x = document.body.getElementsByTagName("*");
-    //var x = document.querySelector('*');
-    //var x = document.documentElement.getElementsByTagName("*");
-    //var x = document.querySelectorAll('body > *');
-    //console.log(x);
-    //var x = '<textarea type="text" name="source" id="asd" rows="20" cols="100">'+x+'</textarea>';
-
-
-    //document.body.parentNode.removeChild(document.body);
-    //document.write();
-    //document.getElementsByTagName("html")[0].innerHTML = "";
-
-    //document.body = document.createElement("body");
-    //document.body.innerHTML = document.createElement("div")setAttribute("id", "oldHTML");
-    //document.body.innerHTML = "Old HTML: <div id='oldHTML'></div>New HTML: <br><textarea type='text' id='newHTML' rows='20' cols='100'></textarea>";
-    //<div id='newHTML'></div> <textarea type='text' id='newHTML' rows='20' cols='100'></textarea>
-
-    //document.getElementById("oldHTML").innerHTML = oldSource;
-    //console.log(x);
-
-
-    //newsource = document.getElementById("asd").value;
-
-
-    //var result = "";
-    //newsource = '<textarea type="text" name=source rows="20" cols="100">'+x+'</textarea>';
-    /*x.forEach (query => {
-        result += query;
-    });*/
-    //console.log(x);
-    /*for (var index = 0; index < x.length; index++) {
-    	result += x[index].outerHTML;
-    	console.log(result);
-    	result += "\n";
-
-    	/*var z = x[index].cloneNode();
-    	z.innerHTML = "";
-    	result += z.outerHTML;
-    	console.log(result);
-    	result += "\n";*/
-    //}
-    //result += x[2].outerHTML;
-
-    //result += x[x.length - 1].outerHTML;
-    //console.log(x);
-    /*result = [];
-    for (var i = 0; i < x.length; i++) {
-        result.push(x[i].outerHTML);
-    }*/
-    //document.getElementById("newHTML").innerHTML = result;
-    //document.getElementById("newHTML").innerHTML = x;
-
-
-    //var content = '<table id="test-results-table" class="table"><thead><tr><th scope="col">No</th><th scope="col">Success Criteria - Technique</th><th scope="col">Refactoring</th><th scope="col">Parameter</th></tr></thead>';
-
-
-    //document.getElementById("demo").innerHTML = content;
-
 </script>
-
-
-
 </body>
 </html>

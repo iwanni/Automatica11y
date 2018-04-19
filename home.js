@@ -82,12 +82,12 @@ function updateResults(resultsWrapper)
         var sc         = msgParts[3].split('_').slice(0, 3).join('_');
         var techniques = msgParts[4];
         //own
-        var source =  "";
+        var errorMessage =  "";
         if(msgParts[5]) {
-            source     += msgParts[5];
+            errorMessage     += msgParts[5];
         }
         if(msgParts[6]) {
-            source     += msgParts[6];
+            errorMessage     += msgParts[6];
         }
         /*if(source === NaN) {
             source = "";
@@ -167,13 +167,13 @@ function updateResults(resultsWrapper)
         for (var j = 0; j < techniques.length; j++) {
             var notCheckTechnique = techniques[j];
         }
-        if((type != "Notice" || sc == "1_2_9" || sc == "1_2_1" || sc == "1_2_6") && (notCheckTechnique != "H67" || source != "2")) {
+        if((type != "Notice" || sc == "1_2_9" || sc == "1_2_1" || sc == "1_2_6") && (notCheckTechnique != "H67" || errorMessage != "2")) {
             content += '<td><input type="checkbox" name="r[]" value="';
             for (var j = 0; j < techniques.length; j++) {
                 //content += techniques[j] + "_" + source + "_" + sc.replace(new RegExp('_', 'g'), '.');
-                content += techniques[j] + "_" + source;
+                content += techniques[j] + "_" + errorMessage;
             }
-            if(source) {
+            if(errorMessage) {
                 content += "_";
             }
             content += sc.replace(new RegExp('_', 'g'), '.');
@@ -196,7 +196,7 @@ function updateResults(resultsWrapper)
         }
         content += '</ul></td>';
         content += '</tr>';
-        content += source;
+        content += errorMessage;
         //content += msg.element.outerHTML;
 
         refTechnique[a] = techniques;
@@ -253,27 +253,6 @@ function toggle(source) {
     for(var i=0 ; i<checkboxes.length ; i++) {
         checkboxes[i].checked = source.checked;
     }
-}
-
-function auto(techniques){
-    console.log(techniques);
-    /*var s = document.createElement("script");
-    s.src("SC412_H91_link.script");
-    $("head").append(s);*/
-
-    /*var a=document.getElementById('source').value;
-    var script = document.createElement("script");
-    script.appendChild("");*/
-
-
-
-    //*var script = document.createElement("script"); // Make a script DOM node
-    //script.src = "SC412_H91_link.js";
-    //*script.innerHTML = "if (document.title == false) {document.title = prompt('Please enter title text ');   }"  // Set it's src to the provided URL
-    //*document.getElementById('source').appendChild(script);
-    //window.location.reload(false)
-    //window.location.href = "refactoring.html?source="+document.getElementById('source').value;
-    window.location.href = "refactoring.html?script="+document.getElementsByTagName("textarea")[0].innerHTML+"&source="+document.getElementById('source').value+"&techniques="+techniques[0];
 }
 
 function updateResults508(resultsWrapper)

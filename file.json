@@ -223,5 +223,17 @@ var data = {
         "parameterText": {
             "content": "Legend : "
         }
+    },
+
+
+
+    //1.4.3
+    "g18" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan mengubah styyle konten dengan rekomendasi warna yang diberikan"
+        },
+        "parameterText": {
+            "content": "Otomatis"
+        }
     }
 };
