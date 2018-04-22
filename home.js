@@ -177,8 +177,8 @@ function updateResults(resultsWrapper)
                 content += "_";
             }
             content += sc.replace(new RegExp('_', 'g'), '.');
-            content += "-" + encodeURIComponent(preText) + encodeURIComponent(window._messagesProcess[i].element.outerHTML) + encodeURIComponent(postText) + '"></td>';
-            //content += ;
+            //content += "-" + encodeURIComponent(preText) + encodeURIComponent(window._messagesProcess[i].element.outerHTML) + encodeURIComponent(postText) + '"></td>';
+            content += "-" + encodeURIComponent(window._messagesProcess[i].element.outerHTML) + '"></td>';
         } else {
             content += '<td></td>';
         }

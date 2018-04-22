@@ -1082,7 +1082,7 @@ _global.HTMLCS_WCAG2AA = {
 _global.HTMLCS_WCAG2AAA = {
     name: "WCAG2AAA",
     description: "Web Content Accessibility Guidelines (WCAG) 2.0 AAA",
-    sniffs: [ "Principle1.Guideline1_1.1_1_1", "Principle1.Guideline1_2.1_2_1", "Principle1.Guideline1_2.1_2_2", "Principle1.Guideline1_2.1_2_4", "Principle1.Guideline1_2.1_2_5", "Principle1.Guideline1_2.1_2_6", "Principle1.Guideline1_2.1_2_7", "Principle1.Guideline1_2.1_2_8", "Principle1.Guideline1_2.1_2_9", "Principle1.Guideline1_3.1_3_1", "Principle1.Guideline1_3.1_3_1_AAA", "Principle1.Guideline1_3.1_3_2", "Principle1.Guideline1_3.1_3_3", "Principle1.Guideline1_4.1_4_1", "Principle1.Guideline1_4.1_4_2", "Principle1.Guideline1_4.1_4_3_F24", "Principle1.Guideline1_4.1_4_3_Contrast", "Principle1.Guideline1_4.1_4_6", "Principle1.Guideline1_4.1_4_7", "Principle1.Guideline1_4.1_4_8", "Principle1.Guideline1_4.1_4_9", "Principle2.Guideline2_1.2_1_1", "Principle2.Guideline2_1.2_1_2", "Principle2.Guideline2_2.2_2_2", "Principle2.Guideline2_2.2_2_3", "Principle2.Guideline2_2.2_2_4", "Principle2.Guideline2_2.2_2_5", "Principle2.Guideline2_3.2_3_2", "Principle2.Guideline2_4.2_4_1", "Principle2.Guideline2_4.2_4_2", "Principle2.Guideline2_4.2_4_3", "Principle2.Guideline2_4.2_4_5", "Principle2.Guideline2_4.2_4_6", "Principle2.Guideline2_4.2_4_7", "Principle2.Guideline2_4.2_4_8", "Principle2.Guideline2_4.2_4_9", "Principle3.Guideline3_1.3_1_1", "Principle3.Guideline3_1.3_1_2", "Principle3.Guideline3_1.3_1_3", "Principle3.Guideline3_1.3_1_4", "Principle3.Guideline3_1.3_1_5", "Principle3.Guideline3_1.3_1_6", "Principle3.Guideline3_2.3_2_1", "Principle3.Guideline3_2.3_2_2", "Principle3.Guideline3_2.3_2_3", "Principle3.Guideline3_2.3_2_4", "Principle3.Guideline3_2.3_2_5", "Principle3.Guideline3_3.3_3_1", "Principle3.Guideline3_3.3_3_2", "Principle3.Guideline3_3.3_3_3", "Principle3.Guideline3_3.3_3_5", "Principle3.Guideline3_3.3_3_6", "Principle4.Guideline4_1.4_1_1", "Principle4.Guideline4_1.4_1_2" ],
+    sniffs: [ "Principle1.Guideline1_1.1_1_1", "Principle1.Guideline1_2.1_2_1", "Principle1.Guideline1_2.1_2_2", "Principle1.Guideline1_2.1_2_4", "Principle1.Guideline1_2.1_2_5", "Principle1.Guideline1_2.1_2_6", "Principle1.Guideline1_2.1_2_7", "Principle1.Guideline1_2.1_2_8", "Principle1.Guideline1_2.1_2_9", "Principle1.Guideline1_3.1_3_1", "Principle1.Guideline1_3.1_3_1_AAA", "Principle1.Guideline1_3.1_3_2", "Principle1.Guideline1_3.1_3_3", "Principle1.Guideline1_4.1_4_1", "Principle1.Guideline1_4.1_4_2", "Principle1.Guideline1_4.1_4_3_F24", "Principle1.Guideline1_4.1_4_3_Contrast", "Principle1.Guideline1_4.1_4_6", "Principle1.Guideline1_4.1_4_7", "Principle1.Guideline1_4.1_4_8", "Principle1.Guideline1_4.1_4_9", "Principle2.Guideline2_1.2_1_1", "Principle2.Guideline2_1.2_1_2", "Principle2.Guideline2_2.2_2_2", "Principle2.Guideline2_2.2_2_3", "Principle2.Guideline2_2.2_2_4", "Principle2.Guideline2_2.2_2_5", "Principle2.Guideline2_3.2_3_2", "Principle2.Guideline2_4.2_4_1", "Principle2.Guideline2_4.2_4_2", "Principle2.Guideline2_4.2_4_3", "Principle2.Guideline2_4.2_4_5", "Principle2.Guideline2_4.2_4_6", "Principle2.Guideline2_4.2_4_7", "Principle2.Guideline2_4.2_4_8", "Principle2.Guideline2_4.2_4_9", "Principle3.Guideline3_1.3_1_1", "Principle3.Guideline3_1.3_1_2", "Principle3.Guideline3_1.3_1_3", "Principle3.Guideline3_1.3_1_4", "Principle3.Guideline3_1.3_1_5", "Principle3.Guideline3_1.3_1_6", "Principle3.Guideline3_2.3_2_1", "Principle3.Guideline3_2.3_2_2", "Principle3.Guideline3_2.3_2_3", "Principle3.Guideline3_2.3_2_4", "Principle3.Guideline3_2.3_2_5", "Principle3.Guideline3_3.3_3_1", "Principle3.Guideline3_3.3_3_2", "Principle3.Guideline3_3.3_3_3", "Principle3.Guideline3_3.3_3_5", "Principle3.Guideline3_3.3_3_6", "Principle4.Guideline4_1.4_1_1", "Principle4.Guideline4_1.4_1_2" , /*own iwan*/"Principle2.Guideline2_2.2_2_1"],
     getMsgInfo: function(code) {
         var principles = {
             Principle1: {
@@ -3516,7 +3516,19 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_3 = {
                     HTMLCS.addMessage(HTMLCS.WARNING, element, "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least " + required + ":1.", code);
                 } else {
                     code += ".Fail";
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least " + required + ":1, but text in this element has a contrast ratio of " + value + ":1." + recommendText, code);
+
+                    //own iwan
+                    var changeColor = "";
+                    if (recommend) {
+
+                        if (recommend.fore.from !== recommend.fore.to) {
+                            changeColor = "C#";
+                        }
+                        if (recommend.back.from !== recommend.back.to) {
+                            changeColor = "B#";
+                        }
+                    }
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least " + required + ":1, but text in this element has a contrast ratio of " + value + ":1." + recommendText, code + changeColor + recommendText.split("#")[1]);
                 }
             }
         }
@@ -3931,10 +3943,12 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle2_Guideline2_2_2_2_1 = {
         // in criterion 2.2.1.
         if (element.hasAttribute("http-equiv") === true) {
             if (String(element.getAttribute("http-equiv")).toLowerCase() === "refresh") {
-                if (/^[1-9]\d*/.test(element.getAttribute("content").toLowerCase()) === true) {
+                //own iwan
+                if (/^[0-9]\d*/.test(element.getAttribute("content").toLowerCase()) === true) {
                     if (/url=/.test(element.getAttribute("content").toLowerCase()) === true) {
                         // Redirect.
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Meta refresh tag used to redirect to another page, with a time limit that is not zero. Users cannot control this time limit.", "F40.2");
+                        //owan iwan
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Meta refresh tag used to redirect to another page. Users cannot control this time limit.", "F40.2");
                     } else {
                         // Just a refresh.
                         HTMLCS.addMessage(HTMLCS.ERROR, element, "Meta refresh tag used to refresh the current page. Users cannot control the time limit for this refresh.", "F41.2");
@@ -4946,7 +4960,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
             if (rb.length === 0) {
                 HTMLCS.addMessage(HTMLCS.ERROR, element, "Ruby element does not contain an rt element containing pronunciation information for its body text.", "H62.1.HTML5");
             } else {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, "Ruby element does not contain an rt element containing pronunciation information for the text inside the rb element.", "H62.1.XHTML11");
+                //own iwan
+                HTMLCS.addMessage(HTMLCS.ERROR, element, "Ruby element does not contain an rt element containing pronunciation information for the text inside the rb element.", "H62.1.XHTML");
             }
         }
         var rp = element.querySelectorAll("rp");

@@ -1,15 +1,4 @@
 var data = {
-    "h91": {
-        "refactorText": {
-            "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link",
-            "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link",
-            "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href"
-        },
-        "parameterText": {
-            "href": "Nilai href: ",
-            "content": "Text untuk link: "
-        }
-    },
     "g151": {
         "refactorText": {
             "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
@@ -62,15 +51,6 @@ var data = {
         }
     },
 
-    "h57" : {
-        "refactorText": {
-            "content" : "belum"
-        },
-        "parameterText": {
-            "content": "lang : "
-        }
-    },
-
 
 
     //1.1.1
@@ -112,6 +92,14 @@ var data = {
         },
         "parameterText": {
             "content": "Alternative text : "
+        }
+    },
+    "h2" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menghilangkan tag a dan menempatkan text pada tempatnya"
+        },
+        "parameterText": {
+            "content": "Otomatis"
         }
     },
     "h53aria6" : {
@@ -233,7 +221,158 @@ var data = {
             "content" : "Refactoring dilakukan dengan mengubah styyle konten dengan rekomendasi warna yang diberikan"
         },
         "parameterText": {
+            //"content": "Otomatis"
+        }
+    },
+
+
+
+    //2.1.1
+    "scr20" : {
+        "refactorText": {
+            "mouseover" : "Refactoring dilakukan dengan menambah event atribut onfocus jika ditemukan ada event atribut onmouseover",
+            "mouseout" : "Refactoring dilakukan dengan menambah event atribut onblur jika ditemukan ada event atribut onmouseout",
+            "mousedown" : "Refactoring dilakukan dengan menambah event atribut onkeydown jika ditemukan ada event atribut onmousedown",
+            "mouseup" : "Refactoring dilakukan dengan menambah event atribut onkeyup jika ditemukan ada event atribut onmouseup"
+        },
+        "parameterText": {
+            "mouseover": "Otomatis",
+            "mouseout": "Otomatis",
+            "mousedown": "Otomatis",
+            "mouseup" : "Otomatis"
+        }
+    },
+
+
+
+    //2.2.1
+    "f40" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menghapus tag meta yang memiliki atribut http-equiv=refresh, dan atribut content dengan nilai suatu angka"
+        },
+        "parameterText": {
             "content": "Otomatis"
+        }
+    },
+    "f41" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menghapus tag meta yang memiliki atribut http-equiv=refresh, dan atribut content dengan nilai suatu angka"
+        },
+        "parameterText": {
+            "content": "Otomatis"
+        }
+    },
+
+
+
+    //2.2.2
+    "f4" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan mengganti style text-decoration:blink"
+        },
+        "parameterText": {
+            "content": "Otomatis"
+        }
+    },
+    "f47" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan mengganti tag blink menjadi tag span"
+        },
+        "parameterText": {
+            "content": "Otomatis"
+        }
+    },
+
+
+
+    //2.4.1
+    "h64" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan atribut title pada tag iframe"
+        },
+        "parameterText": {
+            "content": "Title untuk iframe"
+        }
+    },
+
+
+
+    //2.4.2
+    "h25" : {
+        "refactorText": {
+            "noTitle" : "Refactoring dilakukan dengan menambahkan tag title pada head",
+            "emptyTitle" : "Refactoring dilakukan dengan menambahkan nilai pada tag title"
+        },
+        "parameterText": {
+            "noTitle": "Page title",
+            "emptyTitle": "Page title"
+        }
+    },
+
+
+
+    //2.4.8
+    "h59" : {
+        "refactorText": {
+            "head" : "Refactoring dilakukan dengan memindahkan tag link ke dalam tag head",
+            "rel" : "Refactoring dilakukan dengan menambahkan atribut rel pada tag link"
+        },
+        "parameterText": {
+            "head": "Otomatis",
+            "rel": "Rel untuk link"
+        }
+    },
+
+
+
+    //3.1.1
+    "h57" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan atribut lang pada tag html"
+        },
+        "parameterText": {
+            "content": "Lang untuk html"
+        }
+    },
+
+
+
+    //3.1.6
+    "h62" : {
+        "refactorText": {
+            "rp" : "Refactoring dilakukan dengan menambahkan tag rp",
+            "rt" : "Refactoring dilakukan dengan menambahkan tag rt"
+        },
+        "parameterText": {
+            "rp": "Otomatis",
+            "rt": "Tag rt"
+        }
+    },
+
+
+
+    //3.2.2
+    "h32" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan tag input type submit dengan value 1 pada akhir form"
+        },
+        "parameterText": {
+            "content": "Otomatis"
+        }
+    },
+
+
+
+    //4.1.2
+    "h91" : {
+        "refactorText": {
+            "aNoContentHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href dan text untuk link",
+            "aNoContent" : "Refactoring dilakukan dengan memasukkan text untuk link",
+            "aNoHref" : "Refactoring dilakukan dengan memasukkan nilai dari atribut href"
+        },
+        "parameterText": {
+            "href": "Nilai href: ",
+            "content": "Text untuk link: "
         }
     }
 };

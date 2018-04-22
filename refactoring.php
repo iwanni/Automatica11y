@@ -82,7 +82,7 @@
     console.log(mydata);
 
     var techniques = {
-        h91 : {
+        /*h91 : {
             refactorText:"",
             parameter:[],
             counter0 : 0,   //0 = Href
@@ -115,7 +115,7 @@
                 }
                 //this.counter++;
             }
-        },
+        },*/
         g150g151g157 : {
             refactorText:"",
             parameter:[],
@@ -243,6 +243,16 @@
             processErrorMessage: function(errorMessage, technique) {
                 this.refactorText = textRefactor(technique, "content");
                 this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
+                this.counter++;
+            }
+        },
+        h2 : {
+            refactorText:"",
+            parameter:[],
+            counter : 0,
+            processErrorMessage: function(errorMessage, technique) {
+                this.refactorText = textRefactor(technique, "content");
+                this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
                 this.counter++;
             }
         },
@@ -428,13 +438,230 @@
             counter:0,
 
             processErrorMessage: function(errorMessage, technique, snippet) {
-                if(errorMessage == "G18_Fail_1.4.3") {
+                if(errorMessage.substring(0,8) == "G18_Fail") {
                     this.refactorText = textRefactor(technique, "content");
-                    this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    //this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.parameter[0] = "Otomatis<input type='hidden' name='"+technique+"_content["+ this.counter + "]' value='"+ errorMessage.substring(8,16) +"'>";
                     this.counter++;
                 }
             }
-        }
+        },
+
+
+
+        //2.1.1
+        scr20 : {
+            refactorText:"",
+            parameter:[],
+            counter:[0,0,0,0],
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage == "SCR20_MouseOver_2.1.1") {
+                    this.refactorText = textRefactor(technique, "mouseover");
+                    this.parameter[0] = textFormParamater("hidden", technique, "mouseover", this.counter[0]);
+                    this.counter[0]++;
+                } else if (errorMessage == "SCR20_MouseOut_2.1.1") {
+                    this.refactorText = textRefactor(technique, "mouseout");
+                    this.parameter[0] = textFormParamater("hidden", technique, "mouseout", this.counter[1]);
+                    this.counter[1]++;
+                } else if (errorMessage == "SCR20_MouseDown_2.1.1") {
+                    this.refactorText = textRefactor(technique, "mousedown");
+                    this.parameter[0] = textFormParamater("hidden", technique, "mousedown", this.counter[2]);
+                    this.counter[2]++;
+                } else if (errorMessage == "SCR20_MouseUp_2.1.1") {
+                    this.refactorText = textRefactor(technique, "mouseup");
+                    this.parameter[0] = textFormParamater("hidden", technique, "mouseup", this.counter[3]);
+                    this.counter[3]++;
+                }
+            }
+        },
+
+
+
+        //2.2.1
+        f40 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.counter++;
+            }
+        },
+        f41 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.counter++;
+            }
+        },
+
+
+
+        //2.2.2
+        f4 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.counter++;
+            }
+        },
+        f47 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.counter++;
+            }
+        },
+
+
+
+        //2.4.1
+        h64 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
+                    this.counter++;
+            }
+        },
+
+
+
+        //2.4.2
+        h25 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage == "H25_1NoTitleEl_2.4.2") {
+                    this.refactorText = textRefactor(technique, "noTitle");
+                    this.parameter[0] = textFormParamater("text", technique, "noTitle", this.counter);
+                    this.counter++;
+                } else if (errorMessage == "H25_1EmptyTitle_2.4.2") {
+                    this.refactorText = textRefactor(technique, "emptyTitle");
+                    this.parameter[0] = textFormParamater("text", technique, "emptyTitle", this.counter);
+                    this.counter++;
+                }
+            }
+        },
+
+
+
+        //2.4.8
+        h59 : {
+            refactorText:"",
+            parameter:[],
+            counter:[0,0],
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage == "H59_1_2.4.8") {
+                    this.refactorText = textRefactor(technique, "head");
+                    this.parameter[0] = textFormParamater("hidden", technique, "head", this.counter[0]);
+                    this.counter[0]++;
+                } else if(errorMessage == "") {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = "<label for='favcity'>" + mydata[technique].parameterText["rel"] + "</label><select id='rel' name=" + technique + "_rel[" + this.counter[1] + "]><option value='alternate'>alternate</option><option value='author'>author</option><option value='Delhi'>Delhi</option><option value='dns-prefetch'>dns-prefetch</option><option value='help'>help</option><option value='icon'>icon</option><option value='license'>license</option><option value='next'>next</option><option value='pingback'>pingback</option><option value='preconnect'>preconnect</option><option value='prefetch'>prefetch</option><option value='preload'>preload</option><option value='prev'>prev</option><option value='search'>search</option><option value='stylesheet'>stylesheet</option></select>";
+                    this.counter[1]++;
+                }
+            }
+        },
+
+
+
+        //3.1.1
+        h57 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("text", technique, "content", this.counter);
+                    this.counter++;
+            }
+        },
+
+
+
+        //3.1.6
+        h62 : {
+            refactorText:"",
+            parameter:[],
+            counter:[0,0],
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage == "H62_2_3.1.6") {
+                    this.refactorText = textRefactor(technique, "rp");
+                    this.parameter[0] = textFormParamater("hidden", technique, "rp", this.counter[0]);
+                    this.counter[0]++;
+                } else if(errorMessage == "H62_1XHTML_3.1.6") {
+                    this.refactorText = textRefactor(technique, "rt");
+                    this.parameter[0] = textFormParamater("text", technique, "rt", this.counter[1]);
+                    this.counter[1]++;
+                }
+            }
+        },
+
+
+
+        //3.2.2
+        h32 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.counter++;
+            }
+        },
+
+
+
+        //4.1.2
+        h91 : {
+            refactorText:"",
+            parameter:[],
+            counter : [0,0],   //0 = Href
+
+            processErrorMessage: function(errorMessage, element) {
+                if(errorMessage == "H91_AEmpty_4.1.2" || errorMessage == "H91_AEmptyWithName_4.1.2" || errorMessage == "H91_AEmptyNoId_4.1.2") {
+                    this.refactorText = textRefactor(element, "aNoContentHref");
+                    this.parameter[0] = textFormParamater("text", element, "href", this.counter[0]);
+                    this.parameter[1] = textFormParamater("text", element, "content", this.counter[1]);
+                    this.counter[0]++;
+                    this.counter[1]++;
+                } else if (errorMessage == "H91_ANoContent_4.1.2") {
+                    this.refactorText = textRefactor(element, "aNoContent");
+                    this.parameter[0] = textFormParamater("text", element, "content", this.counter[1]);
+                    this.counter[1]++;
+                } else if (errorMessage == "H91_APlaceholder_4.1.2" || errorMessage == "H91_ANoHref_4.1.2") {
+                    this.refactorText = textRefactor(element, "aNoHref");
+                    this.parameter[0] = textFormParamater("text", element, "href", this.counter[0]);
+                    this.counter[0]++;
+                }
+            }
+        },
     };
 
 
@@ -470,10 +697,6 @@
     //options = '//squizlabs.github.io/HTML_CodeSniffer/build/';
     //HTMLCS.build(standard, messages, options);
 
-
-
-    //var asd = _messagesProcess2;
-
     var myParam = [];
     //var countParam = location.search.split("&").length;
     var countParam = <?php echo count($_POST["r"]) + 1 ?>;
@@ -504,7 +727,7 @@
         indexsnippet = myParam[i].indexOf("-");
         snippet = myParam[i].slice(indexsnippet + 1);
         snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
-        snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
+        //snippet = decodeURIComponent(snippet.replace(/\+/g, " "));
         //snippet = decodeURIComponent(snippet);
         var techniqueError = myParam[i].split("-")[0];
 
@@ -522,7 +745,7 @@
             techniques[technique].processErrorMessage(techniqueError, technique, snippet);
 
             //content += '<tr><th scope="row">'+(i+1)+'</th><td>'+myParam[i]+'</td><td>'+techniques[technique].refactorText+'<br>'+window._messagesProcess[i].element.outerHTML+'</td><td>';
-            content += '<tr><th scope="row">'+(i+1)+'</th><td>'+sucesscrit+ "<br>" +techniqueError+'</td><td>'+techniques[technique].refactorText+'<br><xmp>'+snippet+'</xmp></td><td>';
+            content += '<tr><th scope="row">'+(i+1)+'</th><td>'+sucesscrit+ '<br>' +techniqueError+'</td><td>'+techniques[technique].refactorText+'<br><xmp>'+snippet+'</xmp><input type="hidden" name=snippet value='+encodeURIComponent(snippet)+'></td><td>';
             for(var j = 0 ; j < techniques[technique].parameter.length ; j++) {
                 content += techniques[technique].parameter[j];
                 content += '<br>';
@@ -534,23 +757,8 @@
     }
 
     content += '</table>';
-
-
-    /*function processTechniques(techniqueSubcode) {
-       var technique = techniqueSubcode.split("_")[0];
-
-       if(technique == "H91") {
-           h91.processErrorMessage(myParam[i]);
-       }
-
-   }*/
-
     document.getElementById("demo").innerHTML = content;
 
-
 </script>
-
-
-
 </body>
 </html>

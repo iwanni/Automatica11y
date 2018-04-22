@@ -84,6 +84,9 @@ $values = array_values($_POST);
     document.getElementById("oldHTML").innerHTML = source;
     //oldSource = "<textarea type='text' name='source' id='asd' rows='20' cols='100'>"+decodeURIComponent((source + '').replace(/\+/g, '%20'))+"</textarea>";
 
+    var snippet = <?php echo '"'. $_POST['snippet'] .'"' ?>;
+    snippet = decodeURIComponent((snippet + '').replace(/\+/g, '%20'));
+
     var techniques = {
         /*h91 : {
             processAutomatedRefactoring: function(message, i){
@@ -290,18 +293,225 @@ $values = array_values($_POST);
                     }
                 }
             }
-        }
+        },
 
 
 
         //1.4.3
         g18 : {
             processAutomatedRefactoring: function(message, i){
-                var elements = getElementsAttr('align');
+                /*var elements = getElementsAttr('align');
                 for(var j = 0 ; j < elements.length ; j++) {
                     var alignAttribute = elements[j].getAttribute('align');
                     elements[j].removeAttribute("align");
                     elements[j].setAttribute("style", "text-align: "+alignAttribute+";");
+                }*/
+
+                var k = 0;
+                var elementsString = innerDoc.body.innerHTML;
+                console.log("html" +elementsString);
+                if(elementsString.search(snippet) != -1) {
+                    var firstIndex = elementsString.search(snippet);
+                    var snippetFromSource = elementsString.substring(firstIndex, firstIndex+snippet.length);
+                    console.log(snippetFromSource);
+
+                    parser = new DOMParser();
+                    doc = parser.parseFromString(snippetFromSource, "text/html"); 
+                    doc.body.firstChild.style.color = values[i][k].substring(1,8);
+                    //console.log(doc.body.firstChild.outerHTML);
+                    k++;
+
+                    /*for (var index = 0; index < innerDoc.querySelectorAll("body > *").length; index++) {
+                        innerDoc.querySelectorAll("body > *")[index].outerHTML = innerDoc.querySelectorAll("body > *")[index].outerHTML.replace(snippetFromSource, doc.body.firstChild.outerHTML);
+                    }*/
+                    innerDoc.body.innerHTML = elementsString.replace(snippetFromSource, doc.body.firstChild.outerHTML);
+                }
+            }
+        },
+
+
+
+        //2.1.1
+        scr20 :{
+            processAutomatedRefactoring: function(message, i){
+                if(message == "mouseover") {
+                    var elements = getElementsAttr('onmouseover');
+                    for(var j = 0 ; j < elements.length ; j++) {
+                        var onmouseoverValue = elements[j].getAttribute('onmouseover');
+                        elements[j].setAttribute("onfocus", onmouseoverValue);
+                    }
+                } else if (message == "mouseout") {
+                    var elements = getElementsAttr('onmouseout');
+                    for(var j = 0 ; j < elements.length ; j++) {
+                        var onmouseoutValue = elements[j].getAttribute('onmouseout');
+                        elements[j].setAttribute("onblur", onmouseoutValue);
+                    }
+                } else if (message == "mousedown") {
+                    var elements = getElementsAttr('onmousedown');
+                    for(var j = 0 ; j < elements.length ; j++) {
+                        var onmousedownValue = elements[j].getAttribute('onmousedown');
+                        elements[j].setAttribute("onkeydown", onmousedownValue);
+                    }
+                } else if (message == "mouseup") {
+                    var elements = getElementsAttr('onmouseup');
+                    for(var j = 0 ; j < elements.length ; j++) {
+                        var onmouseupValue = elements[j].getAttribute('onmouseup');
+                        elements[j].setAttribute("onkeyup", onmouseupValue);
+                    }
+                }
+            }
+        },
+
+
+
+        //2.2.1
+        f40 : {
+            processAutomatedRefactoring: function(message, i){
+                deleteMetaRefresh();
+            }
+        },
+        f41 : {
+            processAutomatedRefactoring: function(message, i){
+                deleteMetaRefresh();
+            }  
+        },
+
+
+
+        //2.2.2
+        f4 : {
+
+        },
+        f47 : {
+            processAutomatedRefactoring: function(message, i){
+                changeTag("blink", /<blink/g, /<\/blink>/g, "span",i);
+            }  
+        },
+
+
+
+        //2.4.1
+        h64 : {
+            processAutomatedRefactoring: function(message, i){
+                insertAttr("iframe", "title", i);
+            }
+        },
+
+
+
+        //2.4.2
+        h25 : {
+            processAutomatedRefactoring: function(message, i){
+                if(message == "noTitle") {
+                    var k = 0;
+                    var headElements = getElementsTag("head");
+                    for(var j = 0 ; j < headElements.length ; j++) {
+                        var title = innerDoc.createElement("title");
+                        title.innerHTML = values[i][k];
+                        k++;
+
+                        headElements[j].insertBefore(title, headElements[j].firstChild);
+                    }
+                } else if(message == "emptyTitle") {
+                    insertContent("title", i)
+                }
+            }
+        },
+
+
+
+        //2.4.8
+        h59 : {
+            processAutomatedRefactoring: function(message, i){
+                insertAttr("link", "rel", i);
+            }
+        },
+
+
+
+        //3.1.1
+        h57 : {
+            processAutomatedRefactoring: function(message, i){
+                if(innerDoc.getElementsByTagName("html")[0].getAttribute("xmlns") == true){
+                    //insertAttr("html", "xml:lang", i);    
+                } else {
+                    //insertAttr("html", "lang", i);    
+                }
+            }
+        },
+
+
+
+        //3.1.6
+        h62 : {
+            processAutomatedRefactoring: function(message, i) {
+                if(message == "rp") {
+                    var rubyElements = getElementsTag("ruby");
+                    for(var j = 0 ; j < rubyElements.length ; j++) {
+                        //if(rubyElements[j].children[0].nodeName.toLowerCase() == "rb") {
+                        if(rubyElements[j].getElementsByTagName("rb")[0] != null) {
+                           var rb = rubyElements[j].getElementsByTagName("rb")[0];
+
+                           var rp1 = innerDoc.createElement("rp");
+                            rp1.innerHTML = "(";
+                            rb.parentNode.insertBefore(rp1, rb.nextSibling);
+
+                            var rp2 = innerDoc.createElement("rp");
+                            rp2.innerHTML = ")";
+                            rubyElements[j].insertBefore(rp2, null);
+                        //}
+                        
+                        }
+                    }
+                } else if(message == "rt") {
+                    var k = 0;
+                    var rubyElements = getElementsTag("ruby");
+                    for(var j = 0 ; j < rubyElements.length ; j++) {
+                        var rpRb;
+                        if(rubyElements[j].getElementsByTagName("rp")[0] != null) {
+                           rpRb = rubyElements[j].getElementsByTagName("rp")[0]; 
+                        } else {
+                           rpRb = rubyElements[j].getElementsByTagName("rb")[0]; 
+                        }
+
+                           var rt = innerDoc.createElement("rt");
+                            rt.innerHTML = values[i][k];
+                            k++;
+                            rpRb.parentNode.insertBefore(rt, rpRb.nextSibling);
+                        
+                    }
+                }
+            }
+        },
+
+
+
+        //3.2.2
+        h32 : {
+            processAutomatedRefactoring: function(message, i){
+                var formElements = getElementsTag("form");
+                for(var j = 0 ; j < formElements.length ; j++) {
+                    var submit = formElements[j].querySelectorAll("input[type=submit], input[type=image]");
+                    if(submit != null) {
+                        var input = innerDoc.createElement("input");
+                        input.setAttribute("type", "submit");
+                        input.setAttribute("value", 1);
+
+                        formElements[j].insertBefore(input, null);
+                    }
+                }
+            }
+        },
+
+
+
+        //4.1.2
+        h91 : {
+            processAutomatedRefactoring: function(message, i){
+                if(message == "href") {
+                    insertAttr("a", "href", i);
+                } else if(message == "content") {
+                    insertContent("a", i);
                 }
             }
         }
@@ -315,6 +525,19 @@ $values = array_values($_POST);
 
     function getElementsTag(element) {
         return innerDoc.querySelectorAll(element);
+    }
+
+    function deleteMetaRefresh() {
+        var elements = getElementsTag("meta");
+        for(var j = 0 ; j < elements.length ; j++) {
+            if(elements[j].getAttribute("http-equiv").toLowerCase() === "refresh") {
+                if(/^(\d+)*/.test(elements[j].getAttribute("content").toLowerCase()) === true) {
+                    //if(/url=/.test(elements[j].getAttribute("content").toLowerCase()) === true) {
+                        elements[j].parentNode.removeChild(elements[j]);
+                    //}
+                }
+            }
+        }
     }
 
     function insertAttr(element, attribute, i) {
