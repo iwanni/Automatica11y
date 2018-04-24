@@ -390,18 +390,62 @@
         h63 : {
             refactorText:"",
             parameter:[],
-            counter:0,
+            counter:[0,0],
 
             processErrorMessage: function(errorMessage, technique) {
                 if(errorMessage == "H63_2_1.3.1") {
-                    this.refactorText = textRefactor(technique, "scopeCol");
-                    this.parameter[0] = textFormParamater("hidden", technique, "scopeCol", this.counter);
-                    this.counter++;
+                    this.refactorText = textRefactor(technique, "scopeTd");
+                    this.parameter[0] = textFormParamater("hidden", technique, "scopeTd", this.counter[0]);
+                    this.counter[0]++;
+                } else if(errorMessage == "H63_3_1.3.1") {
+                    this.refactorText = textRefactor(technique, "scopeInvalid");
+                    this.parameter[0] = "<label for='scope'>" + mydata[technique].parameterText["scopeInvalid"] + "</label><select id='scope' name=" + technique + "_scopeInvalid[" + this.counter[1] + "]><option value='col'>col</option><option value='row'>row</option><option value='colgroup'>colgroup</option><option value='rowgroup'>rowgroup</option></select>";
+                    this.counter[1]++;
                 }
             }
         },
         h43 : {
+            refactorText:"",
+            parameter:[],
+            counter:[0,0],
 
+            processErrorMessage: function(errorMessage, technique) {
+                if(errorMessage.substring(0,17) == "H43_IncorrectAttr") {
+                    this.refactorText = textRefactor(technique, "headerInvalid");
+                    this.parameter[0] = "Otomatis<input type='hidden' name='"+technique+"_headerInvalid["+ this.counter[0] + "]' value='"+ errorMessage.split("+")[1].split("_")[0] +"'>";
+                    this.counter[0]++;
+                } else if(errorMessage == "H43_HeadersRequired_1.3.1") {
+                    /*this.refactorText = textRefactor(technique, "headerReq");
+                    this.parameter[0] = textFormParamater("hidden", technique, "headerInvalid", this.counter[0]);
+                    this.counter[0]++;*/
+                }
+            }
+        },
+        h39 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage == "H39_3NoCaption_1.3.1") {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("text", technique, "caption", this.counter);
+                    this.counter++;
+                }
+            }
+        },
+        h73 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage == "H73_3NoSummary_1.3.1") {
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("text", technique, "summary", this.counter);
+                    this.counter++;
+                }
+            }
         },
         h39h73 : {
             refactorText:"",
@@ -410,10 +454,10 @@
 
             processErrorMessage: function(errorMessage, technique, snippet) {
                 if(errorMessage == "H39_4H73_4_1.3.1") {
-                    /*this.refactorText = textRefactor(technique, "content");
-                    this.parameter[0] = textFormParamater("text", technique, "caption","", this.counter);
-                    this.parameter[1] = textFormParamater("text", technique, "summary","", this.counter);
-                    this.counter++;*/
+                    this.refactorText = textRefactor(technique, "content");
+                    this.parameter[0] = textFormParamater("text", technique, "caption", this.counter);
+                    this.parameter[1] = textFormParamater("text", technique, "summary", this.counter);
+                    this.counter++;
                 }
             }
         },
@@ -439,6 +483,38 @@
 
             processErrorMessage: function(errorMessage, technique, snippet) {
                 if(errorMessage.substring(0,8) == "G18_Fail") {
+                    this.refactorText = textRefactor(technique, "content");
+                    //this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.parameter[0] = "Otomatis<input type='hidden' name='"+technique+"_content["+ this.counter + "]' value='"+ errorMessage.substring(8,16) +"'>";
+                    this.counter++;
+                }
+            }
+        },
+        g145 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage.substring(0,9) == "G145_Fail") {
+                    this.refactorText = textRefactor(technique, "content");
+                    //this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
+                    this.parameter[0] = "Otomatis<input type='hidden' name='"+technique+"_content["+ this.counter + "]' value='"+ errorMessage.substring(9,17) +"'>";
+                    this.counter++;
+                }
+            }
+        },
+
+
+
+        //1.4.6
+        g17 : {
+            refactorText:"",
+            parameter:[],
+            counter:0,
+
+            processErrorMessage: function(errorMessage, technique, snippet) {
+                if(errorMessage.substring(0,8) == "G17_Fail") {
                     this.refactorText = textRefactor(technique, "content");
                     //this.parameter[0] = textFormParamater("hidden", technique, "content", this.counter);
                     this.parameter[0] = "Otomatis<input type='hidden' name='"+technique+"_content["+ this.counter + "]' value='"+ errorMessage.substring(8,16) +"'>";

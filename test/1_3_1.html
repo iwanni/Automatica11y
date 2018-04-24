@@ -118,6 +118,115 @@ belum dites <label for="labelHiddenAttr">Label:</label> <input type="text" id="l
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th></th>
+    <th scope="col">Month</th>
+    <th scope="col">Savings</th>
+  </tr>
+  <tr>
+    <td scope="colgroup">1</td>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td scope="row">2</td>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
+<!--H63.3-->
+<table>
+  <tbody><tr>
+    <th></th>
+    <th scope="asd">Month</th>
+    <th scope="col">Savings</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</tbody></table>
+
+<!--H43.IncorrectAttr--> = bisa diotomasi dengan mengambil nilai expected
+<table border=1> 
+<tr> 
+<th rowspan="2">Homework</th> 
+<th colspan="3" id="e">Exams</th> 
+<th colspan="3" id="p">Projects</th>
+</tr> 
+
+<tr> 
+<th id="e1" headers="e">1</th> 
+<th id="e2" headers="e">2</th> 
+<th id="ef" headers="e">Final</th> 
+<th id="p1" headers="p">1</th> 
+<th id="p2" headers="p">2</th> 
+<th id="pf" headers="p">Final</th>
+</tr> 
+
+<tr> 
+<td headers="h">15%</td> 
+<td headers="e e1">15%</td> 
+<td headers="e e2">15%</td> 
+<td headers="e ef">20%</td> 
+<td headers="p p1">10%</td> 
+<td headers="p p2">10%</td> 
+<td headers="p pf">15%</td>
+</tr> </table>
+
+<!--H39,H73.4--> = dengan meminta mengubah summary dan caption
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<table summary="Rout"> 
+<caption>Rout</caption>
+  <tr>
+    <th></th>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <tD>1</tD>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <tD>2</tD>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
+<!--H73_3NoSummary-->
+<!--H39_3NoCaption-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<table> 
+
+  <tr>
+    <th></th>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <tD>1</tD>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <tD>2</tD>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+
 
 <!--H71.NoLegend--> = meminta input nilai legend
 <fieldset> 
@@ -127,6 +236,11 @@ belum dites <label for="labelHiddenAttr">Label:</label> <input type="text" id="l
 <input type="radio" id="kipling" name="hamlet" value="b"> 
 <label for="kipling">Rudyard Kipling</label><br /> 
 </fieldset>
+
+
+
+
+
 
 
 
@@ -221,36 +335,22 @@ tak bisa->
 <td>412-212-5421</td> 
 <td>412-212-5400</td> 
 <td>Pittsburgh</td>
-</tr><tr> <td>2.</td> <th scope="row">Clive Lloyd</th> <td>410-306-1420</td> <td>410-306-5400</td> <td>Baltimore</td>
-</tr><tr> <td>3.</td> <th scope="row">Gordon Greenidge</th> <td>281-564-6720</td> <td>281-511-6600</td> <td>Houston</td>
-</tr> </table>
-
-<!--H43.IncorrectAttr--> = bisa diotomasi dengan mengambil nilai expected
-<table border=1> 
+</tr>
 <tr> 
-<th rowspan="2">Homework</th> 
-<th colspan="3" id="e">Exams</th> 
-<th colspan="3" id="p">Projects</th>
+<td>2.</td> 
+<th scope="row">Clive Lloyd</th> 
+<td>410-306-1420</td> 
+<td>410-306-5400</td> 
+<td>Baltimore</td>
+</tr>
+<tr> 
+<td>3.</td> 
+<th scope="row">Gordon Greenidge</th> 
+<td>281-564-6720</td> 
+<td>281-511-6600</td> 
+<td>Houston</td>
 </tr> 
-
-<tr> 
-<th id="e1" headers="e">1</th> 
-<th id="e2" headers="e">2</th> 
-<th id="ef" headers="e">Final</th> 
-<th id="p1" headers="p">1</th> 
-<th id="p2" headers="p">2</th> 
-<th id="pf" headers="p">Final</th>
-</tr> 
-
-<tr> 
-<td headers="h">15%</td> 
-<td headers="e e1">15%</td> 
-<td headers="e e2">15%</td> 
-<td headers="e ef">20%</td> 
-<td headers="p p1">10%</td> 
-<td headers="p p2">10%</td> 
-<td headers="p pf">15%</td>
-</tr> </table>
+</table>
 
 <!--H43.MissingHeadersAttrs--> = minta parameter header pada td yang masih belum ada
 <table border=1> 
@@ -334,7 +434,7 @@ tak bisa->
 </tr> </table>
 
 
-<!--H43,H63--> = tidak bisa diotomasi karena penambahan belum pasti apakah scope / headers
+<!--H43,H63--> = tidak bisa diotomasi? karena penambahan belum pasti apakah scope / headers
 <table>
   <tr>
     <th></th>
@@ -373,28 +473,6 @@ tak bisa->
   </tr>
 </table>
 
-
-<!--H39,H73.4--> = dengan meminta mengubah summary dan caption
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<table summary="Rout"> 
-<caption>Rout</caption>
-  <tr>
-    <th></th>
-    <th>Month</th>
-    <th>Savings</th>
-  </tr>
-  <tr>
-    <tD>1</tD>
-    <td>January</td>
-    <td>$100</td>
-  </tr>
-  <tr>
-    <tD>2</tD>
-    <td>February</td>
-    <td>$80</td>
-  </tr>
-</table>
 
 <!--H73.3.Check--> = tidak bisa
 code sama dengan diatas

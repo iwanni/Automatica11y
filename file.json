@@ -186,14 +186,37 @@ var data = {
     },
     "h63" : {
         "refactorText": {
-            "scopeCol" : "Refactoring dilakukan dengan mengganti tag td yang menjadi th apabila memiliki atribut scope dengan nilai col"
+            "scopeTd" : "Refactoring dilakukan dengan mengganti tag td yang menjadi th apabila memiliki atribut scope",
+            "scopeInvalid" : "Refactoring dilakukan dengan mengganti nilai scope yang salah dengan col / row / colgroup / rowgroup"
         },
         "parameterText": {
-            "scopeCol": "Otomatis"
+            "scopeTd": "Otomatis",
+            "scopeInvalid": "Nilai scope"
         }
     },
     "h43" : {
-
+        "refactorText": {
+            "headerInvalid" : "Refactoring dilakukan dengan mengganti nilai atribut header dengan nilai yang benar"
+        },
+        "parameterText": {
+            "headerInvalid": "Otomatis"
+        }
+    },
+    "h39" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan caption pada tabel"
+        },
+        "parameterText": {
+            "caption": "Caption : "
+        }
+    },
+    "h73" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan menambahkan summary pada tabel"
+        },
+        "parameterText": {
+            "summary": "Summary : "
+        }
     },
     "h39h73" : {
         "refactorText": {
@@ -218,7 +241,27 @@ var data = {
     //1.4.3
     "g18" : {
         "refactorText": {
-            "content" : "Refactoring dilakukan dengan mengubah styyle konten dengan rekomendasi warna yang diberikan"
+            "content" : "Refactoring dilakukan dengan mengubah style konten dengan rekomendasi warna yang diberikan"
+        },
+        "parameterText": {
+            //"content": "Otomatis"
+        }
+    },
+    "g145" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan mengubah style konten dengan rekomendasi warna yang diberikan"
+        },
+        "parameterText": {
+            //"content": "Otomatis"
+        }
+    },
+
+
+
+    //1.4.6
+    "g17" : {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan mengubah style konten dengan rekomendasi warna yang diberikan"
         },
         "parameterText": {
             //"content": "Otomatis"

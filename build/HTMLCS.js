@@ -1726,17 +1726,21 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_1_1_1_1 = {
                 // Test against the following link, if any.
                 if (nodes.next && nodes.next.href !== "" && nodes.next.href !== null && nodes.anchor.href === nodes.next.href) {
                     if (nodes.next.text !== "" && nodes.anchor.alt === "") {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.", "H2.EG4");
+                        //own iwan
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.", "H2.4");
                     } else if (nodes.next.text.toLowerCase() === nodes.anchor.alt.toLowerCase()) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link must not use alt text that duplicates the content of a text link beside it.", "H2.EG3");
+                        //own iwan
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link must not use alt text that duplicates the content of a text link beside it.", "H2.3");
                     }
                 }
                 // Test against the preceding link, if any.
                 if (nodes.previous && nodes.previous.href !== "" && nodes.previous.href !== null && nodes.anchor.href === nodes.previous.href) {
                     if (nodes.previous.text !== "" && nodes.anchor.alt === "") {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.", "H2.EG4");
+                        //own iwan
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link has empty or missing alt text when a link beside it contains link text. Consider combining the links.", "H2.4");
                     } else if (nodes.previous.text.toLowerCase() === nodes.anchor.alt.toLowerCase()) {
-                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link must not use alt text that duplicates the content of a text link beside it.", "H2.EG3");
+                        //own iwan
+                        HTMLCS.addMessage(HTMLCS.ERROR, element, "Img element inside a link must not use alt text that duplicates the content of a text link beside it.", "H2.3");
                     }
                 }
             }
@@ -2616,7 +2620,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_3_1_3_1 = {
         //end if
         // Incorrect usage of headers - error; emit always.
         for (var i = 0; i < headersAttr.wrongHeaders.length; i++) {
-            HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, 'Incorrect headers attribute on this td element. Expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"', "H43.IncorrectAttr");
+            HTMLCS.addMessage(HTMLCS.ERROR, headersAttr.wrongHeaders[i].element, 'Incorrect headers attribute on this td element. Expected "' + headersAttr.wrongHeaders[i].expected + '" but found "' + headersAttr.wrongHeaders[i].actual + '"', "H43.IncorrectAttr+" + headersAttr.wrongHeaders[i].expected + "," +headersAttr.wrongHeaders[i].actual);
         }
         // Errors where headers are compulsory.
         if (headersAttr.required === true && headersAttr.allowScope === false) {
@@ -3680,7 +3684,18 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle1_Guideline1_4_1_4_6 = {
                     HTMLCS.addMessage(HTMLCS.WARNING, element, "This element's text is placed on a background image. Ensure the contrast ratio between the text and all covered parts of the image are at least " + required + ":1.", code);
                 } else {
                     code += ".Fail";
-                    HTMLCS.addMessage(HTMLCS.ERROR, element, "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least " + required + ":1, but text in this element has a contrast ratio of " + value + ":1." + recommendText, code);
+                    //own iwan
+                    var changeColor = "";
+                    if (recommend) {
+
+                        if (recommend.fore.from !== recommend.fore.to) {
+                            changeColor = "C#";
+                        }
+                        if (recommend.back.from !== recommend.back.to) {
+                            changeColor = "B#";
+                        }
+                    }
+                    HTMLCS.addMessage(HTMLCS.ERROR, element, "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least " + required + ":1, but text in this element has a contrast ratio of " + value + ":1." + recommendText, code  + changeColor + recommendText.split("#")[1]);
                 }
             }
         }

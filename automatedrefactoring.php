@@ -81,6 +81,7 @@ $values = array_values($_POST);
 
     var source = <?php echo '"'. $_POST['source'] .'"' ?>;
     source = decodeURIComponent((source + '').replace(/\+/g, '%20'));
+    //console.log(source);
     document.getElementById("oldHTML").innerHTML = source;
     //oldSource = "<textarea type='text' name='source' id='asd' rows='20' cols='100'>"+decodeURIComponent((source + '').replace(/\+/g, '%20'))+"</textarea>";
 
@@ -264,15 +265,81 @@ $values = array_values($_POST);
         },
         h63 : {
             processAutomatedRefactoring: function(message, i){
-                if(message == "scopeCol") {
+                if(message == "scopeTd") {
                     var k = 0;
                     var tdElements = getElementsTag("td");
                     for(var j = 0 ; j < tdElements.length ; j++) {
-                        if(tdElements[j].getAttribute("scope") == "col"){
+                        if(tdElements[j].getAttribute("scope") != null){
                             str = tdElements[j].outerHTML;
                             var regexpResult = str.replace(/<td/g, "<th");
                             var regexpResult = regexpResult.replace(/<\/td>/g, "<\/th>");
                             tdElements[j].outerHTML = regexpResult;
+                        }
+                    }
+                } else if(message == "scopeInvalid") {
+                    var k = 0;
+                    var thTdElements = getElementsTag("th, td");
+                    for(var j = 0 ; j < thTdElements.length ; j++) {
+                        if(thTdElements[j].getAttribute("scope") != null && /^(row|col|rowgroup|colgroup)$/.test(thTdElements[j].getAttribute("scope")) === false){
+                            thTdElements[j].setAttribute("scope", values[i][k]);
+                            k++;
+                        }
+                    }
+                }
+            }
+        },
+        h43 : {
+            processAutomatedRefactoring: function(message, i){
+                if(message == "headerInvalid") {
+                    var k = 0;
+                    var thTdElements = getElementsTag("th, td");
+                    for(var j = 0 ; j < thTdElements.length ; j++) {
+                        if(values[i][k] != null) {
+                            if(thTdElements[j].getAttribute("headers") == values[i][k].split(",")[1]){
+                                thTdElements[j].setAttribute("headers", values[i][k].split(",")[0]);
+                                k++;
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        h39 : {
+            processAutomatedRefactoring: function(message, i){
+                var k = 0;
+                var tableElements = getElementsTag("table");
+                for(var j = 0 ; j < tableElements.length ; j++) {
+                    if(tableElements[j].getElementsByTagName("caption")[0] == null) {
+                        var caption = innerDoc.createElement("caption");
+                        caption.innerHTML = values[i][k];
+                        tableElements[j].insertBefore(caption, tableElements[j].firstChild);
+                    } else {
+                        tableElements[j].getElementsByTagName("caption")[0].innerHTML = values[i][k];
+                    }
+                }
+            }
+        },
+        h73 : {
+            processAutomatedRefactoring: function(message, i){
+                var k = 0;
+                var tableElements = getElementsTag("table");
+                for(var j = 0 ; j < tableElements.length ; j++) {
+                    tableElements[j].setAttribute("summary", values[i][k]);
+                }
+            }
+        },
+        h39h73 : {
+            processAutomatedRefactoring: function(message, i){
+                var k = 0;
+                var tableElements = getElementsTag("table");
+                for(var j = 0 ; j < tableElements.length ; j++) {
+                    var summary = tableElements[j].getAttribute("summary");
+                    var caption = tableElements[j].getElementsByTagName("caption")[0].innerHTML;
+                    if(caption.length > 0 && summary.length > 0) {
+                        if(caption == summary) {
+                            tableElements[j].setAttribute("summary", values[i][k]);
+                            tableElements[j].getElementsByTagName("caption")[0].innerHTML = values[i+1][k];
+                            k++;
                         }
                     }
                 }
@@ -317,13 +384,67 @@ $values = array_values($_POST);
 
                     parser = new DOMParser();
                     doc = parser.parseFromString(snippetFromSource, "text/html"); 
-                    doc.body.firstChild.style.color = values[i][k].substring(1,8);
+                    if(values[i][k].substring(0,1) == "C") {
+                        doc.body.firstChild.style.color = values[i][k].substring(1,8);
+                    } else {
+                        doc.body.firstChild.style.backgroundColor = values[i][k].substring(1,8);
+                    }
                     //console.log(doc.body.firstChild.outerHTML);
                     k++;
 
                     /*for (var index = 0; index < innerDoc.querySelectorAll("body > *").length; index++) {
                         innerDoc.querySelectorAll("body > *")[index].outerHTML = innerDoc.querySelectorAll("body > *")[index].outerHTML.replace(snippetFromSource, doc.body.firstChild.outerHTML);
                     }*/
+                    innerDoc.body.innerHTML = elementsString.replace(snippetFromSource, doc.body.firstChild.outerHTML);
+                }
+            }
+        },
+        g145 : {
+            processAutomatedRefactoring: function(message, i){
+                var k = 0;
+                var elementsString = innerDoc.body.innerHTML;
+                console.log("html" +elementsString);
+                if(elementsString.search(snippet) != -1) {
+                    var firstIndex = elementsString.search(snippet);
+                    var snippetFromSource = elementsString.substring(firstIndex, firstIndex+snippet.length);
+                    console.log(snippetFromSource);
+
+                    parser = new DOMParser();
+                    doc = parser.parseFromString(snippetFromSource, "text/html"); 
+                    if(values[i][k].substring(0,1) == "C") {
+                        doc.body.firstChild.style.color = values[i][k].substring(1,8);
+                    } else {
+                        doc.body.firstChild.style.backgroundColor = values[i][k].substring(1,8);
+                    }
+                    k++;
+
+                    innerDoc.body.innerHTML = elementsString.replace(snippetFromSource, doc.body.firstChild.outerHTML);
+                }
+            }
+        },
+
+
+
+        //1.4.6
+        g17 : {
+            processAutomatedRefactoring: function(message, i){
+                var k = 0;
+                var elementsString = innerDoc.body.innerHTML;
+                console.log("html" +elementsString);
+                if(elementsString.search(snippet) != -1) {
+                    var firstIndex = elementsString.search(snippet);
+                    var snippetFromSource = elementsString.substring(firstIndex, firstIndex+snippet.length);
+                    console.log(snippetFromSource);
+
+                    parser = new DOMParser();
+                    doc = parser.parseFromString(snippetFromSource, "text/html"); 
+                    if(values[i][k].substring(0,1) == "C") {
+                        doc.body.firstChild.style.color = values[i][k].substring(1,8);
+                    } else {
+                        doc.body.firstChild.style.backgroundColor = values[i][k].substring(1,8);
+                    }
+                    k++;
+
                     innerDoc.body.innerHTML = elementsString.replace(snippetFromSource, doc.body.firstChild.outerHTML);
                 }
             }
@@ -433,9 +554,9 @@ $values = array_values($_POST);
         h57 : {
             processAutomatedRefactoring: function(message, i){
                 if(innerDoc.getElementsByTagName("html")[0].getAttribute("xmlns") == true){
-                    //insertAttr("html", "xml:lang", i);    
+                    insertAttr("html", "xml:lang", i);    
                 } else {
-                    //insertAttr("html", "lang", i);    
+                    insertAttr("html", "lang", i);    
                 }
             }
         },
@@ -658,7 +779,7 @@ $values = array_values($_POST);
 
 
     //Define an iframe, place where automated refactoring heppened
-    var iframe = document.createElement('iframe');
+    /*var iframe = document.createElement('iframe');
     iframe.id = "iframeId";
 
     iframe.onload = function(){
@@ -668,7 +789,9 @@ $values = array_values($_POST);
             innerDoc = iframe.contentWindow.document;
         }
 
-        innerDoc.body.innerHTML = source;
+        source = "<body>"+source+"</body>";
+        console.log(source);
+        innerDoc.body.outerHTML = source;
 
         for(var i = 0 ; i < keys.length ; i++) {
             var technique = keys[i].split("_")[0];
@@ -686,11 +809,55 @@ $values = array_values($_POST);
             //console.log(result);
             result += "\n";
         }
-        document.getElementById("newHTML").innerHTML = result;
+
+        document.getElementById("newHTML").innerHTML = innerDoc.body.innerHTML;
     };
 
-    document.body.appendChild(iframe);
+    document.body.appendChild(iframe);*/
     //console.log('iframe.contentWindow =', iframe.contentWindow);
+
+
+
+
+
+
+
+
+    parser = new DOMParser();
+    innerDoc = parser.parseFromString(source, "text/html"); 
+    
+    for(var i = 0 ; i < keys.length ; i++) {
+        var technique = keys[i].split("_")[0];
+        var message = keys[i].split("_")[1];
+
+        if(techniques[technique] != null) {
+            techniques[technique].processAutomatedRefactoring(message, i);
+        }
+    }
+
+    /*allTagInsideIframe = innerDoc.querySelectorAll('body');
+
+    for (var index = 0; index < allTagInsideIframe.length; index++) {
+        result += allTagInsideIframe[index].outerHTML;
+        //console.log(result);
+        result += "\n";
+    }*/
+    console.log(innerDoc);
+    
+
+    //1
+    //document.getElementById("newHTML").innerHTML = innerDoc.body.outerHTML;
+
+    //2
+    /*var newHTML = "";
+    document.getElementById("newHTML").innerHTML = innerDoc.querySelectorAll("*");
+    for (var index = 0; index < innerDoc.querySelectorAll("*").length; index++) {
+        newHTML += innerDoc.querySelectorAll("*")[index].outerHTML;
+    }
+    document.getElementById("newHTML").innerHTML = newHTML;*/
+
+    //3
+    document.getElementById("newHTML").innerHTML = innerDoc.getElementsByTagName("html")[0].outerHTML;
 
 </script>
 </body>
