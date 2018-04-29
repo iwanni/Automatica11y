@@ -455,8 +455,8 @@
             processErrorMessage: function(errorMessage, technique, snippet) {
                 if(errorMessage == "H39_4H73_4_1.3.1") {
                     this.refactorText = textRefactor(technique, "content");
-                    this.parameter[0] = textFormParamater("text", technique, "caption", this.counter);
-                    this.parameter[1] = textFormParamater("text", technique, "summary", this.counter);
+                    this.parameter[0] = textFormParamater("text", technique, "summary", this.counter);
+                    this.parameter[1] = textFormParamater("text", technique, "caption", this.counter);
                     this.counter++;
                 }
             }

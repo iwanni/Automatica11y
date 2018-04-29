@@ -202,7 +202,7 @@ $values = array_values($_POST);
                     var k = 0;
                     var inputs = getElementsTag("input");
                     for(var j = 0 ; j < inputs.length ; j++) {
-                        if(inputs[j].previousSibling.nodeName == "LABEL") {
+                        if(inputs[j].previousElementSibling != null && inputs[j].previousElementSibling.nodeName.toLowerCase() == "label") {
                             var label = inputs[j].previousElementSibling;
                             if(label.getAttribute("for") == false || label.getAttribute("for") == null) {
                                 label.setAttribute("for", values[i][k]);
@@ -313,19 +313,25 @@ $values = array_values($_POST);
                         var caption = innerDoc.createElement("caption");
                         caption.innerHTML = values[i][k];
                         tableElements[j].insertBefore(caption, tableElements[j].firstChild);
+                        k++;
                     } else {
-                        tableElements[j].getElementsByTagName("caption")[0].innerHTML = values[i][k];
+                        if(tableElements[j].getElementsByTagName("caption")[0].innerHTML == false) {
+                            tableElements[j].getElementsByTagName("caption")[0].innerHTML = values[i][k];
+                            k++;
+                        }
                     }
                 }
             }
         },
         h73 : {
             processAutomatedRefactoring: function(message, i){
-                var k = 0;
+                /*var k = 0;
                 var tableElements = getElementsTag("table");
                 for(var j = 0 ; j < tableElements.length ; j++) {
+                    if(tableElements[j].getAttribute("caption"))
                     tableElements[j].setAttribute("summary", values[i][k]);
-                }
+                }*/
+                insertAttr("table", "summary", i);
             }
         },
         h39h73 : {

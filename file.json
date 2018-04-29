@@ -186,12 +186,12 @@ var data = {
     },
     "h63" : {
         "refactorText": {
-            "scopeTd" : "Refactoring dilakukan dengan mengganti tag td yang menjadi th apabila memiliki atribut scope",
+            "scopeTd" : "Refactoring dilakukan dengan mengganti tag td menjadi th apabila memiliki atribut scope",
             "scopeInvalid" : "Refactoring dilakukan dengan mengganti nilai scope yang salah dengan col / row / colgroup / rowgroup"
         },
         "parameterText": {
             "scopeTd": "Otomatis",
-            "scopeInvalid": "Nilai scope"
+            "scopeInvalid": "Nilai scope : "
         }
     },
     "h43" : {
