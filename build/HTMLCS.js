@@ -4973,7 +4973,8 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_1_3_1_6 = {
             // the presumption is that we are using HTML5 that uses the body of the ruby
             // element for the same purpose (otherwise, assume XHTML 1.1 with rb element).
             if (rb.length === 0) {
-                HTMLCS.addMessage(HTMLCS.ERROR, element, "Ruby element does not contain an rt element containing pronunciation information for its body text.", "H62.1.HTML5");
+                //edit iwan own
+                HTMLCS.addMessage(HTMLCS.ERROR, element, "Ruby element does not contain an rt element containing pronunciation information for its body text.", "H62.1.5HTML");
             } else {
                 //own iwan
                 HTMLCS.addMessage(HTMLCS.ERROR, element, "Ruby element does not contain an rt element containing pronunciation information for the text inside the rb element.", "H62.1.XHTML");
@@ -5202,6 +5203,7 @@ _global.HTMLCS_WCAG2AAA_Sniffs_Principle3_Guideline3_2_3_2_5 = {
         var hasTarget = link.hasAttribute("target");
         if (hasTarget === true) {
             var target = link.getAttribute("target") || "";
+            //cek iwan tidak relevan
             if (target === "_blank" && /new window/i.test(link.innerHTML) === false) {
                 HTMLCS.addMessage(HTMLCS.WARNING, link, "Check that this link's link text contains information indicating that the link will open in a new window.", "H83.3");
             }

@@ -1,13 +1,5 @@
 var data = {
-    "g151": {
-        "refactorText": {
-            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
-        },
-        "parameterText": {
-            "content": "Transkrip untuk live audio : "
-        }
-    },
-    "g151": {
+    /*"g151": {
         "refactorText": {
             "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk live audio yang kemudian akan disisipkan di bawah live audio"
         },
@@ -22,34 +14,8 @@ var data = {
         "parameterText": {
             "content": "Speech to Text API"
         }
-    },
-    "g158": {
-        "refactorText": {
-            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk audio (prerecorded) yang kemudian akan disisipkan di bawah audio. Tambahkan juga deskripsi tentang informasi penting seperti background audio yang digunakan. Dengan menggunakan API speech to text deskripsi tentang informasi penting pada audio tidak dapat ditangkap oleh API."
-        },
-        "parameterText": {
-            "content1": "Transkrip untuk audio (prerecorded) : ",
-            "content2": "Speech to Text API"
-        }
-    },
-    "g159g166": {
-        "refactorText": {
-            "NaN" : "Refactoring dilakukan dengan memasukkan transkrip untuk video (prerecorded) yang kemudian akan disisipkan di bawah video. Tambahkan juga deskripsi tentang informasi penting seperti deskripsi pemandangan, aksi, ekspresi, dll yang merupakan bagian dari presentasi. Dengan menggunakan API speech to text deskripsi tentang informasi penting pada video tidak dapat ditangkap oleh API."
-        },
-        "parameterText": {
-            "content1": "Transkrip untuk video (prerecorded) : ",
-            "content2": "Speech to Text API"
-        }
-    },
-    "g54g82": {
-        "refactorText": {
-            "NaN" : "Refactoring dapat dilakukan dengan 2 cara yaitu:<br>1. Dilakukan dengan memasukkan transkrip untuk video (prerecorded) yang kemudian akan diubah dengan text to sign language dan disisipkan di bawah video.<br>2. Dilakukan dengan menggunakan speech to sign language langsung dan disisipkan di bawah video"
-        },
-        "parameterText": {
-            "content1": "Transkrip untuk video (prerecorded) : ",
-            "content2": "Speech to Sign Language API"
-        }
-    },
+    },*/
+    
 
 
 
@@ -118,6 +84,41 @@ var data = {
         "parameterText": {
             "alt" : "Alternative text : ",
             "body" : "Alternative text pada body applet : "
+        }
+    },
+
+
+
+    //1.2.1
+    "g158": {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan memasukkan transkrip untuk audio (prerecorded) yang kemudian akan disisipkan di bawah audio. Tambahkan juga deskripsi tentang informasi penting seperti background audio yang digunakan. Dengan menggunakan API speech to text deskripsi tentang informasi penting pada audio tidak dapat ditangkap oleh API."
+        },
+        "parameterText": {
+            "transkrip": "Transkrip untuk audio (prerecorded) : ",
+            "api": "Speech to Text API : <a href='https://www.google.com/intl/en/chrome/demos/speech.html' target='_blank'>Web Speech API</a>"
+        }
+    },
+    "g159g166": {
+        "refactorText": {
+            "content" : "Refactoring dilakukan dengan memasukkan transkrip untuk video (prerecorded) yang kemudian akan disisipkan di bawah video. Tambahkan juga deskripsi tentang informasi penting seperti deskripsi pemandangan, aksi, ekspresi, dll yang merupakan bagian dari presentasi. Dengan menggunakan API speech to text deskripsi tentang informasi penting pada video tidak dapat ditangkap oleh API."
+        },
+        "parameterText": {
+            "transkrip": "Transkrip untuk video (prerecorded) : ",
+            "api": "Speech to Text API : <a href='https://www.google.com/intl/en/chrome/demos/speech.html' target='_blank'>Web Speech API</a>"
+        }
+    },
+
+
+
+    //1.2.6
+    "g54g81": {
+        "refactorText": {
+            "content" : "Refactoring dapat dilakukan dengan menggunakan text to sign language langsung dan disisipkan di bawah video"
+        },
+        "parameterText": {
+            "transkrip": "Transkrip untuk video (prerecorded) : ",
+            "api": "Speech to Sign Language API : <a href='http://funtranslations.com/e/signlanguage' target='_blank'>Sign Language Translator</a>"
         }
     },
 
@@ -358,11 +359,13 @@ var data = {
     "h59" : {
         "refactorText": {
             "head" : "Refactoring dilakukan dengan memindahkan tag link ke dalam tag head",
-            "rel" : "Refactoring dilakukan dengan menambahkan atribut rel pada tag link"
+            "rel" : "Refactoring dilakukan dengan memilih atribut rel pada tag link",
+            "href" : "Refactoring dilakukan dengan memasukkan nilai atribut href pada tag link"
         },
         "parameterText": {
             "head": "Otomatis",
-            "rel": "Rel untuk link"
+            "rel": "Rel untuk link: ",
+            "href": "Nilai href: "
         }
     },
 
@@ -374,7 +377,7 @@ var data = {
             "content" : "Refactoring dilakukan dengan menambahkan atribut lang pada tag html"
         },
         "parameterText": {
-            "content": "Lang untuk html"
+            "content": "Lang untuk html: "
         }
     },
 
@@ -388,7 +391,7 @@ var data = {
         },
         "parameterText": {
             "rp": "Otomatis",
-            "rt": "Tag rt"
+            "rt": "Tag rt: "
         }
     },
 
